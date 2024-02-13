@@ -92,7 +92,37 @@
     justify-content: center;
     align-items: center;
     margin-top: 20vh;
+    text-align: center;
 }
+
+.koren h3 {
+    text-align: center;
+}
+
+
+
+.input_ime_prezime {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.input_ime_prezime input {
+    text-align: center;
+}
+
+.radio_grupa {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: row nowrap;
+}
+
+.radio_grupa input {
+    padding: 10%;
+    height: 2vh;
+}
+
 
 
 /********Kraj stilova vezanih za Unos Polise*********/
