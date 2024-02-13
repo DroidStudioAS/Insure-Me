@@ -1,14 +1,20 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .login_container {
+    margin-top: 20vh;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+
+    width: 40vw;
+    /**postavi formu na sredinu ekrana*/
+    position: relative;
+    left: 30vw;
+
+    background-color: #b14452;
+    border-radius: 10px;
+
+    color: white;
 }
 
 /********Pocetak stilova vezanih za navigacija.php*********/
@@ -24,6 +30,8 @@ body {
     right: 0vw;
 
     padding: 1vh;
+    border-style: solid;
+    border-color: black;
 }
 
 .nav img {
@@ -41,4 +49,29 @@ body {
     cursor: pointer;
 }
 
+.nav_opcija :visited {
+    color: black;
+}
+
+.nav_opcija:visited:after {
+    background-color: red;
+}
+
 /********Kraj stilova vezanih za navigacija.php*********/
+
+/********Pocetak stilova vezanih za login*********/
+.forma_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-flow: column nowrap;
+}
+
+.login_unos {
+    margin: 5%;
+    padding: 5%;
+    border-radius: 5px;
+}
+
+/********Kraj stilova vezanih za login*********/
