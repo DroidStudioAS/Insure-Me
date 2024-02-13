@@ -11,25 +11,44 @@
 </head>
 <body>
     <?php include 'navigacija.php'?>
-    <div class="login_container">
+    <div id="loginContainer" class="login_container">
        <h1 id="naslov">Prijava Korisnika</h1>
        <img src="../public/resursi/paragraf_logo.png"/>
        <form class="forma_login" id="loginForm">
         <input placeholder="Korisničko Ime" class="login_unos" type="text"/>
         <input placeholder="Lozinka" class="login_unos" type="password"/>
-        <input  type="submit" value="Prijavi se" id="submitButton"/>
+        <input class="okidac_login_reg"  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
        <div>
         <a href="#" id="toggleLink">Nemaš Nalog? Registruj se</a>
        </div>
     </div>
 
+    <div id="koren" class="koren">
+       <h1> Unos Polise</h1>
+       <form>
+        <h3>
+            Ime Nosioca
+        </h3>
+        <div class="input_ime_prezime">
+            <input type="name" placeholder="Ime">
+            <input type="na,e" placeholder="Prezime">
+
+        </div>
+       </form>
+    </div>
+
     <script>
         $(document).ready(function(){
+            $('#koren').toggle()
             $('#submitButton').off('click').on('click',function(e){
                         //obradi logovanje
+                        //AKO je logovanje uspesno:
                         e.preventDefault();
                         console.log('obradi logovanje')
+                        $('#loginContainer').toggle()
+                        $('#koren').toggle()
+
 
                     })
             var naRegistraciji = false;

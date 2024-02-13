@@ -59,7 +59,7 @@
 
 /********Kraj stilova vezanih za navigacija.php*********/
 
-/********Pocetak stilova vezanih za login*********/
+/********Pocetak stilova vezanih za login/reg*********/
 .forma_login {
     display: flex;
     justify-content: center;
@@ -72,6 +72,32 @@
     margin: 5%;
     padding: 5%;
     border-radius: 5px;
+    font-size: large;
+    text-align: center;
+}
+
+.okidac_login_reg {
+    padding: 6% 12% 6% 12%;
+    margin: 5%;
+    border-radius: 5px;
+    font-size: large;
 }
 
 /********Kraj stilova vezanih za login*********/
+
+/********Pocetak stilova vezanih za Unos Polise*********/
+.koren {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+
+/********Kraj stilova vezanih za Unos Polise*********/
+
+
+
+
+/*********Media Upiti********/
