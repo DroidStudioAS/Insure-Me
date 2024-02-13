@@ -12,11 +12,11 @@
 <body>
     <div class="nav">
         <img src="../public/resursi/paragraf_logo.png">
-        <div>
-            opcija 1
+        <div class="nav_opcija">
+            <a href="index.php">Prijava Osiguranja </a>
         </div>
-        <div>
-            opcija 2
+        <div class="nav_opcija">
+           <a href="pregled_prijava.php"> Pregled Prijava </a>
         </div>
     </div>
 </body>

@@ -11,6 +11,7 @@ body {
     align-items: center;
 }
 
+/********Pocetak stilova vezanih za navigacija.php*********/
 .nav {
     display: flex;
     justify-content: space-evenly;
@@ -29,6 +30,15 @@ body {
     width: 5vw;
     position: absolute;
     left: 0vw;
-    top:0vh
-
+    top: 0vh;
+    margin: 1%
 }
+
+.nav_opcija {
+    font-size: 4vw;
+    margin: 1%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/********Kraj stilova vezanih za navigacija.php*********/
