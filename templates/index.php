@@ -17,7 +17,7 @@
        <form class="forma_login" id="loginForm">
         <input placeholder="Korisničko Ime" class="login_unos" type="text"/>
         <input placeholder="Lozinka" class="login_unos" type="password"/>
-        <input type="submit" value="Prijavi se" id="submitButton"/>
+        <input  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
        <div>
         <a href="#" id="toggleLink">Nemaš Nalog? Registruj se</a>
@@ -26,6 +26,12 @@
 
     <script>
         $(document).ready(function(){
+            $('#submitButton').off('click').on('click',function(e){
+                        //obradi logovanje
+                        e.preventDefault();
+                        console.log('obradi logovanje')
+
+                    })
             var naRegistraciji = false;
 
             $('#toggleLink').click(function(e){
@@ -45,7 +51,7 @@
                     $('#naslov').text('Prijava Korisnika')
                     $('#submitButton').attr('value', 'Prijavi se');
                     $('#submitButton').off('click').on('click',function(e){
-                        //obradi registraciju
+                        //obradi logovanje  
                         e.preventDefault();
                         console.log('obradi logovanje')
 
