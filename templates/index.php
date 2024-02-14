@@ -89,8 +89,26 @@
             let krajnji_datum = $('#krajnji_datum');
             let individualnoRadio = $('#individualno');
             let grupnoRadio = $('#grupno');
+
+            /***********Pocetak pomocnih funkcija********/
+            function logVals(){
+                console.log("ime: " + ime.val() + " " + prezime.val())
+                console.log("Rodjen: " + datumRodjenja.val())
+                console.log("Br pasosa: " + brojPasosa.val())
+                console.log("Kontakt mail: " + email.val())
+                console.log("Kontakt telefon: " + brojTelefona.val())
+                console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
+                console.log($("input[name='tip_polise']:checked").val());
+            }
+            function daliJeOsiguranjeGrupno(val){
+                if(val==="grupno"){
+                    return true
+                }
+                return false
+            }
             
 
+            /***********Kraj pomocnih funkcija********/
 
             $('#koren').toggle()
             $('#submitButton').off('click').on('click',function(e){
@@ -100,20 +118,7 @@
                         console.log('obradi logovanje')
                         $('#loginContainer').toggle()
                         $('#koren').toggle()
-                        $('#dateRange').datepicker({
-                            format: 'yyyy-mm-dd', // Set the desired date format
-                            clearBtn: true, // Show a "Clear" button
-                            todayHighlight: true, // Highlight today's date
-                            multidate: 2, // Allow selection of multiple dates
-                            multidateSeparator: ' - ' // Separator for the selected date range
-                        }).on('changeDate', function(e){
-                              if(e.dates.length >= 2){
-                                 $(this).datepicker('hide');
-                            }
-                            if(e.dates.length > 2){
-                              $(this).datepicker('setDates', [e.date]);
-                             }
-                            });
+                    
 
                         console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
                         console.log('sifra za logovanje: ' + lozinka.val())
@@ -122,13 +127,9 @@
                         //AKO logovanje uspe, ide ovaj block
                         $("#okidac_slanje_forme").off('click').on('click', function(e){
                             e.preventDefault()
-                            console.log("ime: " + ime.val() + " " + prezime.val())
-                            console.log("Rodjen: " + datumRodjenja.val())
-                            console.log("Br pasosa: " + brojPasosa.val())
-                            console.log("Kontakt mail: " + email.val())
-                            console.log("Kontakt telefon: " + brojTelefona.val())
-                            console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
-                            console.log($("input[name='tip_polise']:checked").val());
+                           logVals()
+                           //ukoliko je osiuranje grupno, prikazati nov prozor
+                            console.log(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val()))
                         })
 
 
