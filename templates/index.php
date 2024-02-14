@@ -86,17 +86,17 @@
         </h3>
 
         <div class="ime_dodatnog_osugranika">        
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
+            <input type="text" name="" id="ime_d_o">
+            <input type="text" name="" id="prezime_d_o">
         </div>
 
         <h3>Datum Rodjenja:</h3>
-        <input type="date" name="" id="">
+        <input type="text" class="form-control" id="rodjendan_d_o">
 
         <h3>Broj Pasosa</h3>
-        <input type="number"/>
+        <input type="number" id="broj_pasosa_d_o"/>
 
-        <input type="submit"/>
+        <input id="dodaj_osiguranika" type="submit"/>
         <div class="dodati_osiguranici">
             <div class="osiguranik">
                 <p>Pera Peric</p>
@@ -127,9 +127,19 @@
             let individualnoRadio = $('#individualno');
             let grupnoRadio = $('#grupno');
 
+            /****Polja za dodatne osiguranike***/
+            let ime_d_o = $("#ime_d_o");
+            let prezime_d_o = $("#prezime_d_o");
+            let rodjendan_d_o = $("#rodjendan_d_o");
+            let br_pasosa_d_o = $("#broj_pasosa_d_o");
+            let dodaj_osiguranika = $("#dodaj_osiguranika");
+
+
+            //vazne varijable
             let userId = -1;
             
             let kontrolni_pocetni_datum="";
+            let dodatni_osiguranici="";
 
             //dodji do danasnjeg datuma
             
@@ -137,6 +147,11 @@
 
             /*****formatiranje datepicker/a******/
             $('#datum_rodjenja').datepicker({
+                  format: 'yyyy-mm-dd', // Set the desired date format
+                  autoclose: true, // Close the datepicker when a date is selected
+                  todayHighlight: true // Highlight today's date
+            });
+            $('#rodjendan_d_o').datepicker({
                   format: 'yyyy-mm-dd', // Set the desired date format
                   autoclose: true, // Close the datepicker when a date is selected
                   todayHighlight: true // Highlight today's date
@@ -200,6 +215,8 @@
                 let pocetni_datum = $('#pocetni_datum').val();
                 let krajnji_datum = $('#krajnji_datum').val();
 
+                
+
                 logVals();
 
             if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
@@ -219,6 +236,11 @@
                 console.log("Kontakt telefon: " + brojTelefona.val())
                 console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
                 console.log($("input[name='tip_polise']:checked").val());
+
+                console.log(ime_d_o.val() + " " + prezime_d_o.val())
+                console.log(rodjendan_d_o.val())
+                console.log(br_pasosa_d_o.val());
+
             }
             function daliJeOsiguranjeGrupno(val){
                 if(val==="grupno"){
@@ -229,6 +251,7 @@
             function setWelcomeMsg(name){
                 $('#dobrodoslica').text("Dobrodosao, " + name);
             }
+
             //ajax metode
             
             function dohvatiUserId(username) {
@@ -264,7 +287,7 @@
                         polisa_ime:ime.val() + " " +prezime.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
-                        polisa_dodatni_osiguranici: ""               
+                        polisa_dodatni_osiguranici: dodatni_osiguranici              
                     },
                     success : function(response){
                         console.log(response);
@@ -403,8 +426,25 @@
                     console.log('hey')
                      });
                   $('#toggleLink').text('Nemaš Nalog? Registruj se');
-    }
-});
+            }
+        });
+        /*******Dodaj osiguranika OnClickListener********/
+        dodaj_osiguranika.off('click').on('click', function(e){
+            e.preventDefault()
+            alert('tu smo')
+            logVals();
+            //dodaj u dodatne osiguranike
+            dodatni_osiguranici+=ime_d_o.val() + " " +prezime_d_o.val() + "," + rodjendan_d_o.val() + "," + br_pasosa_d_o.val() + "|"
+            console.log(dodatni_osiguranici);
+            //resetuj polja
+            ime_d_o.val===""
+            prezime_d_o.val===""
+            rodjendan_d_o.val===""
+            br_pasosa_d_o.val===""
+
+        })
+        
+        
 
         });
     </script>
