@@ -15,11 +15,10 @@ class Polisa {
 
     // Constructor
     public function __construct(
-        $idPolise, $idKorisnika, $polisaBrPasosa, $polisaBrTelefona,
+         $idKorisnika, $polisaBrPasosa, $polisaBrTelefona,
         $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme,
         $polisaTip, $polisaEmail, $polisaDodatniOsiguranici
     ) {
-        $this->idPolise = $idPolise;
         $this->idKorisnika = $idKorisnika;
         $this->polisaBrPasosa = $polisaBrPasosa;
         $this->polisaBrTelefona = $polisaBrTelefona;
@@ -33,9 +32,6 @@ class Polisa {
     }
 
     // Getters
-    public function getIdPolise() {
-        return $this->idPolise;
-    }
 
     public function getIdKorisnika() {
         return $this->idKorisnika;
@@ -78,9 +74,6 @@ class Polisa {
     }
 
     // Setters
-    public function setIdPolise($idPolise) {
-        $this->idPolise = $idPolise;
-    }
 
     public function setIdKorisnika($idKorisnika) {
         $this->idKorisnika = $idKorisnika;

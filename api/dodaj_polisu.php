@@ -1,5 +1,5 @@
 <?php
-require_once ("./models/polisa.php");
+require_once ("../models/polisa.php");
 
 
 function dodajPolisu($polisa){
@@ -13,9 +13,8 @@ function dodajPolisu($polisa){
     if($conn->connect_error){
         die("Konekcija nije uspela" . $conn->connect_error);
     }
-    $stmt = $conn->prepare("INSERT INTO polise_ (id_polise, id_korisnika, polisa_br_pasosa, polisa_br_telefona, polisa_datum_rodjenja, polisa_od, polisa_do, polisa_ime, polisa_tip, polisa_email, polisa_dodatni_osiguranici) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO polise_ ( id_korisnika, polisa_br_pasosa, polisa_br_telefona, polisa_datum_rodjenja, polisa_od, polisa_do, polisa_ime, polisa_tip, polisa_email, polisa_dodatni_osiguranici) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     //izvlacenje vrednosti
-    $idPolise = $polisa->getIdPolise();
     $idKorisnika = $polisa->getIdKorisnika();
     $polisaBrPasosa = $polisa->getPolisaBrPasosa();
     $polisaBrTelefona = $polisa->getPolisaBrTelefona();
@@ -27,7 +26,7 @@ function dodajPolisu($polisa){
     $polisaEmail = $polisa->getPolisaEmail();
     $polisaDodatniOsiguranici = $polisa->getPolisaDodatniOsiguranici();
     
-    $stmt->bind_param("iisssssssss", $idPolise, $idKorisnika, $polisaBrPasosa, $polisaBrTelefona, $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme, $polisaTip, $polisaEmail, $polisaDodatniOsiguranici);
+    $stmt->bind_param("isssssssss",  $idKorisnika, $polisaBrPasosa, $polisaBrTelefona, $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme, $polisaTip, $polisaEmail, $polisaDodatniOsiguranici);
    
      //izvrsavanje
     if($stmt->execute()===TRUE){
@@ -44,7 +43,6 @@ function dodajPolisu($polisa){
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Assuming the data is sent via POST request
     // Extracting the data from the request
-    $id_polise = $_POST['id_polise'];
     $id_korisnika = $_POST['id_korisnika'];
     $polisa_br_pasosa = $_POST['polisa_br_pasosa'];
     $polisa_br_telefona = $_POST['polisa_br_telefona'];
@@ -58,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Create a new instance of the Polisa class using constructor
     $polisa = new Polisa(
-        $id_polise,
         $id_korisnika,
         $polisa_br_pasosa,
         $polisa_br_telefona,

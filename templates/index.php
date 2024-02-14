@@ -15,6 +15,7 @@
 </head>
 <body>
     <?php include 'navigacija.php'?>
+    <?php include '../models/polisa.php'?>
     <div id="loginContainer" class="login_container">
        <h1 id="naslov">Prijava Korisnika</h1>
        <img src="../public/resursi/paragraf_logo.png"/>
@@ -42,7 +43,7 @@
         <h3>
             Datum Rodjenja
         </h3>
-        <input id="unos_datum_rodjenja" type="date">
+        <input type="text" class="form-control" id="datum_rodjenja">
         <h3>
             Broj Pasosa
         </h3>
@@ -59,8 +60,10 @@
         </h3>
         <div class="input-group">
             <div class="datum_putovanja">
-                Od: <input id="pocetni_datum" type="date" name="" id="pocetni_datum">
-                Do: <input id="krajnji_datum" type="date" name="" id="krajnji_datum">
+                Od: <input type="text" class="form-control" id="pocetni_datum">
+
+                Do: <input type="text" class="form-control" id="krajnji_datum">
+
             </div>
         </div>
         <h3>Grupno Ili Individualno Osiguranje</h3>
@@ -115,7 +118,7 @@
             let lozinka = $('#sifra');
             let ime = $('#ime');
             let prezime = $('#prezime');
-            let datumRodjenja = $('#unos_datum_rodjenja');
+            let datumRodjenja = $('#datum_rodjenja');
             let brojPasosa = $('#brojPasosa');
             let email = $('#mail');
             let brojTelefona = $('#br_telefona');
@@ -126,11 +129,46 @@
 
             let userId = -1;
 
+            $('#datum_rodjenja').datepicker({
+                  format: 'yyyy-mm-dd', // Set the desired date format
+                  autoclose: true, // Close the datepicker when a date is selected
+                  todayHighlight: true // Highlight today's date
+            });
+            $('#pocetni_datum').datepicker({
+              format: 'yyyy-mm-dd', // Set the desired date format
+              autoclose: true, // Close the datepicker when a date is selected
+              todayHighlight: true // Highlight today's date
+            });
+            $('#krajnji_datum').datepicker({
+              format: 'yyyy-mm-dd', // Set the desired date format
+              autoclose: true, // Close the datepicker when a date is selected
+              todayHighlight: true // Highlight today's date
+            });
+
             /***********Pocetak pomocnih funkcija********/
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
             }
+            function proveriJelPostojeParametri(){
+                let ime = $('#ime').val();
+                let prezime = $('#prezime').val();
+                let datumRodjenja = $('#unos_datum_rodjenja').val();
+                let brojPasosa = $('#brojPasosa').val();
+                let email = $('#mail').val();
+                let brojTelefona = $('#br_telefona').val();
+                let pocetni_datum = $('#pocetni_datum').val();
+                let krajnji_datum = $('#krajnji_datum').val();
+
+                logVals();
+
+            if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || email===""  || pocetni_datum==="" || krajnji_datum===""){
+                alert('missing vals');
+                return false;
+            }
+                return true;
+            }
+            
             function logVals(){
                 console.log("ime: " + ime.val() + " " + prezime.val())
                 console.log("Rodjen: " + datumRodjenja.val())
@@ -161,6 +199,7 @@
                                 // Resolve the promise with the retrieved user ID
                                 resolve(response);
                                 console.log(response)
+                                userId=response;
 
                             },
                             error: function(xhr, status, error) {
@@ -171,14 +210,38 @@
                     });
                 }
 
-            
+            function postaviPolisu(){
+                $.ajax({
+                    url:'../api/dodaj_polisu.php',
+                    method:'POST',
+                    data:{
+                        id_korisnika:userId,
+                        polisa_br_pasosa:brojPasosa.val(),
+                        polisa_br_telefona:brojTelefona.val(),
+                        polisa_datum_rodjenja:datumRodjenja.val(),
+                        polisa_od:pocetni_datum.val(),
+                        polisa_do:krajnji_datum.val(),
+                        polisa_ime:ime.val() + " " +prezime.val(),
+                        polisa_tip: "",
+                        polisa_email :email.val(),
+                        polisa_dodatni_osiguranici: ""               
+                    },
+                    success : function(response){
+                        console.log(response);
+                    }
+                })
+            }
             function slanjeForme(){
                 $("#okidac_slanje_forme").off('click').on('click', function(e){
                             e.preventDefault()
                            logVals()
+                           proveriJelPostojeParametri()
                            //ukoliko je osiuranje grupno, prikazati nov prozor
                             if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val())){
                                 $("#prozor_dodatni_osiguranici").toggle();
+                            }
+                            else{
+                                postaviPolisu();
                             }
                         })
             }
