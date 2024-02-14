@@ -19,8 +19,8 @@
        <h1 id="naslov">Prijava Korisnika</h1>
        <img src="../public/resursi/paragraf_logo.png"/>
        <form class="forma_login" id="loginForm">
-        <input placeholder="Korisničko Ime" class="login_unos" type="text"/>
-        <input placeholder="Lozinka" class="login_unos" type="password"/>
+        <input id="korisnicko_ime" placeholder="Korisničko Ime" class="login_unos" type="text"/>
+        <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
         <input class="okidac_login_reg"  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
        <div>
@@ -35,46 +35,63 @@
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
-            <input type="name" placeholder="Ime">
-            <input type="name" placeholder="Prezime">
+            <input id="ime" type="name" placeholder="Ime">
+            <input id="prezime" type="name" placeholder="Prezime">
         </div>
         <h3>
             Datum Rodjenja
         </h3>
-        <input type="date">
+        <input id="unos_datum_rodjenja" type="date">
         <h3>
             Broj Pasosa
         </h3>
-        <input type="number">
+        <input id="brojPasosa" type="number">
         <h3>
             Kontakt
         </h3>
         <div>
-            <input placeholder="email" type="email">
-            <input placeholder="Broj Telefona" type="number">
+            <input id="mail" placeholder="email" type="email">
+            <input id="br_telefona" placeholder="Broj Telefona" type="number">
         </div>
         <h3>
             Kad Putujete?
         </h3>
         <div class="input-group">
-            <input type="text" class="form-control" id="dateRange">
             <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+               <input id="pocetni_datum" type="date" name="" id="pocetni_datum">
+               <input id="krajnji_datum" type="date" name="" id="krajnji_datum">
             </div>
         </div>
         <h3>Grupno Ili Individualno Osiguranje</h3>
         <div class="radio_grupa">
             <label for="individualno"> Individualno </label>
-            <input id="individualno" type="radio" name="tip_polise">
+            <input id="individualno" type="radio" name="tip_polise" value="individualno">
             <label for="grupno"> Grupno </label>
-            <input id="grupno" type="radio" name="tip_polise">
-
+            <input id="grupno" type="radio" name="tip_polise" value="grupno">
         </div>
+        <input id="okidac_slanje_forme" class="okidac" type="submit"/>
+
        </form>
     </div>
 
     <script>
         $(document).ready(function(){
+            //reference na polja unosa
+            let korisnickoIme = $('#korisnicko_ime');
+            let lozinka = $('#sifra');
+            let ime = $('#ime');
+            let prezime = $('#prezime');
+            let datumRodjenja = $('#unos_datum_rodjenja');
+            let brojPasosa = $('#brojPasosa');
+            let email = $('#mail');
+            let brojTelefona = $('#br_telefona');
+            let pocetni_datum = $('#pocetni_datum');
+            let krajnji_datum = $('#krajnji_datum');
+            let individualnoRadio = $('#individualno');
+            let grupnoRadio = $('#grupno');
+            
+
+
             $('#koren').toggle()
             $('#submitButton').off('click').on('click',function(e){
                         //obradi logovanje
@@ -97,6 +114,22 @@
                               $(this).datepicker('setDates', [e.date]);
                              }
                             });
+
+                        console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
+                        console.log('sifra za logovanje: ' + lozinka.val())
+
+
+                        //AKO logovanje uspe, ide ovaj block
+                        $("#okidac_slanje_forme").off('click').on('click', function(e){
+                            e.preventDefault()
+                            console.log("ime: " + ime.val() + " " + prezime.val())
+                            console.log("Rodjen: " + datumRodjenja.val())
+                            console.log("Br pasosa: " + brojPasosa.val())
+                            console.log("Kontakt mail: " + email.val())
+                            console.log("Kontakt telefon: " + brojTelefona.val())
+                            console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
+                            console.log($("input[name='tip_polise']:checked").val());
+                        })
 
 
                     })

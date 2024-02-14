@@ -76,7 +76,8 @@
     text-align: center;
 }
 
-.okidac_login_reg {
+/*todo: prebaciti u globalni blok*/
+.okidac {
     padding: 6% 12% 6% 12%;
     margin: 5%;
     border-radius: 5px;
