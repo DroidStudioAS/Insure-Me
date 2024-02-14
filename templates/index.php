@@ -209,6 +209,7 @@
                                     // Further process the response if needed
                                     toggleVisibility()
                                     slanjeForme()
+                                    setWelcomeMsg(ime);
                                 },
                                 error: function(xhr, status, error) {
                                     console.error('Došlo je do greške prilikom slanja zahteva:', error);
