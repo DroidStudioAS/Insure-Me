@@ -128,6 +128,8 @@
             let grupnoRadio = $('#grupno');
 
             let userId = -1;
+            
+            let kontrolni_pocetni_datum="";
 
             //dodji do danasnjeg datuma
             
@@ -145,6 +147,14 @@
               todayHighlight: true,
               startDate: todays_date// Highlight today's date
               
+            }).on('changeDate', function(e){
+                //postavi krajnji datum
+                const selectedDate = e.date;
+                const endDate = get7DaysLater(selectedDate);
+    
+                // Set the end date for #krajnji_datum datepicker
+                $('#krajnji_datum').datepicker('setStartDate', selectedDate);
+                $('#krajnji_datum').val(endDate); // Set the end date
             });
             $('#krajnji_datum').datepicker({
               format: 'yyyy-mm-dd', // Set the desired date format
@@ -167,6 +177,19 @@
                 console.log(formattedDate);
                 return formattedDate;
             }
+            function get7DaysLater(startDate) {
+                 // Calculate 7 days later date
+                 const sevenDaysLaterDate = new Date(startDate);
+                 sevenDaysLaterDate.setDate(sevenDaysLaterDate.getDate() + 7);
+
+                 // Format the date
+                 const year = sevenDaysLaterDate.getFullYear();
+                 const month = String(sevenDaysLaterDate.getMonth() + 1).padStart(2, '0');
+                 const day = String(sevenDaysLaterDate.getDate()).padStart(2, '0');
+                 const formattedDate = `${year}-${month}-${day}`;
+
+                 return formattedDate;
+            }  
             function proveriJelPostojeParametri(){
                 let ime = $('#ime').val();
                 let prezime = $('#prezime').val();
