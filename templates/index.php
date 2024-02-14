@@ -57,9 +57,9 @@
             Kad Putujete?
         </h3>
         <div class="input-group">
-            <div class="input-group-append">
-               <input id="pocetni_datum" type="date" name="" id="pocetni_datum">
-               <input id="krajnji_datum" type="date" name="" id="krajnji_datum">
+            <div class="datum_putovanja">
+                Od: <input id="pocetni_datum" type="date" name="" id="pocetni_datum">
+                Do: <input id="krajnji_datum" type="date" name="" id="krajnji_datum">
             </div>
         </div>
         <h3>Grupno Ili Individualno Osiguranje</h3>
@@ -139,6 +139,24 @@
                 }
                 return false
             }
+            //ajax metode
+            function posaljiPodatke(ime, sifra) {
+                 $.ajax({
+                    url: "../api/dodaj_korisnika.php", // Promenite ovo na putanju vaše PHP skripte
+                    method: 'POST', // Koristi POST metodu
+                    data: { // Postavi podatke koji se šalju PHP skripti
+                        ime: ime,
+                        sifra: sifra
+                },
+                 success: function(response) {
+                      console.log(response); // Loguj odgovor sa servera
+                     // Ovde možete dalje obraditi odgovor ako je potrebno
+              },
+                error: function(xhr, status, error) {
+                     console.error('Došlo je do greške prilikom slanja zahteva:', error); // Loguj grešku ako do nje dođe
+                }
+             });
+            }
             
 
             /***********Kraj pomocnih funkcija********/
@@ -185,6 +203,9 @@
                         //obradi registraciju
                         e.preventDefault();
                         console.log('obradi registraciju')
+                        if(korisnickoIme.val()!=="" && lozinka.val()!==""){
+                            posaljiPodatke(korisnickoIme.val(), lozinka.val());
+                        }
 
                     })
                     $('#toggleLink').text('Imaš Nalog? Prijavi se');

@@ -39,12 +39,10 @@
     position: absolute;
     left: 0vw;
     top: 0vh;
-    margin: 1%
 }
 
 .nav_opcija {
     font-size: 4vw;
-    margin: 1%;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -53,9 +51,7 @@
     color: black;
 }
 
-.nav_opcija:visited:after {
-    background-color: red;
-}
+
 
 /********Kraj stilova vezanih za navigacija.php*********/
 
@@ -109,6 +105,15 @@
 }
 
 .input_ime_prezime input {
+    text-align: center;
+}
+
+.datum_putovanja {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 3vw;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -177,7 +182,31 @@
 }
 
 /********Kraj stilova vezanih za Unos Polise*********/
+/*********Pocetak stilova vezanih za pregled prijava ******/
+.pregled_koren {
+    display: flex;
+    flex-flow: row wrap;
 
+    margin-top: 13vh;
+
+}
+
+.lista_prijava {
+    display: flex;
+    flex-flow: row nowrap;
+    border-right: 5px solid black;
+    width: 20vw;
+    height: 80vh;
+}
+
+.prikaz_prijava {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60vw;
+    padding: 3%;
+}
 
 
 
