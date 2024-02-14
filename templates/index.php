@@ -124,6 +124,8 @@
             let individualnoRadio = $('#individualno');
             let grupnoRadio = $('#grupno');
 
+            let userId = -1;
+
             /***********Pocetak pomocnih funkcija********/
             function toggleVisibility(){
                 $('#loginContainer').toggle()
@@ -147,6 +149,29 @@
             function setWelcomeMsg(name){
                 $('#dobrodoslica').text("Dobrodosao, " + name);
             }
+            //ajax metode
+            
+            function dohvatiUserId(username) {
+                    return new Promise((resolve, reject) => {
+                        $.ajax({
+                            url: '../api/dohvati_korisnikov_id.php', 
+                            method: 'GET', // Using GET method
+                            data: { username: username }, // Sending username as a parameter
+                            success: function(response) {
+                                // Resolve the promise with the retrieved user ID
+                                resolve(response);
+                                console.log(response)
+
+                            },
+                            error: function(xhr, status, error) {
+                                // Reject the promise with the error details
+                                reject(error);
+                            }
+                        });
+                    });
+                }
+
+            
             function slanjeForme(){
                 $("#okidac_slanje_forme").off('click').on('click', function(e){
                             e.preventDefault()
@@ -157,7 +182,6 @@
                             }
                         })
             }
-            //ajax metode
             function logujKorisnika(ime,sifra){
                 $.ajax({
                     url:'../api/login_korisnika.php',
@@ -172,6 +196,8 @@
                             toggleVisibility()
                             slanjeForme()
                             setWelcomeMsg(ime)
+
+                            dohvatiUserId(ime);
                         }else if (response==='false'){
                             alert('Korisnicko ime/Lozinka su netacni')
                         }
@@ -180,10 +206,6 @@
 
                 })
             }
-
-
-
-
             function registrujKorisnika(ime, sifra) {
                  $.ajax({
                     url: "../api/proveri_korisnika.php", // Change this to the path of your PHP script for checking if the user exists
