@@ -129,6 +129,11 @@
 
             let userId = -1;
 
+            //dodji do danasnjeg datuma
+            
+            let todays_date = getTodaysDate();
+
+            /*****formatiranje datepicker/a******/
             $('#datum_rodjenja').datepicker({
                   format: 'yyyy-mm-dd', // Set the desired date format
                   autoclose: true, // Close the datepicker when a date is selected
@@ -137,7 +142,9 @@
             $('#pocetni_datum').datepicker({
               format: 'yyyy-mm-dd', // Set the desired date format
               autoclose: true, // Close the datepicker when a date is selected
-              todayHighlight: true // Highlight today's date
+              todayHighlight: true,
+              startDate: todays_date// Highlight today's date
+              
             });
             $('#krajnji_datum').datepicker({
               format: 'yyyy-mm-dd', // Set the desired date format
@@ -149,6 +156,16 @@
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
+            }
+            function getTodaysDate(){
+                const currentDate = new Date();
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+                const day = String(currentDate.getDate()).padStart(2, '0');
+
+                const formattedDate = `${year}-${month}-${day}`;
+                console.log(formattedDate);
+                return formattedDate;
             }
             function proveriJelPostojeParametri(){
                 let ime = $('#ime').val();
@@ -210,8 +227,7 @@
                         });
                     });
                 }
-
-            function postaviPolisu(){
+                function postaviPolisu(){
                 $.ajax({
                     url:'../api/dodaj_polisu.php',
                     method:'POST',
@@ -328,49 +344,42 @@
                         if(korisnickoIme.val()!=="" && lozinka.val()!==""){
                             logujKorisnika(korisnickoIme.val(), lozinka.val());
                         }
-                    
-
                         console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
                         console.log('sifra za logovanje: ' + lozinka.val())
-
-
-                        //AKO logovanje uspe, ide ovaj block
-                       
-
-
                          })
-            let naRegistraciji = false;
 
+            let naRegistraciji = false;
+            /*****OnClickListener za promenu izmedju forme registracije i login-a**** */
             $('#toggleLink').click(function(e) {
-    e.preventDefault(); // Prevent page refresh on anchor click
-    naRegistraciji = !naRegistraciji; // Toggle logged-in value
-    console.log(naRegistraciji);
-    if (naRegistraciji) {
-        $('#naslov').text('Registracija Korisnika');
-        $('#submitButton').attr('value', 'Registruj se');
-        $('#submitButton').off('click').on('click', function(e) {
-            e.preventDefault();
-            console.log('obradi registraciju');
-            if (korisnickoIme.val() !== "" && lozinka.val() !== "") {
-                registrujKorisnika(korisnickoIme.val(), lozinka.val());
-            }
-        });
-        $('#toggleLink').text('Imaš Nalog? Prijavi se');
-    } else {
-        console.log('hey');
-        $('#naslov').text('Prijava Korisnika');
-        $('#submitButton').attr('value', 'Prijavi se');
-        $('#submitButton').off('click').on('click', function(e) {
-            e.preventDefault();
-            console.log('heyyyyy');
-            if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
-                alert('missing vals');
-                return;
-            }
-            logujKorisnika(korisnickoIme.val(), lozinka.val());
-            console.log('hey')
-        });
-        $('#toggleLink').text('Nemaš Nalog? Registruj se');
+                e.preventDefault(); // Prevent page refresh on anchor click
+                naRegistraciji = !naRegistraciji; // Toggle logged-in value
+                console.log(naRegistraciji);
+                if (naRegistraciji) {
+                    $('#naslov').text('Registracija Korisnika');
+                    $('#submitButton').attr('value', 'Registruj se');
+                    $('#submitButton').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        console.log('obradi registraciju');
+                        if (korisnickoIme.val() !== "" && lozinka.val() !== "") {
+                            registrujKorisnika(korisnickoIme.val(), lozinka.val());
+                        }
+                    });
+                  $('#toggleLink').text('Imaš Nalog? Prijavi se');
+                }else {
+                    console.log('hey');
+                    $('#naslov').text('Prijava Korisnika');
+                    $('#submitButton').attr('value', 'Prijavi se');
+                    $('#submitButton').off('click').on('click', function(e) {
+                          e.preventDefault();
+                          console.log('heyyyyy');
+                          if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                              alert('missing vals');
+                              return;
+                          }
+                    logujKorisnika(korisnickoIme.val(), lozinka.val());
+                    console.log('hey')
+                     });
+                  $('#toggleLink').text('Nemaš Nalog? Registruj se');
     }
 });
 
