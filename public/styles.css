@@ -124,7 +124,57 @@
     height: 2vh;
 }
 
+/*******Dodatni osiguranici*****/
+.dodatni_osiguranici_container {
+    position: fixed !important;
+    top: 5vh;
+    left: 20vw;
 
+    width: 60vw;
+    height: 90vh;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column nowrap;
+
+    background: #f4f8c8;
+}
+
+.dodatni_osiguranici_container img {
+    width: 40px;
+    position: absolute;
+    top: 0vh;
+    right: 0vw;
+
+    cursor: pointer;
+}
+
+.dodati_osiguranici {
+    width: 60vw;
+    border-top: 5px solid black;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-flow: row wrap;
+    margin-top: 3%;
+    padding-top: 3%;
+}
+
+.osiguranik {
+    display: flex;
+    flex-flow: column nowrap;
+
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+}
+
+.osiguranik p {
+    font-weight: 600;
+}
 
 /********Kraj stilova vezanih za Unos Polise*********/
 

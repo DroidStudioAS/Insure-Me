@@ -35,8 +35,8 @@
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
-            <input id="ime" type="name" placeholder="Ime">
-            <input id="prezime" type="name" placeholder="Prezime">
+            <input id="ime" type="text" placeholder="Ime">
+            <input id="prezime" type="text" placeholder="Prezime">
         </div>
         <h3>
             Datum Rodjenja
@@ -72,7 +72,40 @@
         <input id="okidac_slanje_forme" class="okidac" type="submit"/>
 
        </form>
+       <div id="prozor_dodatni_osiguranici" class="dodatni_osiguranici_container" style="display:none;">
+        <img id="zatvori_prozor" src="../public/resursi/close.png"/>
+        <h1>
+            Dodatni Osiguranici
+        </h1>
+        <h3>
+            Ime:
+        </h3>
+
+        <div class="ime_dodatnog_osugranika">        
+            <input type="text" name="" id="">
+            <input type="text" name="" id="">
+        </div>
+
+        <h3>Datum Rodjenja:</h3>
+        <input type="date" name="" id="">
+
+        <h3>Broj Pasosa</h3>
+        <input type="number"/>
+
+        <input type="submit"/>
+        <div class="dodati_osiguranici">
+            <div class="osiguranik">
+                <p>Pera Peric</p>
+                <p>1999-12-01</p>
+                <p>2827362</p>
+            </div>
+         
+        </div>
+
+        </div>
     </div>
+
+ 
 
     <script>
         $(document).ready(function(){
@@ -111,6 +144,10 @@
             /***********Kraj pomocnih funkcija********/
 
             $('#koren').toggle()
+            $('#zatvori_prozor').off('click').on('click', function(e){
+                e.preventDefault();
+                $("#prozor_dodatni_osiguranici").toggle();
+            })
             $('#submitButton').off('click').on('click',function(e){
                         //obradi logovanje
                         //AKO je logovanje uspesno:
@@ -129,7 +166,9 @@
                             e.preventDefault()
                            logVals()
                            //ukoliko je osiuranje grupno, prikazati nov prozor
-                            console.log(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val()))
+                            if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val())){
+                                $("#prozor_dodatni_osiguranici").toggle();
+                            }
                         })
 
 
