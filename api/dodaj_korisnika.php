@@ -1,4 +1,6 @@
 <?php 
+
+
 function unesiKorisnika($korisnicko_ime, $korisnicka_sifra){
     //povezivanje sa bazom
     $ime_servera = 'localhost';

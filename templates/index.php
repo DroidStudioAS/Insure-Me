@@ -141,22 +141,41 @@
             }
             //ajax metode
             function posaljiPodatke(ime, sifra) {
-                 $.ajax({
-                    url: "../api/dodaj_korisnika.php", // Promenite ovo na putanju vaše PHP skripte
-                    method: 'POST', // Koristi POST metodu
-                    data: { // Postavi podatke koji se šalju PHP skripti
+    $.ajax({
+        url: "../api/proveri_korisnika.php", // Change this to the path of your PHP script for checking if the user exists
+        method: 'POST',
+        data: {
+            ime: ime
+        },
+        success: function(response) {
+            if (response === "true") {
+                // If user exists, trigger an alert
+                alert("Korisnik već postoji.");
+            } else {
+                // If user doesn't exist, make the other call to add the user
+                $.ajax({
+                    url: "../api/dodaj_korisnika.php", // Change this to the path of your PHP script for adding the user
+                    method: 'POST',
+                    data: {
                         ime: ime,
                         sifra: sifra
-                },
-                 success: function(response) {
-                      console.log(response); // Loguj odgovor sa servera
-                     // Ovde možete dalje obraditi odgovor ako je potrebno
-              },
-                error: function(xhr, status, error) {
-                     console.error('Došlo je do greške prilikom slanja zahteva:', error); // Loguj grešku ako do nje dođe
-                }
-             });
+                    },
+                    success: function(response) {
+                        console.log(response); // Log the response from the server
+                        // Further process the response if needed
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Došlo je do greške prilikom slanja zahteva:', error);
+                    }
+                });
             }
+        },
+        error: function(xhr, status, error) {
+            console.error('Došlo je do greške prilikom slanja zahteva:', error);
+        }
+    });
+}
+
             
 
             /***********Kraj pomocnih funkcija********/
