@@ -29,6 +29,7 @@
     </div>
 
     <div id="koren" class="koren">
+        <h1 id="dobrodoslica"></h1>
        <h1> Unos Polise</h1>
        <form>
         <h3>
@@ -124,6 +125,10 @@
             let grupnoRadio = $('#grupno');
 
             /***********Pocetak pomocnih funkcija********/
+            function toggleVisibility(){
+                $('#loginContainer').toggle()
+                $('#koren').toggle()
+            }
             function logVals(){
                 console.log("ime: " + ime.val() + " " + prezime.val())
                 console.log("Rodjen: " + datumRodjenja.val())
@@ -139,6 +144,19 @@
                 }
                 return false
             }
+            function setWelcomeMsg(name){
+                $('#dobrodoslica').text("Dobrodosao, " + name);
+            }
+            function slanjeForme(){
+                $("#okidac_slanje_forme").off('click').on('click', function(e){
+                            e.preventDefault()
+                           logVals()
+                           //ukoliko je osiuranje grupno, prikazati nov prozor
+                            if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val())){
+                                $("#prozor_dodatni_osiguranici").toggle();
+                            }
+                        })
+            }
             //ajax metode
             function logujKorisnika(ime,sifra){
                 $.ajax({
@@ -151,6 +169,9 @@
                     success:function(response){
                         if(response==='true'){
                             alert('matches')
+                            toggleVisibility()
+                            slanjeForme()
+                            setWelcomeMsg(ime)
                         }else if (response==='false'){
                             alert('Korisnicko ime/Lozinka su netacni')
                         }
@@ -159,6 +180,8 @@
 
                 })
             }
+
+
 
 
             function registrujKorisnika(ime, sifra) {
@@ -184,6 +207,8 @@
                                 success: function(response) {
                                     console.log(response); // Log the response from the server
                                     // Further process the response if needed
+                                    toggleVisibility()
+                                    slanjeForme()
                                 },
                                 error: function(xhr, status, error) {
                                     console.error('Došlo je do greške prilikom slanja zahteva:', error);
@@ -211,8 +236,9 @@
                         //AKO je logovanje uspesno:
                         e.preventDefault();
                         console.log('obradi logovanje')
-                        $('#loginContainer').toggle()
-                        $('#koren').toggle()
+                        if(korisnickoIme.val()!=="" && lozinka.val()!==""){
+                            logujKorisnika(korisnickoIme.val(), lozinka.val());
+                        }
                     
 
                         console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
@@ -220,18 +246,11 @@
 
 
                         //AKO logovanje uspe, ide ovaj block
-                        $("#okidac_slanje_forme").off('click').on('click', function(e){
-                            e.preventDefault()
-                           logVals()
-                           //ukoliko je osiuranje grupno, prikazati nov prozor
-                            if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val())){
-                                $("#prozor_dodatni_osiguranici").toggle();
-                            }
-                        })
+                       
 
 
-                    })
-            var naRegistraciji = false;
+                         })
+            let naRegistraciji = false;
 
             $('#toggleLink').click(function(e) {
     e.preventDefault(); // Prevent page refresh on anchor click
