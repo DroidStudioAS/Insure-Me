@@ -140,41 +140,62 @@
                 return false
             }
             //ajax metode
-            function posaljiPodatke(ime, sifra) {
-    $.ajax({
-        url: "../api/proveri_korisnika.php", // Change this to the path of your PHP script for checking if the user exists
-        method: 'POST',
-        data: {
-            ime: ime
-        },
-        success: function(response) {
-            if (response === "true") {
-                // If user exists, trigger an alert
-                alert("Korisnik već postoji.");
-            } else {
-                // If user doesn't exist, make the other call to add the user
+            function logujKorisnika(ime,sifra){
                 $.ajax({
-                    url: "../api/dodaj_korisnika.php", // Change this to the path of your PHP script for adding the user
+                    url:'../api/login_korisnika.php',
                     method: 'POST',
                     data: {
-                        ime: ime,
-                        sifra: sifra
+                        ime:ime,
+                        sifra:sifra
+                    },
+                    success:function(response){
+                        if(response==='true'){
+                            alert('matches')
+                        }else if (response==='false'){
+                            alert('Korisnicko ime/Lozinka su netacni')
+                        }
+                    }
+                
+
+                })
+            }
+
+
+            function registrujKorisnika(ime, sifra) {
+                 $.ajax({
+                    url: "../api/proveri_korisnika.php", // Change this to the path of your PHP script for checking if the user exists
+                    method: 'POST',
+                    data: {
+                        ime: ime
                     },
                     success: function(response) {
-                        console.log(response); // Log the response from the server
-                        // Further process the response if needed
+                        if (response === "true") {
+                            // If user exists, trigger an alert
+                            alert("Korisnik već postoji.");
+                        } else {
+                            // If user doesn't exist, make the other call to add the user
+                            $.ajax({
+                                url: "../api/dodaj_korisnika.php", // Change this to the path of your PHP script for adding the user
+                                method: 'POST',
+                                data: {
+                                    ime: ime,
+                                    sifra: sifra
+                                },
+                                success: function(response) {
+                                    console.log(response); // Log the response from the server
+                                    // Further process the response if needed
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Došlo je do greške prilikom slanja zahteva:', error);
+                                }
+                            });
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error('Došlo je do greške prilikom slanja zahteva:', error);
                     }
                 });
             }
-        },
-        error: function(xhr, status, error) {
-            console.error('Došlo je do greške prilikom slanja zahteva:', error);
-        }
-    });
-}
 
             
 
@@ -212,34 +233,39 @@
                     })
             var naRegistraciji = false;
 
-            $('#toggleLink').click(function(e){
-                e.preventDefault(); // onemoguci osvezavanje stranice klikom na sidro
-                naRegistraciji = !naRegistraciji; // Toggle ulogovan value
-                if(naRegistraciji){
-                    $('#naslov').text('Registracija Korisnika')
-                    $('#submitButton').attr('value', 'Registruj se');
-                    $('#submitButton').off('click').on('click',function(e){
-                        //obradi registraciju
-                        e.preventDefault();
-                        console.log('obradi registraciju')
-                        if(korisnickoIme.val()!=="" && lozinka.val()!==""){
-                            posaljiPodatke(korisnickoIme.val(), lozinka.val());
-                        }
+            $('#toggleLink').click(function(e) {
+    e.preventDefault(); // Prevent page refresh on anchor click
+    naRegistraciji = !naRegistraciji; // Toggle logged-in value
+    console.log(naRegistraciji);
+    if (naRegistraciji) {
+        $('#naslov').text('Registracija Korisnika');
+        $('#submitButton').attr('value', 'Registruj se');
+        $('#submitButton').off('click').on('click', function(e) {
+            e.preventDefault();
+            console.log('obradi registraciju');
+            if (korisnickoIme.val() !== "" && lozinka.val() !== "") {
+                registrujKorisnika(korisnickoIme.val(), lozinka.val());
+            }
+        });
+        $('#toggleLink').text('Imaš Nalog? Prijavi se');
+    } else {
+        console.log('hey');
+        $('#naslov').text('Prijava Korisnika');
+        $('#submitButton').attr('value', 'Prijavi se');
+        $('#submitButton').off('click').on('click', function(e) {
+            e.preventDefault();
+            console.log('heyyyyy');
+            if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                alert('missing vals');
+                return;
+            }
+            logujKorisnika(korisnickoIme.val(), lozinka.val());
+            console.log('hey')
+        });
+        $('#toggleLink').text('Nemaš Nalog? Registruj se');
+    }
+});
 
-                    })
-                    $('#toggleLink').text('Imaš Nalog? Prijavi se');
-                } else {
-                    $('#naslov').text('Prijava Korisnika')
-                    $('#submitButton').attr('value', 'Prijavi se');
-                    $('#submitButton').off('click').on('click',function(e){
-                        //obradi logovanje  
-                        e.preventDefault();
-                        console.log('obradi logovanje')
-
-                    })
-                    $('#toggleLink').text('Nemaš Nalog? Registruj se');
-                }
-            });
         });
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
