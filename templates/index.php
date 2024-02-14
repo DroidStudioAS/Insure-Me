@@ -162,7 +162,9 @@
 
                 logVals();
 
-            if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || email===""  || pocetni_datum==="" || krajnji_datum===""){
+            if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
+                email===""  || pocetni_datum==="" || krajnji_datum==="" 
+                || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('missing vals');
                 return false;
             }
@@ -200,7 +202,6 @@
                                 resolve(response);
                                 console.log(response)
                                 userId=response;
-
                             },
                             error: function(xhr, status, error) {
                                 // Reject the promise with the error details
@@ -222,12 +223,13 @@
                         polisa_od:pocetni_datum.val(),
                         polisa_do:krajnji_datum.val(),
                         polisa_ime:ime.val() + " " +prezime.val(),
-                        polisa_tip: "",
+                        polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
                         polisa_dodatni_osiguranici: ""               
                     },
                     success : function(response){
                         console.log(response);
+                        alert('polisa postavljena');
                     }
                 })
             }
@@ -242,6 +244,7 @@
                             }
                             else{
                                 postaviPolisu();
+                                logVals()
                             }
                         })
             }
