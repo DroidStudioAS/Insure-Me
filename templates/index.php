@@ -240,6 +240,7 @@
                 console.log(ime_d_o.val() + " " + prezime_d_o.val())
                 console.log(rodjendan_d_o.val())
                 console.log(br_pasosa_d_o.val());
+                console.log(dodatni_osiguranici)
 
             }
             function daliJeOsiguranjeGrupno(val){
@@ -301,8 +302,8 @@
                            logVals()
                            proveriJelPostojeParametri()
                            //ukoliko je osiuranje grupno, prikazati nov prozor
-                            if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val())){
-                                $("#prozor_dodatni_osiguranici").toggle();
+                            if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val()) && dodatni_osiguranici===""){
+                                    $("#prozor_dodatni_osiguranici").toggle();                 
                             }
                             else{
                                 postaviPolisu();
