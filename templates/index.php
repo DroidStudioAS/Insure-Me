@@ -266,6 +266,7 @@
                                 resolve(response);
                                 console.log(response)
                                 userId=response;
+                                localStorage.setItem('id', userId);
                             },
                             error: function(xhr, status, error) {
                                 // Reject the promise with the error details

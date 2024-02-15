@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../public/styles.css">
     <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -57,6 +58,31 @@
         </div>
     </div>
   
+<script>
+   let userId =localStorage.getItem('id');
+    
+   function dohvatiPolise(){
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url:'../api/dohvati_polise.php',
+            method:"GET",
+            data:{id_korisnika:userId},
+            success:function(response){
+                resolve(response)
+                console.log(response);
+            }
+
+        })
+    })
+    
+   }
+    $(document).ready(function(){
+        console.log(userId);
+        //polise sacuvane za korisnika
+        dohvatiPolise(userId);
+    })
+</script>
+
 </body>
 
 </html>
