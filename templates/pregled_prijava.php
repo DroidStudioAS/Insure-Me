@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moje Polise</title>
 
-    <link rel="stylesheet" href="../public/styles.css">
+    <link rel="stylesheet" href="../publx`ic/styles.css">
     <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../models/polisa.js"></script>
@@ -16,8 +16,12 @@
     <?php include 'navigacija.php'?>
     
     <div class="pregled_koren">
+        <div id="listaPrijava" class="list_prijava">
+
+        </div>
+
         <div class="prikaz_prijava">
-        <table id="tabela">
+        <table class="table" id="tabela">
         <thead>
             <tr>
                 <th>Datum unosa polise</th>
@@ -32,24 +36,14 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Add table rows dynamically with data -->
-            <tr>
-                <td>2024-02-14</td>
-                <td>John Doe</td>
-                <td>1990-01-01</td>
-                <td>123456789</td>
-                <td>john.doe@example.com</td>
-                <td>2024-03-01</td>
-                <td>2024-03-15</td>
-                <td>15</td>
-                <td>Individualno</td>
-                
-            </tr>
-            <!-- Add more rows as needed -->
+  
         </tbody>
     </table>
         </div>
     </div>
+    <div class="dodatni_osiguranici">
+        dsadassdas
+        </div>
   
 <script>
    let userId =localStorage.getItem('id');
@@ -66,6 +60,9 @@
     const differenceDays = differenceMs / (1000 * 60 * 60 * 24);
 
     return differenceDays;
+}
+function prikaziOsiguranike(){
+
 }
     
     function dohvatiPolise(){
@@ -112,9 +109,12 @@
    }
     $(document).ready(function(){
         let tableBody = $('#tabela');
+        let listaPrijava = $('#listaPrijava')
         console.log(userId);
+        let counter=1;
         let polise = dohvatiPolise(userId).then(respnse=>{
             polisa_arr.forEach(polisa => {
+               const datumZaPolisu = `<div class="polisa">${counter+") "+polisa.datumPrijave}</div>`
                const row = `<tr>
                                 <td>${polisa.datumPrijave}</td>                                                 
                                 <td>${polisa.polisaIme}</td>
@@ -127,7 +127,9 @@
                                 <td>${polisa.polisaTip}</td>
                                 <td>${polisa.polisaTip === 'grupno' ? '<button>Prikazi Osiguranike</button>' : ''}</td>
                            </tr>`;
+                listaPrijava.append(datumZaPolisu);
                tableBody.append(row);
+               counter++;
            });       
          });
 

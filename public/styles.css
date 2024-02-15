@@ -185,12 +185,25 @@
 /*********Pocetak stilova vezanih za pregled prijava ******/
 .pregled_koren {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     margin-top: 13vh;
-
 }
+
+.list_prijava {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+
+.polisa {
+    font-size: xx-large;
+    margin: 1%;
+}
+
 
 
 
@@ -200,6 +213,16 @@
     align-items: center;
     justify-content: center;
     padding: 3%;
+    width: 80vw;
+}
+
+.table {
+    border-collapse: collapse;
+}
+
+.dodatni_osiguranici {
+    position: absolute;
+    top: -59vh;
 }
 
 
