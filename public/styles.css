@@ -186,25 +186,19 @@
 .pregled_koren {
     display: flex;
     flex-flow: row wrap;
-
+    justify-content: center;
+    align-items: center;
     margin-top: 13vh;
 
 }
 
-.lista_prijava {
-    display: flex;
-    flex-flow: row nowrap;
-    border-right: 5px solid black;
-    width: 20vw;
-    height: 80vh;
-}
+
 
 .prikaz_prijava {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+    flex-flow: row nowrap;
     align-items: center;
-    width: 60vw;
+    justify-content: center;
     padding: 3%;
 }
 

@@ -16,13 +16,6 @@
     <?php include 'navigacija.php'?>
     
     <div class="pregled_koren">
-        <div class="lista_prijava">
-            <ol>
-                <li>primer 1</li>
-                <li>primer 2</li>
-
-            </ol>
-        </div>
         <div class="prikaz_prijava">
         <table id="tabela">
         <thead>
@@ -36,7 +29,6 @@
                 <th>Datum putovanja do</th>
                 <th>Broj dana</th>
                 <th>Induvidualno / Grupno osiguranje</th>
-                <th>Akcija</th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +43,7 @@
                 <td>2024-03-15</td>
                 <td>15</td>
                 <td>Individualno</td>
-                <td><button>Show Details</button></td>
+                
             </tr>
             <!-- Add more rows as needed -->
         </tbody>
@@ -64,6 +56,17 @@
    let polise = ""
 
    let polisa_arr =null;
+
+   function calculateDateDifference(startDate, endDate) {
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+
+    const differenceMs = endDateObj - startDateObj;
+
+    const differenceDays = differenceMs / (1000 * 60 * 60 * 24);
+
+    return differenceDays;
+}
     
     function dohvatiPolise(){
     return new Promise((resolve, reject)=>{
@@ -120,9 +123,9 @@
                                 <td>${polisa.polisaEmail}</td>
                                 <td>${polisa.polisaOd}</td>
                                 <td>${polisa.polisaDo}</td>
-                                <td></td>
+                                <td>${calculateDateDifference(polisa.polisaOd, polisa.polisaDo)}</td>
                                 <td>${polisa.polisaTip}</td>
-                                <td><button>Show Details</button></td>
+                                <td>${polisa.polisaTip === 'grupno' ? '<button>Prikazi Osiguranike</button>' : ''}</td>
                            </tr>`;
                tableBody.append(row);
            });       
