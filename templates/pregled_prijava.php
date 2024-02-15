@@ -31,30 +31,11 @@
             <div id="tip_container" class="tip_container">tip</div>
            
             <div id="prikazi_container" class="prikazi_container">prikazi vise</div>
-        </div>
-    <!--    <table class="table" id="tabela">                   -->     
-    <!--    <thead>-->
-    <!--        <tr>-->
-    <!--            <th>Datum unosa polise</th>-->
-    <!--            <th>Ime i prezime nosioca</th>-->
-    <!--            <th>Datum rođenja</th>-->
-    <!--            <th>Broj pasoša</th>-->
-    <!--            <th>Email</th>-->
-    <!--            <th>Datum putovanja od</th>-->
-    <!--            <th>Datum putovanja do</th>-->
-    <!--            <th>Broj dana</th>-->
-    <!--            <th>Induvidualno / Grupno osiguranje</th>-->
-    <!--        </tr>-->
-    <!--    </thead>-->
-    <!--    <tbody>-->
-  <!---->
-    <!--    </tbody>-->
-    <!--</table>-->
-       
+        </div>      
     </div>
     <div class="dodatni_osiguranici">
         dsadassdas
-        </div>
+    </div>
   
 <script>
    let userId =localStorage.getItem('id');
