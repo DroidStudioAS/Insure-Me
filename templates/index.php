@@ -362,6 +362,9 @@
                                     toggleVisibility()
                                     slanjeForme()
                                     setWelcomeMsg(ime);
+
+                                    dohvatiUserId(ime);
+
                                 },
                                 error: function(xhr, status, error) {
                                     console.error('Došlo je do greške prilikom slanja zahteva:', error);
