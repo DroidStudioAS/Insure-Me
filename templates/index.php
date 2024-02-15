@@ -12,6 +12,7 @@
     <!-- Bootstrap Datepicker CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../models/DodatniOsiguranik.js"></script>
 </head>
 <body>
     <?php include 'navigacija.php'?>
@@ -97,11 +98,10 @@
         <input type="number" id="broj_pasosa_d_o"/>
 
         <input id="dodaj_osiguranika" type="submit"/>
-        <div class="dodati_osiguranici">
+        <div id="dodati_osiguranici" class="dodati_osiguranici">
             <div class="osiguranik">
-                <p>Pera Peric</p>
-                <p>1999-12-01</p>
-                <p>2827362</p>
+
+            
             </div>
          
         </div>
@@ -112,6 +112,7 @@
  
 
     <script>
+      
         $(document).ready(function(){
             //reference na polja unosa
             let korisnickoIme = $('#korisnicko_ime');
@@ -133,6 +134,7 @@
             let rodjendan_d_o = $("#rodjendan_d_o");
             let br_pasosa_d_o = $("#broj_pasosa_d_o");
             let dodaj_osiguranika = $("#dodaj_osiguranika");
+            let dodatiOsiguranici = $('#dodati_osiguranici');
 
 
             //vazne varijable
@@ -457,12 +459,24 @@
             logVals();
             dodatni_osiguranici+=ime_d_o.val() + " " +prezime_d_o.val() + "," + rodjendan_d_o.val() + "," + br_pasosa_d_o.val() + "|"
             console.log(dodatni_osiguranici);
+            let dodatniOsiguranik = new DodatniOsiguranik(ime_d_o.val() + " " +prezime_d_o.val(), rodjendan_d_o.val(),br_pasosa_d_o.val());
+            console.log(dodatniOsiguranik);
             alert('dodali ste osiguranika: ' + ime_d_o.val() + " " +prezime_d_o.val())
             //resetuj polja
             ime_d_o.val("")
             prezime_d_o.val("")
             rodjendan_d_o.val("")
             br_pasosa_d_o.val("")
+            const osiguranikZaDodati = 
+            `<div class="osiguranik">
+                <p>${dodatniOsiguranik.getIme()}</p>
+                <p>${dodatniOsiguranik.getDatumRodjenja()}</p>
+                <p>${dodatniOsiguranik.getBrojPasosa()}</p>
+            </div>`;
+            dodatiOsiguranici.append(osiguranikZaDodati);
+
+
+           
         })
         
         

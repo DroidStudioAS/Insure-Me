@@ -35,7 +35,7 @@
     </div>
     <div class="dodatni_osiguranici">
         dsadassdas
-    </div>
+        </div>
   
 <script>
    let userId =localStorage.getItem('id');
