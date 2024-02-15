@@ -428,20 +428,34 @@
                   $('#toggleLink').text('Nemaš Nalog? Registruj se');
             }
         });
+
+        //todo, move to helper function
+        function validacijaDodatnihOsiguranika(){
+            if(ime_d_o.val()==="" || prezime_d_o.val()==="" 
+            || rodjendan_d_o.val()==="" || br_pasosa_d_o.val()===""){
+                return false;
+            }
+
+            return true;
+        }
         /*******Dodaj osiguranika OnClickListener********/
         dodaj_osiguranika.off('click').on('click', function(e){
             e.preventDefault()
             alert('tu smo')
-            logVals();
             //dodaj u dodatne osiguranike
+            if(!validacijaDodatnihOsiguranika()){
+                alert('missing vals')
+                return;
+            }
+            logVals();
             dodatni_osiguranici+=ime_d_o.val() + " " +prezime_d_o.val() + "," + rodjendan_d_o.val() + "," + br_pasosa_d_o.val() + "|"
             console.log(dodatni_osiguranici);
+            alert('dodali ste osiguranika: ' + ime_d_o.val() + " " +prezime_d_o.val())
             //resetuj polja
-            ime_d_o.val===""
-            prezime_d_o.val===""
-            rodjendan_d_o.val===""
-            br_pasosa_d_o.val===""
-
+            ime_d_o.val("")
+            prezime_d_o.val("")
+            rodjendan_d_o.val("")
+            br_pasosa_d_o.val("")
         })
         
         
