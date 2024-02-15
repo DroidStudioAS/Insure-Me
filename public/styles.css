@@ -1,3 +1,45 @@
+/********Pocetak stilova vezanih za navigacija.php*********/
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: row wrap;
+
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    right: 0vw;
+
+
+    border-style: solid;
+    border-color: black;
+    padding: 1% 0% 1% 0%;
+    background-color: #ffffff;
+
+    height: 100px;
+}
+
+.nav img {
+    width: 70px;
+    margin-right: 2vw;
+
+}
+
+.nav_opcija {
+    font-size: 4vw;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav_opcija :visited {
+    color: black;
+}
+
+
+
+/********Kraj stilova vezanih za navigacija.php*********/
+
+/********Pocetak stilova vezanih za login/reg*********/
 .login_container {
     margin-top: 20vh;
 
@@ -17,45 +59,6 @@
     color: white;
 }
 
-/********Pocetak stilova vezanih za navigacija.php*********/
-.nav {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-flow: row wrap;
-
-    position: absolute;
-    top: 0vh;
-    left: 0vw;
-    right: 0vw;
-
-    padding: 1vh;
-    border-style: solid;
-    border-color: black;
-}
-
-.nav img {
-    width: 5vw;
-    position: absolute;
-    left: 0vw;
-    top: 0vh;
-}
-
-.nav_opcija {
-    font-size: 4vw;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.nav_opcija :visited {
-    color: black;
-}
-
-
-
-/********Kraj stilova vezanih za navigacija.php*********/
-
-/********Pocetak stilova vezanih za login/reg*********/
 .forma_login {
     display: flex;
     justify-content: center;
@@ -188,7 +191,7 @@
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 13vh;
+    margin-top: 20vh;
 }
 
 .list_prijava {
@@ -260,8 +263,9 @@
     border-collapse: collapse;
 }
 
-
-
-
-
 /*********Media Upiti********/
+@media(max-width:634px) {
+    .nav_opcija {
+        font-size: 5vw;
+    }
+}
