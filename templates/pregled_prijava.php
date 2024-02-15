@@ -17,10 +17,21 @@
     
     <div class="pregled_koren">
         <div id="listaPrijava" class="list_prijava">
+    </div>
 
+        <div style="display: none;" id="prijave" class="prikaz_prijava">
+            <div id="ime_container" class="ime_container">Ime</div>
+            <div id="rodjendan_container" class="rodjendan_container">rodjen</div>
+            <div id="br_pasosa_container" class="br_pasosa_container">br pasosa</div>
+            <div id="email_container" class="email_container">email</div>
+            <div id="telefon_container", class="telefon_container"></div>
+            <div id="od_container" class="od_container">od</div>
+            <div id="do_container" class="do_container">do</div>
+            <div id="br_dana_container" class="br_dana_container">br dana</div>
+            <div id="tip_container" class="tip_container">tip</div>
+           
+            <div id="prikazi_container" class="prikazi_container">prikazi vise</div>
         </div>
-
-        <div class="prikaz_prijava">
     <!--    <table class="table" id="tabela">                   -->     
     <!--    <thead>-->
     <!--        <tr>-->
@@ -39,7 +50,7 @@
   <!---->
     <!--    </tbody>-->
     <!--</table>-->
-        </div>
+       
     </div>
     <div class="dodatni_osiguranici">
         dsadassdas
@@ -51,6 +62,18 @@
 
    let polisa_arr =null;
 
+   let prijaveDiv = $('#prijave');
+   let imeContainerDiv = $('#ime_container');
+   let rodjendanContainerDiv = $('#rodjendan_container');
+   let brPasosaContainerDiv = $('#br_pasosa_container');
+   let emailContainerDiv = $('#email_container');
+   let telefonContainerDiv = $('#telefon_container');
+   let odContainerDiv = $('#od_container');
+   let doContainerDiv = $('#do_container');
+   let brDanaContainerDiv = $('#br_dana_container');
+   let tipContainerDiv = $('#tip_container');
+   let prikaziContainerDiv = $('#prikazi_container');
+
    function calculateDateDifference(startDate, endDate) {
     const startDateObj = new Date(startDate);
     const endDateObj = new Date(endDate);
@@ -61,9 +84,29 @@
 
     return differenceDays;
 }
-function prikaziOsiguranike(){
-
-}
+    function prikaziPrijave(){
+        $("#prijave").css("display", "flex");
+    }
+    function postaviPrijavu(polisa){
+        imeContainerDiv.text("Ime Nosioca: " + polisa.getPolisaIme())
+        rodjendanContainerDiv.text("Datum Rodjenja: " + polisa.getPolisaDatumRodjenja())
+        brPasosaContainerDiv.text("Broj Pasosa: " + polisa.getPolisaBrPasosa())
+        emailContainerDiv.text("Email: " + polisa.getPolisaEmail());
+        if(polisa.getPolisaBrTelefona()===""){
+            telefonContainerDiv.text("Nije Naveden Broj Telefona")
+        }else{
+            telefonContainerDiv.text("Broj Telefona: " + polisa.getPolisaBrTelefona());
+        }
+        odContainerDiv.text("Od: " + polisa.getPolisaOd())
+        doContainerDiv.text("Do: " + polisa.getPolisaDo())
+        brDanaContainerDiv.text(calculateDateDifference(polisa.getPolisaOd(),polisa.getPolisaDo()) + " dana");
+        tipContainerDiv.text("Tip osiguranja: " + polisa.getPolisaTip())
+        if(polisa.getPolisaTip()==='grupno'){
+            prikaziContainerDiv.text("Prikazi Dodatne Osiguranike");
+        }else{
+            prikaziContainerDiv.text("");
+        }
+    }
     
     function dohvatiPolise(){
     return new Promise((resolve, reject)=>{
@@ -82,7 +125,6 @@ function prikaziOsiguranike(){
                 polisa_arr.forEach(val=>{
                     console.log(val);
                 })
-                console.log(polise[0].polisa_br_pasosa)
 
             }
 
@@ -169,6 +211,9 @@ function prikaziOsiguranike(){
             const index = $(this).data('index');
             const clickedPolisa = polisa_arr[index];
             console.log(clickedPolisa);
+            prikaziPrijave()
+            postaviPrijavu(clickedPolisa);
+            
         });
     });
 });

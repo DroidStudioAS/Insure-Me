@@ -200,8 +200,10 @@
 }
 
 .polisa {
-    font-size: xx-large;
+    font-size: 3vw;
     margin: 1%;
+
+    cursor: pointer;
 }
 
 
@@ -209,11 +211,26 @@
 
 .prikaz_prijava {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
     padding: 3%;
     width: 80vw;
+}
+
+.prikaz_prijava div {
+    width: 80vw;
+    border: 3px solid black;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    height: 10vh;
+    font-size: 3vw;
+    /* Include border in the width calculation */
+
 }
 
 .table {
