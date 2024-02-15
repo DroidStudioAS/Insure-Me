@@ -10,6 +10,8 @@
     <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../models/polisa.js"></script>
+    <script src="../models/DodatniOsiguranik.js"></script>
+
 
 </head>
 <body>
@@ -33,9 +35,10 @@
             <div id="prikazi_container" class="prikazi_container">prikazi vise</div>
         </div>      
     </div>
-    <div class="dodatni_osiguranici">
+    <div style="display: none;" id="do" class="dodatni_osiguranici">
+    <img src="../public/resursi/close.png" id="closeBtn" class="closeBtn">
         dsadassdas
-        </div>
+    </div>
   
 <script>
    let userId =localStorage.getItem('id');
@@ -54,6 +57,12 @@
    let brDanaContainerDiv = $('#br_dana_container');
    let tipContainerDiv = $('#tip_container');
    let prikaziContainerDiv = $('#prikazi_container');
+   let d_o=$('#do');
+   let closeBtn = $('#closeBtn');
+
+   
+
+
 
    function calculateDateDifference(startDate, endDate) {
     const startDateObj = new Date(startDate);
@@ -64,6 +73,9 @@
     const differenceDays = differenceMs / (1000 * 60 * 60 * 24);
 
     return differenceDays;
+}
+function prikaziDo(){
+    d_o.css("display","flex");
 }
     function prikaziPrijave(){
         $("#prijave").css("display", "flex");
@@ -84,6 +96,22 @@
         tipContainerDiv.text("Tip osiguranja: " + polisa.getPolisaTip())
         if(polisa.getPolisaTip()==='grupno'){
             prikaziContainerDiv.text("Prikazi Dodatne Osiguranike");
+            prikaziContainerDiv.off('click').on('click',function(e){
+                console.log(polisa.getPolisaDodatniOsiguranici())
+                let osiguranici =createDodatniOsiguranikArray(polisa.getPolisaDodatniOsiguranici())
+                console.log(osiguranici)
+                osiguranici.forEach(osiguranik=>{
+                    const toAppend = `<div class="dodatni">
+                                        <p>${osiguranik.getIme()}<p/>
+                                        <p>${osiguranik.getDatumRodjenja()}<p/>
+                                        <p>${osiguranik.getBrojPasosa()}<p/>
+                                        </div>`;
+                    d_o.append(toAppend);
+
+                })
+                prikaziDo();
+
+            })
         }else{
             prikaziContainerDiv.text("");
         }
@@ -111,6 +139,7 @@
 
         })
     });
+}
     function createPoliseArray(data) {
     const poliseArray = [];
     data.forEach(entry => {
@@ -127,10 +156,24 @@
     });
     return poliseArray;
 }
+function createDodatniOsiguranikArray(str) {
+    console.log('Received string:', str);
+    const osiguraniciArray = [];
+    let stringArr = str.split('|')
+    stringArr.pop() //last element is always empty
+    console.log(stringArr);
+    for (let osiguranikStr of stringArr) {
+        const [ime, datumRodjenja, brojPasosa] = osiguranikStr.split(',');
+        let dodatniOsiguranik = new DodatniOsiguranik(ime.trim(), datumRodjenja.trim(), brojPasosa.trim());
+        osiguraniciArray.push(dodatniOsiguranik);
+    }
+    return osiguraniciArray;
+}
+
 
  
     
-   }
+   
    $(document).ready(function(){
     let userId = localStorage.getItem('id');
     let polise = "";
@@ -160,6 +203,8 @@
         });
     }
 
+
+
     function createPoliseArray(data) {
         const poliseArray = [];
         data.forEach(entry => {
@@ -187,6 +232,10 @@
                 counter++;
             });
         });
+
+        closeBtn.on('click',function(e){
+            d_o.toggle();
+        })
 
         listaPrijava.on('click', '.polisa', function (e) {
             const index = $(this).data('index');

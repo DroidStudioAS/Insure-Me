@@ -233,6 +233,29 @@
 
 }
 
+.dodatni_osiguranici {
+    position: fixed;
+    height: 70vh;
+    width: 60vw;
+    left: 20vw;
+    top: 15vh;
+
+    background: palegreen;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.closeBtn {
+    position: absolute !important;
+    top: 0vh;
+    right: 0vw;
+
+    width: 30px;
+}
+
 .table {
     border-collapse: collapse;
 }
