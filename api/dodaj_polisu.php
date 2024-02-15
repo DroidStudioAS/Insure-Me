@@ -13,7 +13,7 @@ function dodajPolisu($polisa){
     if($conn->connect_error){
         die("Konekcija nije uspela" . $conn->connect_error);
     }
-    $stmt = $conn->prepare("INSERT INTO polise_ ( id_korisnika, polisa_br_pasosa, polisa_br_telefona, polisa_datum_rodjenja, polisa_od, polisa_do, polisa_ime, polisa_tip, polisa_email, polisa_dodatni_osiguranici) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO polise_ ( id_korisnika, polisa_br_pasosa, polisa_br_telefona, polisa_datum_rodjenja, polisa_od, polisa_do, polisa_ime, polisa_tip, polisa_email, polisa_dodatni_osiguranici, datum_prijave) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     //izvlacenje vrednosti
     $idKorisnika = $polisa->getIdKorisnika();
     $polisaBrPasosa = $polisa->getPolisaBrPasosa();
@@ -25,14 +25,15 @@ function dodajPolisu($polisa){
     $polisaTip = $polisa->getPolisaTip();
     $polisaEmail = $polisa->getPolisaEmail();
     $polisaDodatniOsiguranici = $polisa->getPolisaDodatniOsiguranici();
+    $datum_prijave=$polisa->getDatumPrijave();
     
-    $stmt->bind_param("isssssssss",  $idKorisnika, $polisaBrPasosa, $polisaBrTelefona, $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme, $polisaTip, $polisaEmail, $polisaDodatniOsiguranici);
+    $stmt->bind_param("issssssssss",  $idKorisnika, $polisaBrPasosa, $polisaBrTelefona, $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme, $polisaTip, $polisaEmail, $polisaDodatniOsiguranici, $datum_prijave);
    
      //izvrsavanje
     if($stmt->execute()===TRUE){
         echo 'kreiran novi zapis';
     }else{
-        echo "greska" . $stmt->error;
+        echo "greska" . $datum_prijave . $stmt->error;
     }
     $stmt->close();
     $conn->close();
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $polisa_tip = $_POST['polisa_tip'];
     $polisa_email = $_POST['polisa_email'];
     $polisa_dodatni_osiguranici = $_POST['polisa_dodatni_osiguranici'];
+    $datum_prijave = $_POST['datum_prijave'];
 
     // Create a new instance of the Polisa class using constructor
     $polisa = new Polisa(
@@ -65,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $polisa_ime,
         $polisa_tip,
         $polisa_email,
-        $polisa_dodatni_osiguranici
+        $polisa_dodatni_osiguranici,
+        $datum_prijave
     );
 
     // Call the function to insert the Polisa into the database

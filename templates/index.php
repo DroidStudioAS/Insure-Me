@@ -276,6 +276,7 @@
                     });
                 }
                 function postaviPolisu(){
+                    console.log(todays_date)
                 $.ajax({
                     url:'../api/dodaj_polisu.php',
                     method:'POST',
@@ -289,7 +290,8 @@
                         polisa_ime:ime.val() + " " +prezime.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
-                        polisa_dodatni_osiguranici: dodatni_osiguranici              
+                        polisa_dodatni_osiguranici: dodatni_osiguranici,
+                        datum_prijave:todays_date        
                     },
                     success : function(response){
                         console.log(response);

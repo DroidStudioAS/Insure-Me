@@ -13,11 +13,13 @@ class Polisa {
     private $polisaEmail;
     private $polisaDodatniOsiguranici;
 
+    private $datumPrijave;
+
     // Constructor
     public function __construct(
          $idKorisnika, $polisaBrPasosa, $polisaBrTelefona,
         $polisaDatumRodjenja, $polisaOd, $polisaDo, $polisaIme,
-        $polisaTip, $polisaEmail, $polisaDodatniOsiguranici
+        $polisaTip, $polisaEmail, $polisaDodatniOsiguranici,$datumPrijave
     ) {
         $this->idKorisnika = $idKorisnika;
         $this->polisaBrPasosa = $polisaBrPasosa;
@@ -29,6 +31,7 @@ class Polisa {
         $this->polisaTip = $polisaTip;
         $this->polisaEmail = $polisaEmail;
         $this->polisaDodatniOsiguranici = $polisaDodatniOsiguranici;
+        $this->datumPrijave=$datumPrijave;
     }
 
     // Getters
@@ -72,6 +75,9 @@ class Polisa {
     public function getPolisaDodatniOsiguranici() {
         return $this->polisaDodatniOsiguranici;
     }
+    public function getDatumPrijave() {
+        return $this->datumPrijave;
+    }
 
     // Setters
 
@@ -113,6 +119,9 @@ class Polisa {
 
     public function setPolisaDodatniOsiguranici($polisaDodatniOsiguranici) {
         $this->polisaDodatniOsiguranici = $polisaDodatniOsiguranici;
+    }
+    public function setDatumPrijave($datumPrijave) {
+        $this->datumPrijave = $datumPrijave;
     }
 }
 

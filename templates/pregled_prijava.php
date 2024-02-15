@@ -96,7 +96,8 @@
            entry.id_korisnika,entry.polisa_br_pasosa,
            entry.polisa_br_telefona,entry.polisa_datum_rodjenja,
            entry.polisa_od,entry.polisa_do,entry.polisa_ime,
-           entry.polisa_tip,entry.polisa_email,entry.polisa_dodatni_osiguranici
+           entry.polisa_tip,entry.polisa_email,entry.polisa_dodatni_osiguranici,
+           entry.datum_prijave
 
         );
         poliseArray.push(polisa);
@@ -112,7 +113,7 @@
         let polise = dohvatiPolise(userId).then(respnse=>{
             polisa_arr.forEach(polisa => {
                const row = `<tr>
-                                <td></td>                                                 
+                                <td>${polisa.datumPrijave}</td>                                                 
                                 <td>${polisa.polisaIme}</td>
                                 <td>${polisa.polisaDatumRodjenja}</td>
                                 <td>${polisa.polisaBrPasosa}</td>

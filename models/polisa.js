@@ -2,7 +2,7 @@ class Polisa {
     constructor(
         idKorisnika, polisaBrPasosa, polisaBrTelefona,
         polisaDatumRodjenja, polisaOd, polisaDo, polisaIme,
-        polisaTip, polisaEmail, polisaDodatniOsiguranici
+        polisaTip, polisaEmail, polisaDodatniOsiguranici,datumPrijave
     ) {
         this.idKorisnika = idKorisnika;
         this.polisaBrPasosa = polisaBrPasosa;
@@ -14,6 +14,8 @@ class Polisa {
         this.polisaTip = polisaTip;
         this.polisaEmail = polisaEmail;
         this.polisaDodatniOsiguranici = polisaDodatniOsiguranici;
+        this.datumPrijave=datumPrijave;
+        
     }
 
     // Getters
@@ -56,6 +58,9 @@ class Polisa {
     getPolisaDodatniOsiguranici() {
         return this.polisaDodatniOsiguranici;
     }
+    getDatumPrijave(){
+        return this.datumPrijave;
+    }
 
     // Setters
     setIdKorisnika(idKorisnika) {
@@ -96,5 +101,8 @@ class Polisa {
 
     setPolisaDodatniOsiguranici(polisaDodatniOsiguranici) {
         this.polisaDodatniOsiguranici = polisaDodatniOsiguranici;
+    }
+    setDatumPrijave(datumPrijave){
+        this.datumPrijave=datumPrijave;
     }
 }
