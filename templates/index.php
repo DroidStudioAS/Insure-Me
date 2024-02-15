@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -279,6 +278,9 @@
                 }
                 function postaviPolisu(){
                     console.log(todays_date)
+                    if(proveriJelPostojeParametri()===false){
+                        return;
+                    }
                 $.ajax({
                     url:'../api/dodaj_polisu.php',
                     method:'POST',
@@ -311,7 +313,9 @@
                                     $("#prozor_dodatni_osiguranici").toggle();                 
                             }
                             else{
-                                postaviPolisu();
+                                if(proveriJelPostojeParametri){
+                                  postaviPolisu();
+                                }
                                 logVals()
                             }
                         })
@@ -478,9 +482,6 @@
 
            
         })
-        
-        
-
         });
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
