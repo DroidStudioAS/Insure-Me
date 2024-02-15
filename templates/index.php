@@ -73,6 +73,7 @@
             <label for="grupno"> Grupno </label>
             <input id="grupno" type="radio" name="tip_polise" value="grupno">
         </div>
+        <input id="okidac_d_o" type="submit"/>
         <input id="okidac_slanje_forme" class="okidac" type="submit"/>
 
        </form>
@@ -126,6 +127,7 @@
             let krajnji_datum = $('#krajnji_datum');
             let individualnoRadio = $('#individualno');
             let grupnoRadio = $('#grupno');
+            let okidac_d_o = $('#okidac_d_o');
 
             /****Polja za dodatne osiguranike***/
             let ime_d_o = $("#ime_d_o");
@@ -228,7 +230,9 @@
             }
                 return true;
             }
-            
+            function prikaziDo(){
+                $("#prozor_dodatni_osiguranici").toggle();                 
+            }
             function logVals(){
                 console.log("ime: " + ime.val() + " " + prezime.val())
                 console.log("Rodjen: " + datumRodjenja.val())
@@ -394,6 +398,10 @@
             $('#zatvori_prozor').off('click').on('click', function(e){
                 e.preventDefault();
                 $("#prozor_dodatni_osiguranici").toggle();
+            })
+            okidac_d_o.off('click').on('click', function(e){
+                e.preventDefault();
+                prikaziDo();
             })
             $('#submitButton').off('click').on('click',function(e){
                         //obradi logovanje
