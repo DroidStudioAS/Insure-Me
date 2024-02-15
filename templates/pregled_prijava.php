@@ -20,7 +20,6 @@
     <div class="pregled_koren">
         <div id="listaPrijava" class="list_prijava">
     </div>
-
         <div style="display: none;" id="prijave" class="prikaz_prijava">
             <div id="ime_container" class="ime_container">Ime</div>
             <div id="rodjendan_container" class="rodjendan_container">rodjen</div>

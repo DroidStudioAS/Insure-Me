@@ -10,13 +10,11 @@
     left: 0vw;
     right: 0vw;
 
-
-    border-style: solid;
-    border-color: black;
-    padding: 1% 0% 1% 0%;
+    border-bottom: 4px solid #f8f8f8;
+    padding: 10px 0% 1px 0%;
     background-color: #ffffff;
 
-    height: 100px;
+    height: 15vh;
 }
 
 .nav img {
@@ -25,13 +23,32 @@
 
 }
 
-.nav_opcija {
+.nav_opcija_1 {
     font-size: 4vw;
     text-decoration: underline;
     cursor: pointer;
+    border: 4px solid #f8f8f8;
+    position: absolute;
+    left: 0vw;
+    padding-right: 10px;
 }
 
-.nav_opcija :visited {
+.nav_opcija_2 {
+    font-size: 4vw;
+    text-decoration: underline;
+    cursor: pointer;
+    border: 4px solid #f8f8f8;
+
+    position: absolute;
+    right: 0vw;
+    padding-left: 10px;
+}
+
+.nav_opcija_1 :visited {
+    color: black;
+}
+
+.nav_opcija_2 :visited {
     color: black;
 }
 
@@ -41,19 +58,20 @@
 
 /********Pocetak stilova vezanih za login/reg*********/
 .login_container {
-    margin-top: 20vh;
+    margin-top: 120px;
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
-    width: 40vw;
+    width: 70vw;
+    height: 90vh;
     /**postavi formu na sredinu ekrana*/
     position: relative;
-    left: 30vw;
+    left: 15vw;
 
-    background-color: #b14452;
+    background-color: #f8f8f8;
     border-radius: 10px;
 
     color: white;
@@ -67,7 +85,13 @@
     flex-flow: column nowrap;
 }
 
+.forma_login h1 {
+    color: black;
+    text-align: center;
+}
+
 .login_unos {
+    width: 20vw;
     margin: 5%;
     padding: 5%;
     border-radius: 5px;
@@ -267,5 +291,9 @@
 @media(max-width:634px) {
     .nav_opcija {
         font-size: 5vw;
+    }
+
+    .login_unos {
+        width: 60vw;
     }
 }
