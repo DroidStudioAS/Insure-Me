@@ -16,6 +16,9 @@
 <body>
     <?php include 'navigacija.php'?>
     <?php include '../models/polisa.php'?>
+    <img class="leva_slika" src="../public/resursi/b-pocetna-l.png"/>
+    <img class="desna_slika" src="../public/resursi/desna_slika.png"/>
+
     <div id="loginContainer" class="login_container">
        <form class="forma_login" id="loginForm">
        <h1 id="naslov">Prijava Korisnika</h1>

@@ -58,23 +58,25 @@
 
 /********Pocetak stilova vezanih za login/reg*********/
 .login_container {
-    margin-top: 120px;
-
+    margin-top: 100px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
-    width: 70vw;
+    width: 64vw;
     height: 90vh;
     /**postavi formu na sredinu ekrana*/
     position: relative;
-    left: 15vw;
+    left: 17.5vw;
 
     background-color: #f8f8f8;
     border-radius: 10px;
 
     color: white;
+
+    overflow-y: auto;
+
 }
 
 .forma_login {
@@ -105,6 +107,23 @@
     margin: 5%;
     border-radius: 5px;
     font-size: large;
+}
+
+.leva_slika {
+    position: absolute;
+    left: 0vw;
+    top: 15vh;
+    width: 17.5vw;
+    height: 92vh;
+
+}
+
+.desna_slika {
+    position: absolute;
+    right: 0vw;
+    top: 15vh;
+    width: 17.5vw;
+    height: 92vh;
 }
 
 /********Kraj stilova vezanih za login*********/
