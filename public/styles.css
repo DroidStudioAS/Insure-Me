@@ -105,7 +105,7 @@ body {
     text-align: center;
 }
 
-.okidac_login_reg {
+.okidac {
     font-size: large;
     border-radius: 4px 6px 3px 4px;
     padding: 2% 3% 2% 3%;
@@ -154,7 +154,7 @@ body {
     border-right: 2px solid black;
 }
 
-.koren input {
+.koren_input {
     text-align: center;
     padding: 3% 2% 3% 2%;
     border-radius: 4px;
@@ -182,11 +182,11 @@ body {
 /*******Dodatni osiguranici*****/
 .dodatni_osiguranici_container {
     position: fixed !important;
-    top: 5vh;
+    top: 2vh;
     left: 20vw;
 
     width: 60vw;
-    height: 90vh;
+    height: 100vh;
 
     display: flex;
     justify-content: flex-start;
@@ -197,13 +197,39 @@ body {
 
     border-radius: 5px;
     border: 2px solid black;
+
+    overflow-y: scroll;
+}
+
+
+
+.dodatni_osiguranici_container img {
+    width: 40px;
+    position: absolute;
+    top: 0vh;
+    right: 0vw;
+
+    cursor: pointer;
+}
+
+.input_do {
+    text-align: center;
+    padding: 1% 1% 1% 1%;
+    border-radius: 4px;
+    width: 20vw;
 }
 
 .ime_dodatnog_osugranika {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    align-items: center;
 }
+
+
+
+/*
+
 
 .dodatni_osiguranici_container input {
     height: 5vh;
@@ -217,14 +243,7 @@ body {
     height: 3vh;
 }
 
-.dodatni_osiguranici_container img {
-    width: 40px;
-    position: absolute;
-    top: 0vh;
-    right: 0vw;
-
-    cursor: pointer;
-}
+*/
 
 .dodati_osiguranici {
     width: 60vw;
@@ -238,7 +257,7 @@ body {
     margin-top: 3%;
     padding-top: 3%;
 
-    overflow-y: scroll;
+
 }
 
 .osiguranik {
@@ -352,6 +371,14 @@ body {
     .leva_slika,
     .desna_slika {
         display: none;
+    }
+
+    .dodati_osiguranici {
+        justify-content: center;
+    }
+
+    .input_do {
+        width: 50vw;
     }
 
     .ime_dodatnog_osugranika {

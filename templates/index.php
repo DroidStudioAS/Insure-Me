@@ -27,13 +27,12 @@
        <img src="../public/resursi/paragraf_logo.png"/>
         <input id="korisnicko_ime" placeholder="Korisničko Ime" class="login_unos" type="text"/>
         <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
-        <input class="okidac_login_reg"  type="submit" value="Prijavi se" id="submitButton"/>
+        <input class="okidac"  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
        <div>
         <a href="#" id="toggleLink">Nemaš Nalog? Registruj se</a>
        </div>
     </div>
-
     <div id="koren" class="koren">
         <h1 id="dobrodoslica"></h1>
        <h1> Unos Polise</h1>
@@ -42,23 +41,23 @@
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
-            <input id="ime" type="text" placeholder="Ime">
-            <input id="prezime" type="text" placeholder="Prezime">
+            <input  class="koren_input" id="ime" type="text" placeholder="Ime">
+            <input  class="koren_input" id="prezime" type="text" placeholder="Prezime">
         </div>
         <h3>
             Datum Rodjenja
         </h3>
-        <input type="text" class="form_control" id="datum_rodjenja">
+        <input  class="koren_input" type="text" class="form_control" id="datum_rodjenja">
         <h3>
             Broj Pasosa
         </h3>
-        <input id="brojPasosa" type="number">
+        <input  class="koren_input"id="brojPasosa" type="number">
         <h3>
             Kontakt
         </h3>
         <div class="contact_container">
-            <input id="mail" placeholder="email" type="email">
-            <input id="br_telefona" placeholder="Broj Telefona" type="number">
+            <input  class="koren_input" id="mail" placeholder="email" type="email">
+            <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number">
         </div>
         <h3>
             Kad Putujete?
@@ -66,10 +65,10 @@
         <div class="input-group">
             <div class="datum_putovanja">
                 <div class="grupa_datum">
-                Od: <input type="text" class="form_control" id="pocetni_datum">
+                Od: <input type="text" class="koren_input" id="pocetni_datum">
                 </div>
                 <div class="grupa_datum">
-                Do: <input type="text" class="form_control" id="krajnji_datum">
+                Do: <input type="text"  class="koren_input"id="krajnji_datum">
 
                 </div>
                 
@@ -91,7 +90,8 @@
       
 
        </form>
-       <div id="prozor_dodatni_osiguranici" class="dodatni_osiguranici_container" style="display:none;">
+       <div id="prozor_dodatni_osiguranici" class="dodatni_osiguranici_container" style="display: none;" >
+        <div class="gornja_polovina">
         <img id="zatvori_prozor" src="../public/resursi/close.png"/>
         <h1>
             Dodatni Osiguranici
@@ -101,17 +101,19 @@
         </h3>
 
         <div class="ime_dodatnog_osugranika">        
-            <input placeholder="ime" type="text" name="" id="ime_d_o">
-            <input placeholder="prezime" type="text" name="" id="prezime_d_o">
+            <input class="input_do" placeholder="ime" type="text" name="" id="ime_d_o">
+            <input class="input_do" placeholder="prezime" type="text" name="" id="prezime_d_o">
         </div>
 
         <h3>Datum Rodjenja:</h3>
-        <input type="text" class="rodjendan_do" id="rodjendan_d_o">
+        <input class="input_do" type="text" id="rodjendan_d_o">
 
         <h3>Broj Pasosa</h3>
-        <input type="number" id="broj_pasosa_d_o" class="br_pasosa_d_o"/>
+        <input class="input_do" type="number" id="broj_pasosa_d_o"/>
+        <br>
+        <input id="dodaj_osiguranika" class="okidac" type="submit"/>
+        </div>
 
-        <input id="dodaj_osiguranika" class="okidac_do" type="submit"/>
         <div id="dodati_osiguranici" class="dodati_osiguranici">
             
          
