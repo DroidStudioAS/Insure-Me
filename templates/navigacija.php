@@ -7,6 +7,7 @@
     <title>Prijava</title>
 
     <link rel="stylesheet" href="../public/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -18,9 +19,33 @@
         <img src="../public/resursi/paragraf_logo.png">
         </div>
         <div class="nav_opcija_2">
-           <a href="pregled_prijava.php"> Pregled Prijava </a>
+           <a id="pregledLink" href="pregled_prijava.php"> Pregled Prijava </a>
         </div>
     </div>
+    <script>
+        function daliJeKorisnikUlogovan(){
+                if(sessionStorage.getItem('authenticated')==="true"){
+                    return true;
+                }
+                return false;
+            }
+        if(!daliJeKorisnikUlogovan()){
+            $('#pregledLink').attr('href','#');     
+        }else{
+            $('#pregledLink').attr('href','pregled_prijava.php');     
+        }
+
+        let interval = setInterval(function checkIfLogged(){
+            if(!daliJeKorisnikUlogovan()){
+            $('#pregledLink').attr('href','#');     
+        }else if(daliJeKorisnikUlogovan){
+            $('#pregledLink').attr('href','pregled_prijava.php'); 
+            clearInterval(interval);    
+        }
+        },1000)
+        
+
+    </script>
 </body>
 
 
