@@ -43,7 +43,8 @@
     </div>
   
 <script>
-   let userId =localStorage.getItem('id');
+   let userId =sessionStorage.getItem('id');
+   console.log(userId);
    let polise = ""
 
    let polisa_arr =null;
@@ -181,7 +182,7 @@ function createDodatniOsiguranikArray(str) {
     
    
    $(document).ready(function(){
-    let userId = localStorage.getItem('id');
+    let userId = sessionStorage.getItem('id');
     let polise = "";
     let polisa_arr = null;
 
