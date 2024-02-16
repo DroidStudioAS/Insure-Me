@@ -101,22 +101,19 @@
         </h3>
 
         <div class="ime_dodatnog_osugranika">        
-            <input type="text" name="" id="ime_d_o">
-            <input type="text" name="" id="prezime_d_o">
+            <input placeholder="ime" type="text" name="" id="ime_d_o">
+            <input placeholder="prezime" type="text" name="" id="prezime_d_o">
         </div>
 
         <h3>Datum Rodjenja:</h3>
-        <input type="text" class="form-control" id="rodjendan_d_o">
+        <input type="text" class="rodjendan_do" id="rodjendan_d_o">
 
         <h3>Broj Pasosa</h3>
-        <input type="number" id="broj_pasosa_d_o"/>
+        <input type="number" id="broj_pasosa_d_o" class="br_pasosa_d_o"/>
 
-        <input id="dodaj_osiguranika" type="submit"/>
+        <input id="dodaj_osiguranika" class="okidac_do" type="submit"/>
         <div id="dodati_osiguranici" class="dodati_osiguranici">
-            <div class="osiguranik">
-
             
-            </div>
          
         </div>
 
