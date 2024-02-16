@@ -60,7 +60,7 @@ body {
 
 /********Pocetak stilova vezanih za login/reg*********/
 .login_container {
-    margin-top: 100px;
+    margin-top: 105px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -75,6 +75,11 @@ body {
     border-radius: 10px;
 
     color: white;
+
+    background-color: #f4f4f4;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+
 }
 
 .forma_login {
@@ -138,12 +143,15 @@ body {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20vh;
+    margin-top: 15vh;
     text-align: center;
     width: 64vw;
     position: relative;
     left: 17.5vw;
-}
+
+    background-color: #f4f4f4;
+    border-left: 2px solid black;
+    border-right: 2px solid black;}
 
 .koren input {
     text-align: center;
