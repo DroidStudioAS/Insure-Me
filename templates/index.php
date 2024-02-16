@@ -255,7 +255,7 @@
             if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
-                alert('missing vals');
+                alert('Molimo Vas Popunite Sva Obavezna Polja');
                 return false;
             }
             //iako do ovog bloka ne moze da se dodje, za svaki slucaj proveriti
@@ -340,7 +340,7 @@
                     },
                     success : function(response){
                         console.log(response);
-                        alert('polisa postavljena');
+                        alert('Vasa Polisa Je Zabelezena');
                     }
                 })
             }
@@ -371,11 +371,9 @@
                     },
                     success:function(response){
                         if(response==='true'){
-                            alert('matches')
                             toggleVisibility()
                             slanjeForme()
                             setWelcomeMsg(ime)
-
                             dohvatiUserId(ime);
                         }else if (response==='false'){
                             alert('Korisnicko ime/Lozinka su netacni')
@@ -416,13 +414,13 @@
 
                                 },
                                 error: function(xhr, status, error) {
-                                    console.error('Došlo je do greške prilikom slanja zahteva:', error);
+                                    console.error('Došlo je do greške prilikom slanja zahteva');
                                 }
                             });
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.error('Došlo je do greške prilikom slanja zahteva:', error);
+                        console.error('Došlo je do greške prilikom slanja zahteva:');
                     }
                 });
             }
@@ -448,8 +446,8 @@
                         if(korisnickoIme.val()!=="" && lozinka.val()!==""){
                             logujKorisnika(korisnickoIme.val(), lozinka.val());
                         }
-                        console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
-                        console.log('sifra za logovanje: ' + lozinka.val())
+                       // console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
+                       // console.log('sifra za logovanje: ' + lozinka.val())
                          })
 
             let naRegistraciji = false;
@@ -475,9 +473,8 @@
                     $('#submitButton').attr('value', 'Prijavi se');
                     $('#submitButton').off('click').on('click', function(e) {
                           e.preventDefault();
-                          console.log('heyyyyy');
                           if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
-                              alert('missing vals');
+                              alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
                               return;
                           }
                     logujKorisnika(korisnickoIme.val(), lozinka.val());
@@ -502,7 +499,7 @@
             alert('tu smo')
             //dodaj u dodatne osiguranike
             if(!validacijaDodatnihOsiguranika()){
-                alert('missing vals')
+                alert('Molimo Vas Popunite Sve Podatke O Bar 1 Dodatnom Osiguraniku')
                 return;
             }
             logVals();
@@ -510,7 +507,7 @@
             console.log(dodatni_osiguranici);
             let dodatniOsiguranik = new DodatniOsiguranik(ime_d_o.val() + " " +prezime_d_o.val(), rodjendan_d_o.val(),br_pasosa_d_o.val());
             console.log(dodatniOsiguranik);
-            alert('dodali ste osiguranika: ' + ime_d_o.val() + " " +prezime_d_o.val())
+            alert('Dodali Ste Osiguranika: ' + ime_d_o.val() + " " +prezime_d_o.val())
             //resetuj polja
             ime_d_o.val("")
             prezime_d_o.val("")
