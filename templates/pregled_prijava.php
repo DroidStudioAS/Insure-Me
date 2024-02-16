@@ -21,15 +21,15 @@
         <div id="listaPrijava" class="list_prijava">
     </div>
         <div style="display: none;" id="prijave" class="prikaz_prijava">
-            <div id="ime_container" class="ime_container">Ime</div>
-            <div id="rodjendan_container" class="rodjendan_container">rodjen</div>
-            <div id="br_pasosa_container" class="br_pasosa_container">br pasosa</div>
-            <div id="email_container" class="email_container">email</div>
-            <div id="telefon_container", class="telefon_container"></div>
-            <div id="od_container" class="od_container">od</div>
-            <div id="do_container" class="do_container">do</div>
-            <div id="br_dana_container" class="br_dana_container">br dana</div>
-            <div id="tip_container" class="tip_container">tip</div>
+            <div id="ime_container" class="prikaz_polje">Ime</div>
+            <div id="rodjendan_container" class="prikaz_polje">rodjen</div>
+            <div id="br_pasosa_container" class="prikaz_polje">br pasosa</div>
+            <div id="email_container" class="prikaz_polje">email</div>
+            <div id="telefon_container" class="prikaz_polje"></div>
+            <div id="od_container" class="prikaz_polje">od</div>
+            <div id="do_container" class="prikaz_polje">do</div>
+            <div id="br_dana_container" class="prikaz_polje">br dana</div>
+            <div id="tip_container" class="prikaz_polje">tip</div>
            
             <div id="prikazi_container" class="prikazi_container">prikazi vise</div>
         </div>      
@@ -94,6 +94,7 @@ function prikaziDo(){
         brDanaContainerDiv.text(calculateDateDifference(polisa.getPolisaOd(),polisa.getPolisaDo()) + " dana");
         tipContainerDiv.text("Tip osiguranja: " + polisa.getPolisaTip())
         if(polisa.getPolisaTip()==='grupno'){
+            prikaziContainerDiv.css('display','block');
             prikaziContainerDiv.text("Prikazi Dodatne Osiguranike");
             prikaziContainerDiv.off('click').on('click',function(e){
                 console.log(polisa.getPolisaDodatniOsiguranici())
@@ -112,7 +113,7 @@ function prikaziDo(){
 
             })
         }else{
-            prikaziContainerDiv.text("");
+            prikaziContainerDiv.css('display','none');
         }
     }
     
@@ -242,6 +243,8 @@ function createDodatniOsiguranikArray(str) {
             console.log(clickedPolisa);
             prikaziPrijave()
             postaviPrijavu(clickedPolisa);
+            $('.polisa').removeClass('selected');
+            $(this).addClass('selected');
             
         });
     });

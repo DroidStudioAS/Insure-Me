@@ -303,6 +303,9 @@ body {
 
     cursor: pointer;
 }
+.polisa.selected {
+    text-decoration: underline;
+}
 
 
 
@@ -314,9 +317,10 @@ body {
     justify-content: center;
     padding: 3%;
     width: 80vw;
+
 }
 
-.prikaz_prijava div {
+.prikaz_polje {
     width: 80vw;
     border: 3px solid black;
     box-sizing: border-box;
@@ -327,8 +331,23 @@ body {
     padding: 1%;
     height: 10vh;
     font-size: 3vw;
+    border-radius: 5px;
+
     /* Include border in the width calculation */
 
+}
+
+.prikazi_container {
+    width: 40vw;
+    border: 3px solid black;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    height: 10vh;
+    font-size: 3vw;
 }
 
 .dodatni_osiguranici {
