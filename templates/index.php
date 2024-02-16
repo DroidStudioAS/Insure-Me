@@ -234,8 +234,11 @@
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
-                $('#ls').css('height','112vh')
-                $('#ds').css('height','112vh')
+                $('#ls').css('display','none')
+                $('#ds').css('display','none')
+
+
+          
               
             }
             function getTodaysDate(){
