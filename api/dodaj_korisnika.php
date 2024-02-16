@@ -14,8 +14,11 @@ function unesiKorisnika($korisnicko_ime, $korisnicka_sifra){
         die("Konekcija nije uspela" . $conn->connect_error);
     }
 
+    // Hash the password
+    $hashed_password = password_hash($korisnicka_sifra, PASSWORD_DEFAULT);
+
     $stmt = $conn->prepare("INSERT INTO korisnici (korisnik_ime, korisnik_sifra) VALUES (?, ?)");
-    $stmt->bind_param('ss',$korisnicko_ime,$korisnicka_sifra);
+    $stmt->bind_param('ss',$korisnicko_ime,$hashed_password);
 
     //izvrsavanje
     if($stmt->execute()===TRUE){

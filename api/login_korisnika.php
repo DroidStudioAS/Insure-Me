@@ -33,7 +33,7 @@ function login($username, $password) {
         $stmt->fetch();
 
         // Compare passwords
-        if ($password === $stored_password) {
+        if (password_verify($password, $stored_password)) {
             // Passwords match, user is authenticated
             $stmt->close();
             $conn->close();
@@ -51,6 +51,7 @@ function login($username, $password) {
         return false;
     }
 }
+
 
 // Execution block
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
