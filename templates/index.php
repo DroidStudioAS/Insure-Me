@@ -6,6 +6,8 @@
     <title>Prijava Polise</title>
     <link rel="stylesheet" href="../public/styles.css">
     <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" />
+
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Datepicker CSS -->
@@ -16,8 +18,8 @@
 <body>
     <?php include 'navigacija.php'?>
     <?php include '../models/polisa.php'?>
-    <img class="leva_slika" src="../public/resursi/b-pocetna-l.png"/>
-    <img class="desna_slika" src="../public/resursi/desna_slika.png"/>
+    <img id="ls" class="leva_slika" src="../public/resursi/b-pocetna-l.png"/>
+    <img id="ds" class="desna_slika" src="../public/resursi/desna_slika.png"/>
 
     <div id="loginContainer" class="login_container">
        <form class="forma_login" id="loginForm">
@@ -46,7 +48,7 @@
         <h3>
             Datum Rodjenja
         </h3>
-        <input type="text" class="form-control" id="datum_rodjenja">
+        <input type="text" class="form_control" id="datum_rodjenja">
         <h3>
             Broj Pasosa
         </h3>
@@ -54,7 +56,7 @@
         <h3>
             Kontakt
         </h3>
-        <div>
+        <div class="contact_container">
             <input id="mail" placeholder="email" type="email">
             <input id="br_telefona" placeholder="Broj Telefona" type="number">
         </div>
@@ -63,9 +65,14 @@
         </h3>
         <div class="input-group">
             <div class="datum_putovanja">
-                Od: <input type="text" class="form-control" id="pocetni_datum">
+                <div class="grupa_datum">
+                Od: <input type="text" class="form_control" id="pocetni_datum">
+                </div>
+                <div class="grupa_datum">
+                Do: <input type="text" class="form_control" id="krajnji_datum">
 
-                Do: <input type="text" class="form-control" id="krajnji_datum">
+                </div>
+                
 
             </div>
         </div>
@@ -76,8 +83,12 @@
             <label for="grupno"> Grupno </label>
             <input id="grupno" type="radio" name="tip_polise" value="grupno">
         </div>
-        <input id="okidac_d_o" type="submit"/>
-        <input id="okidac_slanje_forme" class="okidac" type="submit"/>
+        <div class="okidaci">
+            <input id="okidac_slanje_forme" class="okidac" type="submit" value="Prijavi Polisu"/>
+            <input style="display: none;" id="okidac_d_o" type="submit" class="okidac" value="Dodaj Osiguranika"/>
+        </div>
+       
+      
 
        </form>
        <div id="prozor_dodatni_osiguranici" class="dodatni_osiguranici_container" style="display:none;">
@@ -111,6 +122,8 @@
 
         </div>
     </div>
+
+ 
 
  
 
@@ -151,7 +164,15 @@
             
             let todays_date = getTodaysDate();
 
-            /*****formatiranje datepicker/a******/
+            individualnoRadio.click(function(){
+                    okidac_d_o.css('display','none');
+                })
+            grupnoRadio.click(function(){
+                okidac_d_o.css('display',"inline-block")
+            })
+            
+
+            /*****Pocetak- formatiranje datepicker/a******/
             $('#datum_rodjenja').datepicker({
                   format: 'yyyy-mm-dd', // Set the desired date format
                   autoclose: true, // Close the datepicker when a date is selected
@@ -182,11 +203,18 @@
               autoclose: true, // Close the datepicker when a date is selected
               todayHighlight: true // Highlight today's date
             });
+            /*****Kraj- formatiranje datepicker/a******/
+
 
             /***********Pocetak pomocnih funkcija********/
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
+                $('#ls').css('height','112vh')
+                $('#ds').css('height','112vh')
+              
+
+
             }
             function getTodaysDate(){
                 const currentDate = new Date();
@@ -231,6 +259,13 @@
                 alert('missing vals');
                 return false;
             }
+            //iako do ovog bloka ne moze da se dodje, za svaki slucaj proveriti
+            //da li su u grupno osiguranje dodati osiguranici
+            if($("input[name='tip_polise']:checked").val()==='grupnp' && dodatni_osiguranici===""){
+                alert('Ne mozete prijaviti grupno osiguranje bez dodatnih osiguranika!')
+                return false;
+            }
+
                 return true;
             }
             function prikaziDo(){
@@ -258,7 +293,7 @@
                 return false
             }
             function setWelcomeMsg(name){
-                $('#dobrodoslica').text("Dobrodosao, " + name);
+                $('#dobrodoslica').text("Dobrodosli, " + name);
             }
 
             //ajax metode
