@@ -272,11 +272,13 @@ body {
     border: 2px solid black;
 
     padding: 3%;
+    text-align: center;
 
 }
 
 .osiguranik p {
     font-weight: 600;
+    text-align: center;
 }
 
 /********Kraj stilova vezanih za Unos Polise*********/
@@ -372,12 +374,28 @@ body {
     left: 20vw;
     top: 15vh;
 
-    background: palegreen;
+    background: #f4f4f4;
+    border: 2px solid black;
+    border-radius: 4px;
 
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
+    overflow-y: scroll;
+}
+
+.container_d_osiguranika {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.do_naslov {
+    position: absolute;
+    top: 0vh;
 }
 
 .closeBtn {

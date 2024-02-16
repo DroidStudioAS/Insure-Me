@@ -35,8 +35,11 @@
         </div>      
     </div>
     <div style="display: none;" id="do" class="dodatni_osiguranici">
+    <h1 id="do_naslov">Dodatni Osiguranici:</h1>
     <img src="../public/resursi/close.png" id="closeBtn" class="closeBtn">
-        dsadassdas
+    <div id="d_o_c" class="container_d_osiguranika">
+
+    </div>
     </div>
   
 <script>
@@ -57,6 +60,7 @@
    let tipContainerDiv = $('#tip_container');
    let prikaziContainerDiv = $('#prikazi_container');
    let d_o=$('#do');
+   let doc=$('#d_o_c');
    let closeBtn = $('#closeBtn');
 
    
@@ -101,14 +105,14 @@ function prikaziDo(){
                 console.log(polisa.getPolisaDodatniOsiguranici())
                 let osiguranici =createDodatniOsiguranikArray(polisa.getPolisaDodatniOsiguranici())
                 console.log(osiguranici)
+                doc.empty();
                 osiguranici.forEach(osiguranik=>{
-                    const toAppend = `<div class="dodatni">
+                    const toAppend = `<div class="osiguranik">
                                         <p>${osiguranik.getIme()}<p/>
                                         <p>${osiguranik.getDatumRodjenja()}<p/>
                                         <p>${osiguranik.getBrojPasosa()}<p/>
                                         </div>`;
-                    d_o.children(':not(#closeBtn)').remove();
-                    d_o.append(toAppend);
+                    doc.append(toAppend);
 
                 })
             prikaziDo();
