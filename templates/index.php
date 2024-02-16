@@ -129,10 +129,7 @@
     <script>
       
         $(document).ready(function(){
-            if(daliJeKorisnikUlogovan()){
-                toggleVisibility();
-                console.log('log prepoznat');
-            }
+          
             //reference na polja unosa
             let korisnickoIme = $('#korisnicko_ime');
             let lozinka = $('#sifra');
@@ -159,6 +156,7 @@
 
             //vazne varijable
             let userId = -1;
+            let username = "";
             
             let kontrolni_pocetni_datum="";
             let dodatni_osiguranici="";
@@ -173,6 +171,23 @@
             grupnoRadio.click(function(){
                 okidac_d_o.css('display',"inline-block")
             })
+
+              //Ako je korisnik ulogovan,prikazi mu formu
+              if(daliJeKorisnikUlogovan()){
+                toggleVisibility();
+                userId=sessionStorage.getItem('id');
+                username=sessionStorage.getItem('username')
+                console.log(userId);
+                console.log(username + userId)
+
+                setWelcomeMsg(username);
+                $('#okidac_slanje_forme').off('click').on('click', function(e){
+                    e.preventDefault();
+                    postaviPolisu();
+                })
+                   
+                }
+              
             
 
             /*****Pocetak- formatiranje datepicker/a******/
@@ -316,7 +331,7 @@
                                 resolve(response);
                                 console.log(response)
                                 userId=response;
-                                localStorage.setItem('id', userId);
+                                sessionStorage.setItem('id', userId);
                             },
                             error: function(xhr, status, error) {
                                 // Reject the promise with the error details
@@ -326,7 +341,8 @@
                     });
                 }
                 function postaviPolisu(){
-                    console.log(todays_date)
+                    console.log(todays_date);
+                    console.log(userId);
                     if(proveriJelPostojeParametri()===false){
                         return;
                     }
@@ -381,10 +397,12 @@
                         if(response==='true'){
                             //zapamti da je korisnik logovan
                             sessionStorage.setItem('authenticated',"true");
+                            sessionStorage.setItem('username',ime);
+                            username=ime;
+                            dohvatiUserId(ime);
                             toggleVisibility()
                             slanjeForme()
                             setWelcomeMsg(ime)
-                            dohvatiUserId(ime);
                         }else if (response==='false'){
                             alert('Korisnicko ime/Lozinka su netacni')
                         }
@@ -416,6 +434,7 @@
                                 success: function(response) {
                                     //zapamti da je korisnik logovan
                                     sessionStorage.setItem('authenticated',"true");
+                                    sessionStorage.setItem('username',ime);
                                     toggleVisibility()
                                     slanjeForme()
                                     setWelcomeMsg(ime);
