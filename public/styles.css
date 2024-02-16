@@ -287,6 +287,8 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20vh;
+
+    background-color: #f4f4f4;
 }
 
 .list_prijava {
@@ -295,6 +297,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 50vw;
+    background-color: #f4f4f4;
+
 }
 
 .polisa {
@@ -303,6 +307,7 @@ body {
 
     cursor: pointer;
 }
+
 .polisa.selected {
     text-decoration: underline;
 }
@@ -317,6 +322,8 @@ body {
     justify-content: center;
     padding: 3%;
     width: 80vw;
+    background-color: #f4f4f4;
+
 
 }
 
@@ -333,7 +340,8 @@ body {
     font-size: 3vw;
     border-radius: 5px;
 
-    /* Include border in the width calculation */
+    background-color: #ffffff;
+
 
 }
 
@@ -342,12 +350,19 @@ body {
     border: 3px solid black;
     box-sizing: border-box;
 
+    margin-top: 1%;
+
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    padding: 1%;
     height: 10vh;
-    font-size: 3vw;
+    font-size: 2.5vw;
+    padding: 2%;
+
+    text-align: center;
+
+    background-color: #ffffff;
 }
 
 .dodatni_osiguranici {

@@ -14,7 +14,7 @@
 
 
 </head>
-<body>
+<body style="background-color:#f4f4f4">
     <?php include 'navigacija.php'?>
     
     <div class="pregled_koren">
@@ -78,6 +78,7 @@ function prikaziDo(){
 }
     function prikaziPrijave(){
         $("#prijave").css("display", "flex");
+        prikaziContainerDiv.off('click');
     }
     function postaviPrijavu(polisa){
         imeContainerDiv.text("Ime Nosioca: " + polisa.getPolisaIme())
@@ -106,10 +107,11 @@ function prikaziDo(){
                                         <p>${osiguranik.getDatumRodjenja()}<p/>
                                         <p>${osiguranik.getBrojPasosa()}<p/>
                                         </div>`;
+                    d_o.children(':not(#closeBtn)').remove();
                     d_o.append(toAppend);
 
                 })
-                prikaziDo();
+            prikaziDo();
 
             })
         }else{
