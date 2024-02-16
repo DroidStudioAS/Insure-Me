@@ -129,6 +129,10 @@
     <script>
       
         $(document).ready(function(){
+            if(daliJeKorisnikUlogovan()){
+                toggleVisibility();
+                console.log('log prepoznat');
+            }
             //reference na polja unosa
             let korisnickoIme = $('#korisnicko_ime');
             let lozinka = $('#sifra');
@@ -206,14 +210,18 @@
 
 
             /***********Pocetak pomocnih funkcija********/
+            function daliJeKorisnikUlogovan(){
+                if(sessionStorage.getItem('authenticated')==="true"){
+                    return true;
+                }
+                return false;
+            }
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
                 $('#ls').css('height','112vh')
                 $('#ds').css('height','112vh')
               
-
-
             }
             function getTodaysDate(){
                 const currentDate = new Date();
@@ -371,6 +379,8 @@
                     },
                     success:function(response){
                         if(response==='true'){
+                            //zapamti da je korisnik logovan
+                            sessionStorage.setItem('authenticated',"true");
                             toggleVisibility()
                             slanjeForme()
                             setWelcomeMsg(ime)
@@ -404,8 +414,8 @@
                                     sifra: sifra
                                 },
                                 success: function(response) {
-                                    console.log(response); // Log the response from the server
-                                    // Further process the response if needed
+                                    //zapamti da je korisnik logovan
+                                    sessionStorage.setItem('authenticated',"true");
                                     toggleVisibility()
                                     slanjeForme()
                                     setWelcomeMsg(ime);
