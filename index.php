@@ -43,7 +43,7 @@
     <!--Forma za Unos polisa i dodatne osiguranike POCETAK-->
     <div id="koren" class="koren">
         <!--dobrodoslica je prazna jer se dinamicki postavlja nakon logovanja-->
-        <h1 id="dobrodoslica"></h1>
+        <h1 class="dobrodoslica" id="dobrodoslica"></h1>
        <h1> Unos Polise</h1>
        <form>
         <h3>
