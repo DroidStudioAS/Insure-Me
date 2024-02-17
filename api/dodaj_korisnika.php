@@ -14,7 +14,7 @@ function unesiKorisnika($korisnicko_ime, $korisnicka_sifra){
         die("Konekcija nije uspela" . $conn->connect_error);
     }
 
-    // Hash the password
+    //hashovanje sifre
     $hashed_password = password_hash($korisnicka_sifra, PASSWORD_DEFAULT);
 
     $stmt = $conn->prepare("INSERT INTO korisnici (korisnik_ime, korisnik_sifra) VALUES (?, ?)");
@@ -30,6 +30,7 @@ function unesiKorisnika($korisnicko_ime, $korisnicka_sifra){
     $conn->close();
 }
 
+//endpoint
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $ime = $_POST["ime"];
     $sifra = $_POST["sifra"];

@@ -17,10 +17,10 @@ function dohvati_korisnikovce_polise($id_korisnika){
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $polise = array(); // Initialize an array to store polise data
+    $polise = array(); //prazan niz za cuvanje podatke o polisama
     
     while ($row = $result->fetch_assoc()) {
-        // Add each row (polisa) to the $polise array
+        //dodaj svaki red rezultata u niz
         $polise[] = $row;
     }
 
@@ -30,11 +30,11 @@ function dohvati_korisnikovce_polise($id_korisnika){
     return json_encode($polise);
 }
 
-// Check if the request is made via AJAX
+//endpoint
 if(isset($_GET['id_korisnika'])) {
-    $id_korisnika = $_GET['id_korisnika']; // Get the user ID from the request
+    $id_korisnika = $_GET['id_korisnika']; //dohvati user id
     $polise_data = dohvati_korisnikovce_polise($id_korisnika);
-    echo $polise_data; // This will output the fetched polise data as JSON
+    echo $polise_data; 
 } else {
     echo "Invalid request";
 }

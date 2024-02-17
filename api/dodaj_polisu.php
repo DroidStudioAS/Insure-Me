@@ -42,8 +42,7 @@ function dodajPolisu($polisa){
     //exc blocl
     // Execution block
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Assuming the data is sent via POST request
-    // Extracting the data from the request
+    //izvuci podatke iz zahteva
     $id_korisnika = $_POST['id_korisnika'];
     $polisa_br_pasosa = $_POST['polisa_br_pasosa'];
     $polisa_br_telefona = $_POST['polisa_br_telefona'];
@@ -56,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $polisa_dodatni_osiguranici = $_POST['polisa_dodatni_osiguranici'];
     $datum_prijave = $_POST['datum_prijave'];
 
-    // Create a new instance of the Polisa class using constructor
+    // Napravi novu instancu polise
     $polisa = new Polisa(
         $id_korisnika,
         $polisa_br_pasosa,
@@ -71,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $datum_prijave
     );
 
-    // Call the function to insert the Polisa into the database
+    //izvrsna funckcija
     dodajPolisu($polisa);
 }
 

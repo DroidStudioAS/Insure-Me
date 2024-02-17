@@ -44,8 +44,6 @@
             clearInterval(interval);    
         }
         },1000)
-        
-
     </script>
 </body>
 

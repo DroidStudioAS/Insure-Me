@@ -14,24 +14,24 @@ function jelKorisnikPostoji($korisnicko_ime){
     $stmt = $conn->prepare("SELECT id_korisnik FROM korisnici WHERE korisnik_ime = ?");
     $stmt->bind_param('s', $korisnicko_ime);
     
-    // Execute the prepared statement
+    //izvrsavanje upita
     $stmt->execute();
 
-    // Store the result
     $stmt->store_result();
 
-    // Check if the user exists
+    //da li korisnik postoji
     $num_rows = $stmt->num_rows;
 
-    // Close the statement and connection
+    //zatvori konekciju
     $stmt->close();
     $conn->close();
 
-    return $num_rows > 0; // Return true if the user exists, false otherwise
+    return $num_rows > 0; //vrati true ako korisnik posotji, false u suprotnom
 }
 
+//endpoint
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $korisnicko_ime = $_POST["ime"]; // Assuming "ime" is the username sent via POST request
+    $korisnicko_ime = $_POST["ime"]; 
     $user_exists = jelKorisnikPostoji($korisnicko_ime);
-    echo $user_exists ? "true" : "false"; // Output "true" if user exists, "false" otherwise
+    echo $user_exists ? "true" : "false"; 
 }

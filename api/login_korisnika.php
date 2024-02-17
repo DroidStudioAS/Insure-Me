@@ -6,15 +6,12 @@ function login($username, $password) {
     $password_db = '';
     $dbname = 'osiguranko';
 
-    // Create connection
     $conn = new mysqli($ime_servera, $username_db, $password_db, $dbname);
 
-    // Check connection
     if ($conn->connect_error) {
         die("Konekcija nije uspela: " . $conn->connect_error);
     }
 
-    // Prepare statement to select user with provided username
     $stmt = $conn->prepare("SELECT korisnik_sifra FROM korisnici WHERE korisnik_ime = ?");
     $stmt->bind_param('s', $username);
 
@@ -24,28 +21,29 @@ function login($username, $password) {
     // Store the result
     $stmt->store_result();
 
-    // Check if user with provided username exists
+    //da li ovaj user postoji
     if ($stmt->num_rows > 0) {
-        // Bind the result variables
+        //postoji
+        //povezivanje parametara
         $stmt->bind_result($stored_password);
 
-        // Fetch the result
+        //dohvati rezultat
         $stmt->fetch();
 
-        // Compare passwords
+        //Uporedi hash unete sifre i sacuvan hash
         if (password_verify($password, $stored_password)) {
-            // Passwords match, user is authenticated
+            //sifra tacna
             $stmt->close();
             $conn->close();
             return true;
         } else {
-            // Passwords do not match
+            //sifra netacna
             $stmt->close();
             $conn->close();
             return false;
         }
     } else {
-        // User with provided username does not exist
+        //ne postoji
         $stmt->close();
         $conn->close();
         return false;

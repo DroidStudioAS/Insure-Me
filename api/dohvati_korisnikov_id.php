@@ -19,25 +19,25 @@ function fetchUserIdByUsername($username){
     $stmt->fetch();
     $stmt->close();
 
-    // Return the user ID
+    //vrati user id
     return $userId;
 }
 
-// API endpoint for fetching user ID by username
+//API ENDPOINT
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // Check if the username parameter is provided
+    //Proveri da li je username dat
     if (isset($_GET['username'])) {
-        // Get the username from the request
+        //izvuci username
         $username = $_GET['username'];
 
-        // Fetch the user ID
+        //dobavi id
         $userId = fetchUserIdByUsername($username);
         //sacuvaj id u sesiju
         $_SESSION['user_id']=$userId;
-        // Return the user ID as a plain text response
+        //vrati user id kao tekst
         echo $userId;
     } else {
-        // If username parameter is missing, return an error message
+        //nedostaje usernamwe
         echo "Error: Username parameter is missing.";
     }
 }
