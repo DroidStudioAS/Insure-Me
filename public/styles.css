@@ -26,28 +26,28 @@ body {
 
 .nav img {
     width: 70px;
-    margin-right: 2vw;
-
 }
 
 .nav_opcija_1 {
     font-size: 4vw;
-    text-decoration: underline;
     cursor: pointer;
     position: absolute;
     left: 0vw;
     padding-right: 10px;
     color: black;
+    font-weight: 700;
 }
 
 .nav_opcija_2 {
     font-size: 4vw;
-    text-decoration: underline;
     cursor: pointer;
     position: absolute;
     right: 0vw;
     padding-left: 10px;
     color: black;
+    font-weight: 700;
+
+
 }
 
 .nav_opcija_1 :visited {
@@ -308,6 +308,7 @@ input[type="radio"]+label {
 
 .polisa.selected {
     text-decoration: underline;
+    font-weight: 700;
 }
 
 
