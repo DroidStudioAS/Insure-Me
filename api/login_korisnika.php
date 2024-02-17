@@ -51,16 +51,14 @@ function login($username, $password) {
 }
 
 
-// Execution block
+//Endpoint
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Assuming username and password are sent via POST request
     $username = $_POST["ime"];
     $password = $_POST["sifra"];
 
-    // Call the login function
+    
     $result = login($username, $password);
-
-    // Output the result
+    
     echo $result ? "true" : "false";
 }
 
