@@ -66,7 +66,7 @@
         </h3>
         <div class="contact_container">
             <input  class="koren_input" id="mail" placeholder="email*" type="email">
-            <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number" inputmode="tel">
+            <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number">
         </div>
         <h3>
             Kad Putujete?
