@@ -441,6 +441,10 @@
                 })
             }
             function registrujKorisnika(ime, sifra) {
+                if(sifra.length<6){
+                    alert('Molimo Vas Da Unesete Sifru Od Bar 6 Karaktera Radi Vase Bezbednosti!');
+                    return;
+                }
                  $.ajax({
                     url: "api/proveri_korisnika.php",
                     method: 'POST',
