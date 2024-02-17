@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prijava</title>
 
-    <link rel="stylesheet" href="../public/styles.css">
+    <link rel="stylesheet" href="public/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -16,7 +16,7 @@
             <a href="index.php">Prijava Osiguranja </a>
         </div>
         <div class="img_container">
-        <img src="../public/resursi/paragraf_logo.png">
+        <img src="public/resursi/paragraf_logo.png">
         </div>
         <div class="nav_opcija_2">
            <a id="pregledLink" href="pregled_prijava.php"> Pregled Prijava </a>

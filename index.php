@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prijava Polise</title>
-    <link rel="stylesheet" href="../public/styles.css">
-    <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
+    <link rel="stylesheet" href="public/styles.css">
+    <link rel="icon" href="public/resursi/paragraf_logo.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" />
 
     <!-- Bootstrap CSS -->
@@ -13,21 +13,21 @@
     <!-- Bootstrap Datepicker CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../models/DodatniOsiguranik.js"></script>
+    <script src="models/DodatniOsiguranik.js"></script>
 </head>
 <body>
     <!--Php Importi-model polise i navigacija-->
     <?php include 'navigacija.php'?>
-    <?php include '../models/polisa.php'?>
+    <?php include 'models/polisa.php'?>
     <!--Slike na levoj i desnoj ivici ekrana za desktop-->
-    <img id="ls" class="leva_slika" src="../public/resursi/b-pocetna-l.png"/>
-    <img id="ds" class="desna_slika" src="../public/resursi/desna_slika.png"/>
+    <img id="ls" class="leva_slika" src="public/resursi/b-pocetna-l.png"/>
+    <img id="ds" class="desna_slika" src="public/resursi/desna_slika.png"/>
 
     <!--Forma za login i registraciju POCETAK-->
     <div id="loginContainer" class="login_container">
        <form class="forma_login" id="loginForm">
        <h1 id="naslov">Prijava Korisnika</h1>
-       <img src="../public/resursi/paragraf_logo.png"/>
+       <img src="public/resursi/paragraf_logo.png"/>
         <input id="korisnicko_ime" placeholder="Korisničko Ime" class="login_unos" type="text"/>
         <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
         <input class="okidac"  type="submit" value="Prijavi se" id="submitButton"/>
@@ -348,7 +348,7 @@
             function dohvatiUserId(username) {
                     return new Promise((resolve, reject) => {
                         $.ajax({
-                            url: '../api/dohvati_korisnikov_id.php', 
+                            url: 'api/dohvati_korisnikov_id.php', 
                             method: 'GET', 
                             data: { username: username }, 
                             success: function(response) {
@@ -370,7 +370,7 @@
                         return;
                     }
                 $.ajax({
-                    url:'../api/dodaj_polisu.php',
+                    url:'api/dodaj_polisu.php',
                     method:'POST',
                     data:{
                         id_korisnika:userId,
@@ -411,7 +411,7 @@
 
             function logujKorisnika(ime,sifra){
                 $.ajax({
-                    url:'../api/login_korisnika.php',
+                    url:'api/login_korisnika.php',
                     method: 'POST',
                     data: {
                         ime:ime,
@@ -437,7 +437,7 @@
             }
             function registrujKorisnika(ime, sifra) {
                  $.ajax({
-                    url: "../api/proveri_korisnika.php",
+                    url: "api/proveri_korisnika.php",
                     method: 'POST',
                     data: {
                         ime: ime
@@ -449,7 +449,7 @@
                         } else {
                             //Ukoliko korisnik Ne postoji, api vraca false, i mozemo da napravimo poziv za dodavanje korisnika
                             $.ajax({
-                                url: "../api/dodaj_korisnika.php",
+                                url: "api/dodaj_korisnika.php",
                                 method: 'POST',
                                 data: {
                                     ime: ime,
