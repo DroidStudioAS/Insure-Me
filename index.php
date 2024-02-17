@@ -50,22 +50,22 @@
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
-            <input class="koren_input" id="ime" type="text" placeholder="Ime" autocapitalize="words">
-            <input class="koren_input" id="prezime" type="text" placeholder="Prezime" autocapitalize="words">
+            <input class="koren_input" id="ime" type="text" placeholder="Ime*" autocapitalize="words">
+            <input class="koren_input" id="prezime" type="text" placeholder="Prezime*" autocapitalize="words">
         </div>
         <h3>
             Datum Rodjenja
         </h3>
-        <input  class="koren_input" type="text" class="form_control" id="datum_rodjenja" autocomplete="off">
+        <input placeholder="*" class="koren_input" type="text" class="form_control" id="datum_rodjenja" autocomplete="off">
         <h3>
             Broj Pasosa
         </h3>
-        <input  class="koren_input"id="brojPasosa" type="number">
+        <input placeholder="*" class="koren_input" id="brojPasosa" type="number">
         <h3>
             Kontakt
         </h3>
         <div class="contact_container">
-            <input  class="koren_input" id="mail" placeholder="email" type="email">
+            <input  class="koren_input" id="mail" placeholder="email*" type="email">
             <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number" inputmode="tel">
         </div>
         <h3>
@@ -75,14 +75,14 @@
             <div class="datum_putovanja">
                 <div class="grupa_datum">
                 <!--Autocomplete iskljucen na svim datepickerima, kako bi se video sam datepicker-->
-                Od: <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off">
+                Od: <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off" placeholder="*">
                 </div>
                 <div class="grupa_datum">
-                Do: <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off">
+                Do: <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off" placeholder="*">
                 </div>
             </div>
         </div>
-        <h3>Grupno Ili Individualno Osiguranje</h3>
+        <h3>Tip Osiguranja *</h3>
         <div class="radio_grupa">
             <label for="individualno"> Individualno </label>
             <input id="individualno" type="radio" name="tip_polise" value="individualno">
@@ -283,7 +283,8 @@
                 
 
                 logVals();
-
+        
+            //nedostatak obaveznih polja
             if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
@@ -299,6 +300,11 @@
             //proveri jel mail validan
             if(!email.includes('@')){
                 alert('Molimo Vas Unesite Validnu Email Adresu!')
+                return false;
+            }
+            //da li broj pasosa ima 9 cifara
+            if(brojPasosa.length!==9){
+                alert('Broj Pasosa Sastoji Se Od 9 Cifara. Molimo Vas Proverite Vas Unos')
                 return false;
             }
 
@@ -395,7 +401,6 @@
                 $("#okidac_slanje_forme").off('click').on('click', function(e){
                      e.preventDefault()
                      logVals()
-                     proveriJelPostojeParametri()
                      //ukoliko je osiuranje grupno, prikazati prozor da dodavanje osiguranika
                       if(daliJeOsiguranjeGrupno($("input[name='tip_polise']:checked").val()) && dodatni_osiguranici===""){
                               $("#prozor_dodatni_osiguranici").toggle();                 
