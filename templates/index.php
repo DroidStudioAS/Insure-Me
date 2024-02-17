@@ -41,8 +41,8 @@
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
-            <input  class="koren_input" id="ime" type="text" placeholder="Ime">
-            <input  class="koren_input" id="prezime" type="text" placeholder="Prezime">
+            <input  class="koren_input" id="ime" type="text" placeholder="Ime" autocapitalize="words">
+            <input  class="koren_input" id="prezime" type="text" placeholder="Prezime" autocapitalize="words">
         </div>
         <h3>
             Datum Rodjenja
@@ -57,7 +57,7 @@
         </h3>
         <div class="contact_container">
             <input  class="koren_input" id="mail" placeholder="email" type="email">
-            <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number">
+            <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number" inputmode="tel">
         </div>
         <h3>
             Kad Putujete?
@@ -65,10 +65,10 @@
         <div class="input-group">
             <div class="datum_putovanja">
                 <div class="grupa_datum">
-                Od: <input type="text" class="koren_input" id="pocetni_datum">
+                Od: <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off">
                 </div>
                 <div class="grupa_datum">
-                Do: <input type="text"  class="koren_input"id="krajnji_datum">
+                Do: <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off">
 
                 </div>
                 
@@ -290,9 +290,15 @@
                 alert('Ne mozete prijaviti grupno osiguranje bez dodatnih osiguranika!')
                 return false;
             }
+            //proveri jel mail validan
+            if(!email.includes('@')){
+                alert('Molimo Vas Unesite Validnu Email Adresu!')
+                return false;
+            }
 
                 return true;
             }
+
             function prikaziDo(){
                 $("#prozor_dodatni_osiguranici").toggle();                 
             }

@@ -267,10 +267,8 @@ body {
     justify-content: center;
     align-items: center;
     margin: 2%;
-
     border-radius: 5px;
     border: 2px solid black;
-
     padding: 3%;
     text-align: center;
 
@@ -389,9 +387,10 @@ body {
 .container_d_osiguranika {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
+    width: 5    0vw;
 }
 
 
@@ -407,7 +406,7 @@ body {
 .closeBtn {
     position: absolute !important;
     top: 0vh;
-    right: 0vw;
+    right: 1vw;
 
     width: 30px;
 }
