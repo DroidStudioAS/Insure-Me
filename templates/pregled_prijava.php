@@ -35,7 +35,7 @@
         </div>      
     </div>
     <div style="display: none;" id="do" class="dodatni_osiguranici">
-    <h1 id="do_naslov">Dodatni Osiguranici:</h1>
+    <h1 id="do_naslov" style="text-align:center;">Dodatni Osiguranici:</h1>
     <img src="../public/resursi/close.png" id="closeBtn" class="closeBtn">
     <div id="d_o_c" class="container_d_osiguranika">
 

@@ -391,12 +391,17 @@ body {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 
 .do_naslov {
     position: absolute;
     top: 0vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .closeBtn {
@@ -447,7 +452,7 @@ body {
     }
 
     .prikaz_polje {
-        font-size: 6vw;
+        font-size: 5vw;
         text-align: center;
     }
 }
