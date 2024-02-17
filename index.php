@@ -200,12 +200,15 @@
             $('#datum_rodjenja').datepicker({
                   format: 'yyyy-mm-dd', //postavi format na onaj koji se cuva u bazi
                   autoclose: true, //zatvoriti datepicker pri selekciji datuma
-                  todayHighlight: false //za rodjendan, ne zelimo da highlituje danasnji datum
+                  todayHighlight: false, //za rodjendan, ne zelimo da highlituje danasnji datum
+                  endDate:todays_date //onemoguci biranje datuma posle danasnjeg
             }); //rodjendan_dodatni_osiguranik
             $('#rodjendan_d_o').datepicker({
                   format: 'yyyy-mm-dd', 
                   autoclose: true, 
-                  todayHighlight: true 
+                  todayHighlight: false, 
+                  endDate:todays_date //onemoguci biranje datuma posle danasnjeg
+
             });
             $('#pocetni_datum').datepicker({
               format: 'yyyy-mm-dd',
