@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moje Polise</title>
 
-    <link rel="stylesheet" href="../public/styles.css">
-    <link rel="icon" href="../public/resursi/paragraf_logo.png"/>
+    <link rel="stylesheet" href="public/styles.css">
+    <link rel="icon" href="public/resursi/paragraf_logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../models/polisa.js"></script>
-    <script src="../models/DodatniOsiguranik.js"></script>
+    <script src="models/polisa.js"></script>
+    <script src="models/DodatniOsiguranik.js"></script>
 
 
 </head>
@@ -42,7 +42,7 @@
     <!--Ovde se sve popunjava dinamicki-->
     <div style="display: none;" id="do" class="dodatni_osiguranici">
     <h1 id="do_naslov" style="text-align:center;">Dodatni Osiguranici:</h1>
-    <img src="../public/resursi/close.png" id="closeBtn" class="closeBtn">
+    <img src="public/resursi/close.png" id="closeBtn" class="closeBtn">
     <div id="d_o_c" class="container_d_osiguranika">
 
     </div>
@@ -163,7 +163,7 @@ function createDodatniOsiguranikArray(str) {
     function dohvatiPolise() {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../api/dohvati_polise.php',
+                url: 'api/dohvati_polise.php',
                 method: "GET",
                 data: { id_korisnika: userId },
                 success: function (response) {
