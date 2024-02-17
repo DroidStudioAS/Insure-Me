@@ -368,7 +368,7 @@ body {
 .container_d_osiguranika {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: center;
     width: 50vw;
