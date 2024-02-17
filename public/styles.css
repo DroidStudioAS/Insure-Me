@@ -19,13 +19,13 @@ body {
     padding: 10px 0% 1px 0%;
     background-color: #ffffff;
 
-    height: 15vh;
+    height: 170px;
 
 
 }
 
 .nav img {
-    width: 70px;
+    width: 120px;
 }
 
 .nav_opcija_1 {
@@ -64,7 +64,7 @@ body {
 
 /********Pocetak stilova vezanih za login/reg*********/
 .login_container {
-    margin-top: 105px;
+    margin-top: 170px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -121,7 +121,7 @@ body {
 .leva_slika {
     position: absolute;
     left: 0vw;
-    top: 15vh;
+    top: 170px;
     width: 17.5vw;
     height: 89vh;
 
@@ -132,7 +132,7 @@ body {
 .desna_slika {
     position: absolute;
     right: 0vw;
-    top: 15vh;
+    top: 170px;
     width: 17.5vw;
     height: 89vh;
 
@@ -147,7 +147,7 @@ body {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin-top: 15vh;
+    margin-top: 170px;
     text-align: center;
     width: 64vw;
     position: relative;
@@ -284,7 +284,7 @@ input[type="radio"]+label {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20vh;
+    margin-top: 170px;
 
     background-color: #f4f4f4;
 }

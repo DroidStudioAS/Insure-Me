@@ -13,13 +13,13 @@
 <body>
     <div class="nav">
         <div class="nav_opcija_1">
-            <a style="color: black;" href="index.php">Prijava Osiguranja </a>
+            <a style="color: black;" href="index.php">Prijava <br> Osiguranja </a>
         </div>
         <div class="img_container">
         <img src="public/resursi/paragraf_logo.png">
         </div>
         <div class="nav_opcija_2">
-           <a style="color:black" id="pregledLink" href="pregled_prijava.php"> Pregled Prijava </a>
+           <a style="color:black" id="pregledLink" href="pregled_prijava.php"> Pregled <br> Prijava </a>
         </div>
     </div>
     <script>
