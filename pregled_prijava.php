@@ -20,6 +20,7 @@
     <!--Container za listu prijava i tabelu za prikaz polisa-->
     <!--Lista prijava-->
     <div class="pregled_koren">
+        <h2>Moje Polise</h2>
         <div id="listaPrijava" class="list_prijava">
     </div>
      <!--Tabelarni prikaz polise koji se dinamicki popunjava i prikazuje-->
