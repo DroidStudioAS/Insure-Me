@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prijava Polise</title>
+    <title>Login</title>
     <link rel="stylesheet" href="public/styles.css">
     <link rel="icon" href="public/resursi/paragraf_logo.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" />
@@ -231,9 +231,14 @@
 
 
             /***********Pocetak pomocnih funkcija********/
+            function postaviTitleStranice(string){
+                $('title').text(string);
+            }
+
             //proverava da li postoji sesija za korsnika
             function daliJeKorisnikUlogovan(){
                 if(sessionStorage.getItem('authenticated')==="true"){
+                    postaviTitleStranice('Prijava Polise')
                     return true;
                 }
                 return false;
@@ -432,6 +437,7 @@
                             toggleVisibility()
                             slanjeForme()
                             setWelcomeMsg(ime)
+                            postaviTitleStranice('Prijava Polise')
                         }else if (response==='false'){
                             alert('Korisnicko ime/Lozinka su netacni')
                         }
@@ -471,7 +477,7 @@
                                     toggleVisibility()
                                     slanjeForme()
                                     setWelcomeMsg(ime);
-
+                                    postaviTitleStranice('Prijava Polise')
                                     dohvatiUserId(ime);
 
                                 },
@@ -520,6 +526,7 @@
                 console.log(naRegistraciji);
                 //ako je na registraciji, prilagoditi naslov i onclick listener za slanje
                 if (naRegistraciji) {
+                    postaviTitleStranice('Registracija')
                     $('#naslov').text('Registracija Korisnika');
                     $('#submitButton').attr('value', 'Registruj se');
                     $('#submitButton').off('click').on('click', function(e) {
@@ -536,7 +543,7 @@
                   $('#toggleLink').text('Imaš Nalog? Prijavi se');
                 }else {
                     //ako je na loginu, prilagoditi naslov i onclick listener za slanje
-                    console.log('hey');
+                    postaviTitleStranice('Login')
                     $('#naslov').text('Prijava Korisnika');
                     $('#submitButton').attr('value', 'Prijavi se');
                     $('#submitButton').off('click').on('click', function(e) {
