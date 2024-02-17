@@ -102,7 +102,7 @@
        <div id="prozor_dodatni_osiguranici" class="dodatni_osiguranici_container" style="display: none;" >
        <!--Gornja polovina sluzi za unos-->
         <div class="gornja_polovina">
-            <img id="zatvori_prozor" src="../public/resursi/close.png"/>
+            <img id="zatvori_prozor" src="public/resursi/close.png"/>
             <h1>
                 Dodatni Osiguranici
             </h1>
