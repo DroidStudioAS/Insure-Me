@@ -288,13 +288,13 @@
             if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
-                alert('Molimo Vas Popunite Sva Obavezna Polja');
+                alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
                 return false;
             }
             //iako do ovog bloka ne moze da se dodje, za svaki slucaj proveriti
             //da li su u grupno osiguranje dodati osiguranici
             if($("input[name='tip_polise']:checked").val()==='grupnp' && dodatni_osiguranici===""){
-                alert('Ne mozete prijaviti grupno osiguranje bez dodatnih osiguranika!')
+                alert('Ne Mozete Prijaviti Grupno Osiguranje Bez Dodatnih Osiguranika!')
                 return false;
             }
             //proveri jel mail validan
@@ -307,7 +307,7 @@
                 alert('Broj Pasosa Sastoji Se Od 9 Cifara. Molimo Vas Proverite Vas Unos')
                 return false;
             }
-
+                //ako se ni jedan blok nije aktivirao, parametri su ok!
                 return true;
             }
 
