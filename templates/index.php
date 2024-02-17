@@ -132,10 +132,8 @@
     </div>
     <!--Forma za Unos polisa i dodatne osiguranike KRAJ-->
     <script>
-        
         //stranica ucitana
         $(document).ready(function(){
-          
             //reference na polja unosa, kljucnih za formu
             let korisnickoIme = $('#korisnicko_ime');
             let lozinka = $('#sifra');

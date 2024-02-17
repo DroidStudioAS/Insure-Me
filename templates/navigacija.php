@@ -23,6 +23,7 @@
         </div>
     </div>
     <script>
+        //proverava ima li sacuvanih podataka u sesiji
         function daliJeKorisnikUlogovan(){
                 if(sessionStorage.getItem('authenticated')==="true"){
                     return true;
@@ -34,7 +35,7 @@
         }else{
             $('#pregledLink').attr('href','pregled_prijava.php');     
         }
-
+        //svake sekunde, proveri da li se korisnik ulogovao... ako jeste, obrisi interval, i stavi odg href na priajvu polise
         let interval = setInterval(function checkIfLogged(){
             if(!daliJeKorisnikUlogovan()){
             $('#pregledLink').attr('href','#');     
