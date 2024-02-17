@@ -20,6 +20,8 @@ body {
     background-color: #ffffff;
 
     height: 15vh;
+
+
 }
 
 .nav img {
@@ -35,6 +37,7 @@ body {
     position: absolute;
     left: 0vw;
     padding-right: 10px;
+    color: black;
 }
 
 .nav_opcija_2 {
@@ -44,6 +47,7 @@ body {
     position: absolute;
     right: 0vw;
     padding-left: 10px;
+    color: black;
 }
 
 .nav_opcija_1 :visited {
@@ -205,6 +209,14 @@ body {
 
     overflow-y: scroll;
 }
+
+input[type="radio"]+label {
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+
 
 
 
