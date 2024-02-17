@@ -301,7 +301,7 @@
             }
             //iako do ovog bloka ne moze da se dodje, za svaki slucaj proveriti
             //da li su u grupno osiguranje dodati osiguranici
-            if($("input[name='tip_polise']:checked").val()==='grupnp' && dodatni_osiguranici===""){
+            if($("input[name='tip_polise']:checked").val()==='grupno' && dodatni_osiguranici===""){
                 alert('Ne Mozete Prijaviti Grupno Osiguranje Bez Dodatnih Osiguranika!')
                 return false;
             }
