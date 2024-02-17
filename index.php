@@ -220,7 +220,7 @@
     
                 //postavi vrednost date pickera #krajnji datum na 7 dana posle pocetnog
                 $('#krajnji_datum').datepicker('setStartDate', selectedDate);
-                $('#krajnji_datum').val(endDate); // Set the end date
+                $('#krajnji_datum').val(endDate); 
             });
             $('#krajnji_datum').datepicker({
               format: 'yyyy-mm-dd', 
@@ -231,22 +231,21 @@
 
 
             /***********Pocetak pomocnih funkcija********/
+            //proverava da li postoji sesija za korsnika
             function daliJeKorisnikUlogovan(){
                 if(sessionStorage.getItem('authenticated')==="true"){
                     return true;
                 }
                 return false;
             }
+            //poziva se pri uspesnoj validaciji korisnika, kako bi se sakrio login
             function toggleVisibility(){
                 $('#loginContainer').toggle()
                 $('#koren').toggle()
                 $('#ls').css('display','none')
                 $('#ds').css('display','none')
-
-
-          
-              
             }
+            //dolazi do danasnjeg datuma
             function getTodaysDate(){
                 const currentDate = new Date();
                 const year = currentDate.getFullYear();
@@ -257,12 +256,12 @@
                 console.log(formattedDate);
                 return formattedDate;
             }
+            //dolazi do datuma 7 dana posle inputa
             function get7DaysLater(startDate) {
-                 // Calculate 7 days later date
                  const sevenDaysLaterDate = new Date(startDate);
                  sevenDaysLaterDate.setDate(sevenDaysLaterDate.getDate() + 7);
 
-                 // Format the date
+                 //formatiraj datum
                  const year = sevenDaysLaterDate.getFullYear();
                  const month = String(sevenDaysLaterDate.getMonth() + 1).padStart(2, '0');
                  const day = String(sevenDaysLaterDate.getDate()).padStart(2, '0');
@@ -270,6 +269,10 @@
 
                  return formattedDate;
             }  
+            function validacijaBrojaPasosa(broj){
+
+            }
+            //validaciona funkcija koja se poziva pri postavljanju forme
             function proveriJelPostojeParametri(){
                 let ime = $('#ime').val();
                 let prezime = $('#prezime').val();
@@ -279,9 +282,6 @@
                 let brojTelefona = $('#br_telefona').val();
                 let pocetni_datum = $('#pocetni_datum').val();
                 let krajnji_datum = $('#krajnji_datum').val();
-
-                
-
                 logVals();
         
             //nedostatak obaveznih polja
@@ -342,9 +342,9 @@
             function validacijaDodatnihOsiguranika(){
             if(ime_d_o.val()==="" || prezime_d_o.val()==="" 
             || rodjendan_d_o.val()==="" || br_pasosa_d_o.val()===""){
+                alert('Molimo Vas Popunite Sve Podatke O Dodatnom Osiguraniku!')
                 return false;
             }
-
             return true;
         }
 
@@ -557,6 +557,10 @@
             //proveri jel su uneti podatci       
             if(!validacijaDodatnihOsiguranika()){
                 alert('Molimo Vas Popunite Sve Podatke O Bar 1 Dodatnom Osiguraniku')
+                return;
+            }
+            if(br_pasosa_d_o.val().length!==9){
+                alert('Broj Pasosa Mora Da Se Sastoji Od 9 Cifara. Molimo Vas Da Proverite Vas Unos!')
                 return;
             }
             logVals();
