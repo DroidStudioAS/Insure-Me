@@ -32,7 +32,8 @@ function unesiKorisnika($korisnicko_ime, $korisnicka_sifra){
 
 //endpoint
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $ime = $_POST["ime"];
-    $sifra = $_POST["sifra"];
+    //sanatizacija inputa
+    $ime = filter_var($_POST["ime"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $sifra = filter_var($_POST["sifra"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     unesiKorisnika($ime,$sifra);
 }

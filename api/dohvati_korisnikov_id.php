@@ -27,8 +27,8 @@ function fetchUserIdByUsername($username){
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     //Proveri da li je username dat
     if (isset($_GET['username'])) {
-        //izvuci username
-        $username = $_GET['username'];
+        //izvuci username i sanitiraj ga
+        $username = filter_var($_GET['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         //dobavi id
         $userId = fetchUserIdByUsername($username);

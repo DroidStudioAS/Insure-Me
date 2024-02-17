@@ -53,12 +53,12 @@ function login($username, $password) {
 
 //Endpoint
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST["ime"];
-    $password = $_POST["sifra"];
+    $username = filter_var($_POST["ime"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $password = filter_var($_POST["sifra"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     
     $result = login($username, $password);
-    
+
     echo $result ? "true" : "false";
 }
 

@@ -32,7 +32,7 @@ function dohvati_korisnikovce_polise($id_korisnika){
 
 //endpoint
 if(isset($_GET['id_korisnika'])) {
-    $id_korisnika = $_GET['id_korisnika']; //dohvati user id
+    $id_korisnika = filter_var($_GET['id_korisnika'],FILTER_SANITIZE_FULL_SPECIAL_CHARS); //dohvati user id
     $polise_data = dohvati_korisnikovce_polise($id_korisnika);
     echo $polise_data; 
 } else {

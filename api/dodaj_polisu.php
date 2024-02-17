@@ -42,18 +42,19 @@ function dodajPolisu($polisa){
     //exc blocl
     // Execution block
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //izvuci podatke iz zahteva
-    $id_korisnika = $_POST['id_korisnika'];
-    $polisa_br_pasosa = $_POST['polisa_br_pasosa'];
-    $polisa_br_telefona = $_POST['polisa_br_telefona'];
-    $polisa_datum_rodjenja = $_POST['polisa_datum_rodjenja'];
-    $polisa_od = $_POST['polisa_od'];
-    $polisa_do = $_POST['polisa_do'];
-    $polisa_ime = $_POST['polisa_ime'];
-    $polisa_tip = $_POST['polisa_tip'];
-    $polisa_email = $_POST['polisa_email'];
-    $polisa_dodatni_osiguranici = $_POST['polisa_dodatni_osiguranici'];
-    $datum_prijave = $_POST['datum_prijave'];
+    //izvuci podatke iz zahteva i sanatiziraj ih
+    $id_korisnika = filter_var($_POST['id_korisnika'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_br_pasosa = filter_var($_POST['polisa_br_pasosa'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_br_telefona = filter_var($_POST['polisa_br_telefona'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_datum_rodjenja = filter_var($_POST['polisa_datum_rodjenja'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_od = filter_var($_POST['polisa_od'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_do = filter_var($_POST['polisa_do'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_ime = filter_var($_POST['polisa_ime'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_tip = filter_var($_POST['polisa_tip'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_email = filter_var($_POST['polisa_email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $polisa_dodatni_osiguranici = filter_var($_POST['polisa_dodatni_osiguranici'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $datum_prijave = filter_var($_POST['datum_prijave'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 
     // Napravi novu instancu polise
     $polisa = new Polisa(

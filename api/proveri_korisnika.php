@@ -31,7 +31,7 @@ function jelKorisnikPostoji($korisnicko_ime){
 
 //endpoint
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $korisnicko_ime = $_POST["ime"]; 
+    $korisnicko_ime = filter_var($_POST["ime"],FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
     $user_exists = jelKorisnikPostoji($korisnicko_ime);
     echo $user_exists ? "true" : "false"; 
 }
