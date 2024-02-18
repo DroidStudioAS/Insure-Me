@@ -120,7 +120,7 @@
             <h3>Broj Pasosa</h3>
             <input class="input_do" type="number" id="broj_pasosa_d_o"/>
             <br>
-            <input id="dodaj_osiguranika" class="okidac" type="submit"/>
+            <input id="dodaj_osiguranika" class="okidac" type="submit" value="Dodaj Osiguranika"/>
         </div>
         <!--Prostor rezervisan za prikaz dodatih osiguranika na polisi, dinamicki se popunjava-->
         <div id="dodati_osiguranici" class="dodati_osiguranici">
