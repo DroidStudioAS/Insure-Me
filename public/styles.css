@@ -301,6 +301,12 @@ input[type="radio"]+label {
     margin: 1%;
 
     cursor: pointer;
+
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+
+
 }
 
 .polisa.selected {

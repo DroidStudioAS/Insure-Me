@@ -159,6 +159,11 @@ function createDodatniOsiguranikArray(str) {
     let polise = "";
     let polisa_arr = null;
 
+    //reroute usera ukoliko otvori ovu stranicu preko url-a a nije ulogovan
+    if(userId===-1 || userId===null || userId===undefined){
+        window.location.href ='index.php';
+    }
+
  
     /******Asinhrona funkcija*******/
     function dohvatiPolise() {
@@ -201,7 +206,7 @@ function createDodatniOsiguranikArray(str) {
         //dohvati polise i dodaj datum svih polisa u listu uz counter
         dohvatiPolise(userId).then(response => {
             polisa_arr.forEach((polisa, index) => {
-                const datumZaPolisu = `<div class="polisa" data-index="${index}">${counter}) ${polisa.datumPrijave}</div>`;
+                const datumZaPolisu = `<div class="polisa" data-index="${index}">${counter}) ${polisa.datumPrijave} <br> ${polisa.getPolisaIme()}</div>`;
                 listaPrijava.append(datumZaPolisu);
                 counter++;
             });
