@@ -27,7 +27,7 @@
     <div id="loginContainer" class="login_container">
        <form class="forma_login" id="loginForm">
        <h1 id="naslov">Prijava Korisnika</h1>
-       <img src="public/resursi/paragraf_logo.png"/>
+       <img src="public/resursi/osiguranko_logo.png"/>
         <input id="korisnicko_ime" placeholder="Korisničko Ime" class="login_unos" type="text"/>
         <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
         <input class="okidac"  type="submit" value="Prijavi se" id="submitButton"/>
