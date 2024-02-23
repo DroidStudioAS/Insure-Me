@@ -43,49 +43,49 @@
     <div id="koren" class="koren">
         <!--dobrodoslica je prazna jer se dinamicki postavlja nakon logovanja-->
         <h1 class="dobrodoslica" id="dobrodoslica"></h1>
-       <h1> Unos Polise</h1>
+       <h1 id="policy_header"> Unos Polise</h1>
        <form>
-        <h3>
+        <h3 id="nameLabel"">
             Ime Nosioca
         </h3>
         <div class="input_ime_prezime">
             <input class="koren_input" id="ime" type="text" placeholder="Ime*" autocapitalize="words">
             <input class="koren_input" id="prezime" type="text" placeholder="Prezime*" autocapitalize="words">
         </div>
-        <h3>
+        <h3 id="birthdayLabel">
             Datum Rodjenja
         </h3>
         <input placeholder="*" class="koren_input" type="text" class="form_control" id="datum_rodjenja" autocomplete="off">
-        <h3>
+        <h3 id="passNumLabel">
             Broj Pasosa
         </h3>
         <input placeholder="*" class="koren_input" id="brojPasosa" type="number">
-        <h3>
+        <h3 id="contactLabel">
             Kontakt
         </h3>
         <div class="contact_container">
             <input  class="koren_input" id="mail" placeholder="email*" type="email">
             <input  class="koren_input" id="br_telefona" placeholder="Broj Telefona" type="number">
         </div>
-        <h3>
+        <h3 id="dateOfTripLabel">
             Kad Putujete?
         </h3>
         <div class="input-group">
             <div class="datum_putovanja">
                 <div class="grupa_datum">
                 <!--Autocomplete iskljucen na svim datepickerima, kako bi se video sam datepicker-->
-                Od: <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off" placeholder="*">
+                <p id="fromLabel">Od:</p> <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off" placeholder="*">
                 </div>
                 <div class="grupa_datum">
-                Do: <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off" placeholder="*">
+                <p id="toLabel">Do:</p> <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off" placeholder="*">
                 </div>
             </div>
         </div>
-        <h3>Tip Osiguranja *</h3>
+        <h3 id="policyTypeLabel">Tip Osiguranja *</h3>
         <div class="radio_grupa">
-            <label for="individualno"> Individualno </label>
+            <label id="individualLabel" for="individualno"> Individualno </label>
             <input id="individualno" type="radio" name="tip_polise" value="individualno">
-            <label for="grupno"> Grupno </label>
+            <label id="groupLabel" for="grupno"> Grupno </label>
             <input id="grupno" type="radio" name="tip_polise" value="grupno">
         </div>
         
@@ -143,29 +143,42 @@
 <script>
         //stranica ucitana
         $(document).ready(function(){
-            //login refs
+            //Ui References
+            //login form
             let loginTitle = $("#naslov");
             let loginSubmit = $("#submitButton")
             let toggleRegAndLogin = $('#toggleLink');
-            //reference na polja unosa, kljucnih za formu
             let korisnickoIme = $('#korisnicko_ime');
             let lozinka = $('#sifra');
+            //input form
+            let welcomeMsg = $('dobrodoslica')
+            let policyHeader=$("#policy_header")
+            let nameLabel = $("#nameLabel")
             let ime = $('#ime');
             let prezime = $('#prezime');
+            let birthdayLabel = $('#birthdayLabel');
             let datumRodjenja = $('#datum_rodjenja');
             let brojPasosa = $('#brojPasosa');
+            let contactLabel = $("#contactLabel");
             let email = $('#mail');
             let brojTelefona = $('#br_telefona');
+            let dateOfTripLabel = $("#dateOfTripLabel")
+            let fromLabel = $("#fromLabel")
+            let toLabel = $("#toLabel")
             let pocetni_datum = $('#pocetni_datum');
             let krajnji_datum = $('#krajnji_datum');
+            let policyTypeLabel = $("#policyTypeLabel");
+            let individualLabel = $("#individualLabel")
             let individualnoRadio = $('#individualno');
+            let groupLabel = $("#groupLabel")
             let grupnoRadio = $('#grupno');
+            let addPolicyTrigger = $("#okidac_slanje_forme")
             let okidac_d_o = $('#okidac_d_o');
-
             /****Polja za dodatne osiguranike***/
             let ime_d_o = $("#ime_d_o");
             let prezime_d_o = $("#prezime_d_o");
             let rodjendan_d_o = $("#rodjendan_d_o");
+            let passportLabel = $("#passNumLabel");
             let br_pasosa_d_o = $("#broj_pasosa_d_o");
             //okidac za dodavanje osiguranika
             let dodaj_osiguranika = $("#dodaj_osiguranika");
@@ -180,6 +193,7 @@
             function changeLang(lang){
                 languageSelected=lang;
                 if(lang==="srb"){
+                    //login form
                     if(userOnRegister){
                         loginTitle.text('Registracija Korisnika')
                         loginSubmit.attr('value','Registruj se')
@@ -190,7 +204,31 @@
                         toggleRegAndLogin.text('Nemas Nalog? Registruj se!');
                     }
                     korisnickoIme.attr('placeholder','Korisnicko Ime')
-                    lozinka.attr('placeholder',"Lozinka")                    
+                    lozinka.attr('placeholder',"Lozinka")         
+                    //input form
+                    policyHeader.text('Unos Polise')
+                    nameLabel.text('Ime Nosioca')
+                    ime.attr('placeholder','Ime*')
+                    prezime.attr('placeholder',"Prezime*")
+                    passportLabel.text('Broj Pasosa*');
+                    birthdayLabel.text('Datum Rodjenja*')
+                    contactLabel.text('Kontakt')
+                    brojTelefona.attr('placeholder','Broj Telefona')
+                    dateOfTripLabel.text('Kad Putujete? *')
+                    fromLabel.text('Od:');
+                    toLabel.text('Do:')
+                    policyTypeLabel.text('Tip Osiguranja *')
+                    individualLabel.text('Individualno');
+                    groupLabel.text('Grupno')
+                    addPolicyTrigger.attr('value','Prijavi Polisu')
+                    okidac_d_o.attr('value',"Dodaj Osiguranika")
+                    //extra insured people form
+                    ime_d_o.text
+
+
+
+
+
                 }else if(lang==="eng"){
                     if(userOnRegister){
                         loginTitle.text('User Registration')
@@ -204,6 +242,26 @@
                     }
                     korisnickoIme.attr('placeholder','Username');
                     lozinka.attr('placeholder',"Password")
+
+                    //input form
+                    policyHeader.text('Enter Policy')
+                    nameLabel.text('Policyholder Name')
+                    ime.attr('placeholder','Name*')
+                    prezime.attr('placeholder',"Surname*")
+                    passportLabel.text('Passport Number*');
+                    birthdayLabel.text('Date Of Birth*')
+                    contactLabel.text('Contact')
+                    brojTelefona.attr('placeholder','Phone Number')
+                    dateOfTripLabel.text('When Are You Traveling? *')
+                    fromLabel.text('From:');
+                    toLabel.text('To:')
+                    policyTypeLabel.text('Policy Type *')
+                    individualLabel.text('Individual');
+                    groupLabel.text('Group')
+                    addPolicyTrigger.attr('value','Register Policy')
+                    okidac_d_o.attr('value',"Add Insured Person")
+
+
 
                 }
             }
