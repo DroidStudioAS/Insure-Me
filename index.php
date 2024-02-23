@@ -143,6 +143,10 @@
 <script>
         //stranica ucitana
         $(document).ready(function(){
+            //login refs
+            let loginTitle = $("#naslov");
+            let loginSubmit = $("#submitButton")
+            let toggleRegAndLogin = $('#toggleLink');
             //reference na polja unosa, kljucnih za formu
             let korisnickoIme = $('#korisnicko_ime');
             let lozinka = $('#sifra');
@@ -171,6 +175,38 @@
             /**Language Selection***/
             let serbianLang = $("#serbian_select");
             let englishLang = $("#english_select");
+            let languageSelected = "srb"
+
+            function changeLang(lang){
+                languageSelected=lang;
+                if(lang==="srb"){
+                    if(userOnRegister){
+                        loginTitle.text('Registracija Korisnika')
+                        loginSubmit.attr('value','Registruj se')
+                        toggleRegAndLogin.text('Imas Nalog? Prijavi se!');
+                    }else{
+                        loginTitle.text('Prijava Korisnika')
+                        loginSubmit.attr('value','Prijavi se')
+                        toggleRegAndLogin.text('Nemas Nalog? Registruj se!');
+                    }
+                    korisnickoIme.attr('placeholder','Korisnicko Ime')
+                    lozinka.attr('placeholder',"Lozinka")                    
+                }else if(lang==="eng"){
+                    if(userOnRegister){
+                        loginTitle.text('User Registration')
+                        loginSubmit.attr('value','Register')
+                        toggleRegAndLogin.text('Already Have An Acount? Login!');
+                    }else{
+                        loginTitle.text('User Login')
+                        loginSubmit.attr('value', 'Login')
+                        toggleRegAndLogin.text('Dont Have An Acount? Register!');
+
+                    }
+                    korisnickoIme.attr('placeholder','Username');
+                    lozinka.attr('placeholder',"Password")
+
+                }
+            }
 
 
             //Varijable kljucne za sesiju
@@ -534,14 +570,14 @@
                        // console.log('sifra za logovanje: ' + lozinka.val())
                          })
 
-            let naRegistraciji = false;
+            let userOnRegister = false;
             /*****OnClickListener za promenu izmedju forme registracije i login-a**** */
             $('#toggleLink').click(function(e) {
                 e.preventDefault(); 
-                naRegistraciji = !naRegistraciji;
-                console.log(naRegistraciji);
+                userOnRegister = !userOnRegister;
+                console.log(userOnRegister);
                 //ako je na registraciji, prilagoditi naslov i onclick listener za slanje
-                if (naRegistraciji) {
+                if (userOnRegister) {
                     postaviTitleStranice('Registracija')
                     $('#naslov').text('Registracija Korisnika');
                     $('#submitButton').attr('value', 'Registruj se');
@@ -575,14 +611,16 @@
                  //text za anchor ukoliko korisnik treba predje na registraciju
                   $('#toggleLink').text('Nemaš Nalog? Registruj se');
             }
+            changeLang(languageSelected);
         });
 
         /*********Langugage feature onClickListeners**********/
+        /***To change***/
         serbianLang.off('click').on('click',function(e){
-            alert('serbian clicked')
+           changeLang('srb')
         })
         englishLang.off('click').on('click',function(e){
-            alert('English clicked')
+            changeLang('eng')
         })
 
         
