@@ -102,10 +102,10 @@
        <!--Gornja polovina sluzi za unos-->
         <div class="gornja_polovina">
             <img id="zatvori_prozor" src="public/resursi/close.png"/>
-            <h1>
+            <h1 id="addedPeopleHeader">
                 Dodatni Osiguranici
             </h1>
-            <h3>
+            <h3 id='addedPersonNameLabel'>
                 Ime:
             </h3>
             <div class="ime_dodatnog_osugranika">        
@@ -113,10 +113,10 @@
                 <input class="input_do" placeholder="prezime" type="text" name="" id="prezime_d_o" autocapitalize="words">
             </div>
 
-            <h3>Datum Rodjenja:</h3>
+            <h3 id='addedPersonBirthdayLabel'>Datum Rodjenja:</h3>
             <input class="input_do" type="text" id="rodjendan_d_o" autocomplete="off">
 
-            <h3>Broj Pasosa</h3>
+            <h3 id='addedPersonPassportLabel'>Broj Pasosa</h3>
             <input class="input_do" type="number" id="broj_pasosa_d_o"/>
             <br>
             <input id="dodaj_osiguranika" class="okidac" type="submit" value="Dodaj Osiguranika"/>
@@ -175,6 +175,10 @@
             let addPolicyTrigger = $("#okidac_slanje_forme")
             let okidac_d_o = $('#okidac_d_o');
             /****Polja za dodatne osiguranike***/
+            let addedPeopleHeader=$('#addedPeopleHeader');
+            let addedPersonNameLabel=$("#addedPersonNameLabel")
+            let addedPersonBirthdayLabel=$("#addedPersonBirthdayLabel")
+            let addedPersonPassportLabel=$("#addedPersonPassportLabel");
             let ime_d_o = $("#ime_d_o");
             let prezime_d_o = $("#prezime_d_o");
             let rodjendan_d_o = $("#rodjendan_d_o");
@@ -206,6 +210,7 @@
                     korisnickoIme.attr('placeholder','Korisnicko Ime')
                     lozinka.attr('placeholder',"Lozinka")         
                     //input form
+                    $('#dobrodoslica').text("Dobrodosli, " + username);
                     policyHeader.text('Unos Polise')
                     nameLabel.text('Ime Nosioca')
                     ime.attr('placeholder','Ime*')
@@ -223,12 +228,13 @@
                     addPolicyTrigger.attr('value','Prijavi Polisu')
                     okidac_d_o.attr('value',"Dodaj Osiguranika")
                     //extra insured people form
-                    ime_d_o.text
-
-
-
-
-
+                    addedPeopleHeader.text('Dodatni Osiguranici')
+                    addedPersonNameLabel.text('Ime:')
+                    addedPersonBirthdayLabel.text("Datum Rodjenja:")
+                    addedPersonPassportLabel.text('Broj Pasosa:')
+                    dodaj_osiguranika.attr('value','Dodaj Osiguranika')
+                    ime_d_o.attr('placeholder','Ime');
+                    prezime_d_o.attr('placeholder','Prezime')
                 }else if(lang==="eng"){
                     if(userOnRegister){
                         loginTitle.text('User Registration')
@@ -244,6 +250,7 @@
                     lozinka.attr('placeholder',"Password")
 
                     //input form
+                    $('#dobrodoslica').text("Welcome, " + username);
                     policyHeader.text('Enter Policy')
                     nameLabel.text('Policyholder Name')
                     ime.attr('placeholder','Name*')
@@ -260,8 +267,14 @@
                     groupLabel.text('Group')
                     addPolicyTrigger.attr('value','Register Policy')
                     okidac_d_o.attr('value',"Add Insured Person")
-
-
+                    //extra insured people
+                    addedPeopleHeader.text('Additional Insured People')
+                    addedPersonNameLabel.text('Name:')
+                    ime_d_o.attr('placeholder','Name');
+                    prezime_d_o.attr('placeholder','Surname')
+                    addedPersonBirthdayLabel.text("Date Of Birth:")
+                    addedPersonPassportLabel.text('Passport Number:')
+                    dodaj_osiguranika.attr('value','Add Person')
 
                 }
             }
@@ -451,7 +464,11 @@
                 return false
             }
             function setWelcomeMsg(name){
+                if(languageSelected==="srb"){
                 $('#dobrodoslica').text("Dobrodosli, " + name);
+                }else{
+                    $('#dobrodoslica').text("Welcome, " + name);
+                }
             }
             //
             function validacijaDodatnihOsiguranika(){
