@@ -20,8 +20,7 @@
     <?php include 'navigacija.php'?>
     <?php include 'models/polisa.php'?>
     <!--Slike na levoj i desnoj ivici ekrana za desktop-->
-    <img id="ls" class="leva_slika" src="public/resursi/b-pocetna-l.png"/>
-    <img id="ds" class="desna_slika" src="public/resursi/desna_slika.png"/>
+   
 
     <!--Forma za login i registraciju POCETAK-->
     <div id="loginContainer" class="login_container">
@@ -131,7 +130,17 @@
         </div>
     </div>
     <!--Forma za Unos polisa i dodatne osiguranike KRAJ-->
-    <script>
+   
+<hr>
+<footer>
+    <div class="language_selection">
+         <img id="serbian_select" src="public/resursi/serbian_flag.png"/>
+         <img id="english_select" src="public/resursi/usa_flag.webp"/>
+    </div>
+
+
+</footer>
+<script>
         //stranica ucitana
         $(document).ready(function(){
             //reference na polja unosa, kljucnih za formu
@@ -158,6 +167,10 @@
             let dodaj_osiguranika = $("#dodaj_osiguranika");
             //prostor za prikaz osiguranika
             let dodatiOsiguranici = $('#dodati_osiguranici');
+
+            /**Language Selection***/
+            let serbianLang = $("#serbian_select");
+            let englishLang = $("#english_select");
 
 
             //Varijable kljucne za sesiju
@@ -564,7 +577,16 @@
             }
         });
 
+        /*********Langugage feature onClickListeners**********/
+        serbianLang.off('click').on('click',function(e){
+            alert('serbian clicked')
+        })
+        englishLang.off('click').on('click',function(e){
+            alert('English clicked')
+        })
+
         
+
         /*******Dodaj osiguranika OnClickListener********/
         dodaj_osiguranika.off('click').on('click', function(e){
             e.preventDefault()

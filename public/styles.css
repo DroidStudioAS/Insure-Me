@@ -421,6 +421,25 @@ input[type="radio"]+label {
     border-collapse: collapse;
 }
 
+footer {
+    background-color: #f4f4f4;
+}
+
+.language_selection {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.language_selection img {
+    width: 40px;
+    margin: 2%;
+
+    
+
+}
+
 /*********Media Upiti********/
 @media(max-width:634px) {
     .nav_opcija {
