@@ -71,10 +71,10 @@
             <div class="datum_putovanja">
                 <div class="grupa_datum">
                 <!--Autocomplete iskljucen na svim datepickerima, kako bi se video sam datepicker-->
-                <p id="fromLabel">Od:</p> <input type="text" class="koren_input" id="pocetni_datum" autocomplete="off" placeholder="*">
+                <p id="fromLabel">Od:</p> <input type="text" class="koren_input" id="startDate" autocomplete="off" placeholder="*">
                 </div>
                 <div class="grupa_datum">
-                <p id="toLabel">Do:</p> <input type="text"  class="koren_input"id="krajnji_datum" autocomplete="off" placeholder="*">
+                <p id="toLabel">Do:</p> <input type="text"  class="koren_input" id="endDate" autocomplete="off" placeholder="*">
                 </div>
             </div>
         </div>
@@ -106,17 +106,17 @@
                 Ime:
             </h3>
             <div class="ime_dodatnog_osugranika">        
-                <input class="input_do" placeholder="ime" type="text" name="" id="ime_d_o" autocapitalize="words">
-                <input class="input_do" placeholder="prezime" type="text" name="" id="prezime_d_o" autocapitalize="words">
+                <input class="input_do" placeholder="ime" type="text" name="" id="nameAP" autocapitalize="words">
+                <input class="input_do" placeholder="prezime" type="text" name="" id="surnameAP" autocapitalize="words">
             </div>
 
             <h3 id='addedPersonBirthdayLabel'>Datum Rodjenja:</h3>
-            <input class="input_do" type="text" id="rodjendan_d_o" autocomplete="off">
+            <input class="input_do" type="text" id="birthdayAP" autocomplete="off">
 
             <h3 id='addedPersonPassportLabel'>Broj Pasosa</h3>
             <input class="input_do" type="number" id="broj_pasosa_d_o"/>
             <br>
-            <input id="dodaj_osiguranika" class="okidac" type="submit" value="Dodaj Osiguranika"/>
+            <input id="addPersonTrigger" class="okidac" type="submit" value="Dodaj Osiguranika"/>
         </div>
         <!--Prostor rezervisan za prikaz dodatih osiguranika na polisi, dinamicki se popunjava-->
         <div id="dodati_osiguranici" class="dodati_osiguranici">
@@ -170,21 +170,21 @@
             let groupLabel = $("#groupLabel")
             let groupRadio = $('#grupno');
             let addPolicyTrigger = $("#okidac_slanje_forme")
-            let okidac_d_o = $('#okidac_d_o');
+            let displayAddedpeopleTrigger = $('#displayAddedpeopleTrigger');
             /****Polja za dodatne osiguranike***/
             let addedPeopleHeader=$('#addedPeopleHeader');
             let addedPersonNameLabel=$("#addedPersonNameLabel")
             let addedPersonBirthdayLabel=$("#addedPersonBirthdayLabel")
             let addedPersonPassportLabel=$("#addedPersonPassportLabel");
-            let ime_d_o = $("#ime_d_o");
-            let prezime_d_o = $("#prezime_d_o");
-            let rodjendan_d_o = $("#rodjendan_d_o");
+            let nameAP = $("#nameAP");
+            let surnameAP = $("#surnameAP");
+            let birthdayAP = $("#birthdayAP");
             let passportLabel = $("#passNumLabel");
-            let br_pasosa_d_o = $("#broj_pasosa_d_o");
+            let passportNumAP = $("#broj_pasosa_d_o");
             //okidac za dodavanje osiguranika
-            let dodaj_osiguranika = $("#dodaj_osiguranika");
+            let addPersonTrigger = $("#addPersonTrigger");
             //prostor za prikaz osiguranika
-            let dodatiOsiguranici = $('#dodati_osiguranici');
+            let addedPeopleDisplay = $('#dodati_osiguranici');
 
             /**Language Selection***/
             let serbianLang = $("#serbian_select");
@@ -196,7 +196,7 @@
             //kako korisnik ne bi mogao da na date pickeru za od-do putovanja
             //izabere datum koji je vec prosao
             let kontrolni_startDate="";
-            let dodatni_osiguranici="";
+            let addedPeople="";
             let languageSelected = ""
             if(sessionStorage.getItem('lang')===null || sessionStorage.getItem('lang')===undefined ||sessionStorage.getItem('lang')===""){
                 languageSelected = "srb"
@@ -280,15 +280,15 @@
                     individualLabel.text('Individualno');
                     groupLabel.text('Grupno')
                     addPolicyTrigger.attr('value','Prijavi Polisu')
-                    okidac_d_o.attr('value',"Dodaj Osiguranika")
+                    displayAddedpeopleTrigger.attr('value',"Dodaj Osiguranika")
                     //extra insured people form
                     addedPeopleHeader.text('Dodatni Osiguranici')
                     addedPersonNameLabel.text('Ime:')
                     addedPersonBirthdayLabel.text("Datum Rodjenja:")
                     addedPersonPassportLabel.text('Broj Pasosa:')
-                    dodaj_osiguranika.attr('value','Dodaj Osiguranika')
-                    ime_d_o.attr('placeholder','Ime');
-                    prezime_d_o.attr('placeholder','Prezime')
+                    addPersonTrigger.attr('value','Dodaj Osiguranika')
+                    nameAP.attr('placeholder','Ime');
+                    surnameAP.attr('placeholder','Prezime')
                 }else if(lang==="eng"){
                     if(userOnRegister){
                         loginTitle.text('User Registration')
@@ -320,15 +320,15 @@
                     individualLabel.text('Individual');
                     groupLabel.text('Group')
                     addPolicyTrigger.attr('value','Register Policy')
-                    okidac_d_o.attr('value',"Add Insured Person")
+                    displayAddedpeopleTrigger.attr('value',"Add Insured Person")
                     //extra insured people
                     addedPeopleHeader.text('Additional Insured People')
                     addedPersonNameLabel.text('Name:')
-                    ime_d_o.attr('placeholder','Name');
-                    prezime_d_o.attr('placeholder','Surname')
+                    nameAP.attr('placeholder','Name');
+                    surnameAP.attr('placeholder','Surname')
                     addedPersonBirthdayLabel.text("Date Of Birth:")
                     addedPersonPassportLabel.text('Passport Number:')
-                    dodaj_osiguranika.attr('value','Add Person')
+                    addPersonTrigger.attr('value','Add Person')
 
                 }
                 sessionStorage.setItem('lang',lang);
@@ -344,10 +344,10 @@
             /*******OnClickListener- prikazuje dugme za dodavanje osiguranika kad se klikne grupna,
              * a krije ga kad se klikne individualna polisa*******/
             individualRadio.click(function(){
-                    okidac_d_o.css('display','none');
+                    displayAddedpeopleTrigger.css('display','none');
                 })
             groupRadio.click(function(){
-                okidac_d_o.css('display',"inline-block")
+                displayAddedpeopleTrigger.css('display',"inline-block")
             })
 
             //Ovaj blok hvata podatke iz sesije, kako bi 
@@ -372,7 +372,7 @@
                   todayHighlight: false, //za rodjendan, ne zelimo da highlituje danasnji datum
                   endDate:todays_date //onemoguci biranje datuma posle danasnjeg
             }); //rodjendan_dodatni_osiguranik
-            $('#rodjendan_d_o').datepicker({
+            $('#birthdayAP').datepicker({
                   format: 'yyyy-mm-dd', 
                   autoclose: true, 
                   todayHighlight: false, 
@@ -470,7 +470,7 @@
             }
             //iako do ovog bloka ne moze da se dodje, za svaki slucaj proveriti
             //da li su u grupno osiguranje dodati osiguranici
-            if($("input[name='tip_polise']:checked").val()==='grupno' && dodatni_osiguranici===""){
+            if($("input[name='tip_polise']:checked").val()==='grupno' && addedPeople===""){
                 alert('Ne Mozete Prijaviti Grupno Osiguranje Bez Dodatnih Osiguranika!')
                 return false;
             }
@@ -499,10 +499,10 @@
                 console.log("Od: " + startDate.val() + " Do: " + endDate.val())
                 console.log($("input[name='tip_polise']:checked").val());
 
-                console.log(ime_d_o.val() + " " + prezime_d_o.val())
-                console.log(rodjendan_d_o.val())
-                console.log(br_pasosa_d_o.val());
-                console.log(dodatni_osiguranici)
+                console.log(nameAP.val() + " " + surnameAP.val())
+                console.log(birthdayAP.val())
+                console.log(passportNumAP.val());
+                console.log(addedPeople)
 
             }
             function daliJeOsiguranjeGrupno(val){
@@ -520,8 +520,8 @@
             }
             //
             function validacijaDodatnihOsiguranika(){
-            if(ime_d_o.val()==="" || prezime_d_o.val()==="" 
-            || rodjendan_d_o.val()==="" || br_pasosa_d_o.val()===""){
+            if(nameAP.val()==="" || surnameAP.val()==="" 
+            || birthdayAP.val()==="" || passportNumAP.val()===""){
                 alert('Molimo Vas Popunite Sve Podatke O Dodatnom Osiguraniku!')
                 return false;
             }
@@ -568,7 +568,7 @@
                         polisa_ime:name.val() + " " +surname.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
-                        polisa_dodatni_osiguranici: dodatni_osiguranici,
+                        polisa_dodatni_osiguranici: addedPeople,
                         datum_prijave:todays_date        
                     },
                     success : function(response){
@@ -676,7 +676,7 @@
                 $("#prozor_dodatni_osiguranici").toggle();
             })
             /******OnClickListener- prikaz prozora za dodate osiguranike *****/
-            okidac_d_o.off('click').on('click', function(e){
+            displayAddedpeopleTrigger.off('click').on('click', function(e){
                 e.preventDefault();
                 prikaziDo();
             })
@@ -710,39 +710,39 @@
         
 
         /*******Dodaj osiguranika OnClickListener********/
-        dodaj_osiguranika.off('click').on('click', function(e){
+        addPersonTrigger.off('click').on('click', function(e){
             e.preventDefault()
             //proveri jel su uneti podatci       
             if(!validacijaDodatnihOsiguranika()){
                 alert('Molimo Vas Popunite Sve Podatke O Bar 1 Dodatnom Osiguraniku')
                 return;
             }
-            if(br_pasosa_d_o.val().length!==9){
+            if(passportNumAP.val().length!==9){
                 alert('Broj Pasosa Mora Da Se Sastoji Od 9 Cifara. Molimo Vas Da Proverite Vas Unos!')
                 return;
             }
             logVals();
             //dodaj u dodatne osiguranike string iz kog se parsiraju objekti
-            dodatni_osiguranici+=ime_d_o.val() + " " +prezime_d_o.val() + "," + rodjendan_d_o.val() + "," + br_pasosa_d_o.val() + "|"
-            console.log(dodatni_osiguranici);
+            addedPeople+=nameAP.val() + " " +surnameAP.val() + "," + birthdayAP.val() + "," + passportNumAP.val() + "|"
+            console.log(addedPeople);
             //inicijalizacija dodatniOsiguranik objekta
-            let dodatniOsiguranik = new DodatniOsiguranik(ime_d_o.val() + " " +prezime_d_o.val(), rodjendan_d_o.val(),br_pasosa_d_o.val());
+            let dodatniOsiguranik = new DodatniOsiguranik(nameAP.val() + " " +surnameAP.val(), birthdayAP.val(),passportNumAP.val());
             console.log(dodatniOsiguranik);
             //javi korisniku da je uspesno dodao osiguranika po imenu
-            alert('Dodali Ste Osiguranika: ' + ime_d_o.val() + " " +prezime_d_o.val())
+            alert('Dodali Ste Osiguranika: ' + nameAP.val() + " " +surnameAP.val())
             //resetuj polja za sledeceg osiguranika
-            ime_d_o.val("")
-            prezime_d_o.val("")
-            rodjendan_d_o.val("")
-            br_pasosa_d_o.val("")
-            //apendovanje osiguranika u dodatiOsiguranici
+            nameAP.val("")
+            surnameAP.val("")
+            birthdayAP.val("")
+            passportNumAP.val("")
+            //apendovanje osiguranika u addedPeopleDisplay
             const osiguranikZaDodati = 
             `<div class="osiguranik">
                 <p>${dodatniOsiguranik.getIme()}</p>
                 <p>${dodatniOsiguranik.getDatumRodjenja()}</p>
                 <p>${dodatniOsiguranik.getBrojPasosa()}</p>
             </div>`;
-            dodatiOsiguranici.append(osiguranikZaDodati);  
+            addedPeopleDisplay.append(osiguranikZaDodati);  
         })
         });
     </script>
