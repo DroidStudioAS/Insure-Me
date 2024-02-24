@@ -56,7 +56,7 @@
         <h3 id="passNumLabel">
             Broj Pasosa
         </h3>
-        <input placeholder="*" class="koren_input" id="brojPasosa" type="number">
+        <input placeholder="*" class="koren_input" id="passportNum" type="number">
         <h3 id="contactLabel">
             Kontakt
         </h3>
@@ -155,7 +155,7 @@
             let surname = $('#prezime');
             let birthdayLabel = $('#birthdayLabel');
             let birthdate = $('#datum_rodjenja');
-            let brojPasosa = $('#brojPasosa');
+            let passportNum = $('#passportNum');
             let contactLabel = $("#contactLabel");
             let email = $('#mail');
             let brojTelefona = $('#br_telefona');
@@ -454,7 +454,7 @@
                 let ime = $('#ime').val();
                 let surname = $('#prezime').val();
                 let birthdate = $('#unos_datum_rodjenja').val();
-                let brojPasosa = $('#brojPasosa').val();
+                let passportNum = $('#passportNum').val();
                 let email = $('#mail').val();
                 let brojTelefona = $('#br_telefona').val();
                 let pocetni_datum = $('#pocetni_datum').val();
@@ -462,7 +462,7 @@
                 logVals();
         
             //nedostatak obaveznih polja
-            if(name==="" || surname==="" || birthdate ==="" || brojPasosa==="" || 
+            if(name==="" || surname==="" || birthdate ==="" || passportNum==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
@@ -480,7 +480,7 @@
                 return false;
             }
             //da li broj pasosa ima 9 cifara
-            if(brojPasosa.length!==9){
+            if(passportNum.length!==9){
                 alert('Broj Pasosa Sastoji Se Od 9 Cifara. Molimo Vas Proverite Vas Unos')
                 return false;
             }
@@ -493,7 +493,7 @@
             }
             function logVals(){
                 console.log("Rodjen: " + birthdate.val())
-                console.log("Br pasosa: " + brojPasosa.val())
+                console.log("Br pasosa: " + passportNum.val())
                 console.log("Kontakt mail: " + email.val())
                 console.log("Kontakt telefon: " + brojTelefona.val())
                 console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
@@ -560,7 +560,7 @@
                     method:'POST',
                     data:{
                         id_korisnika:userId,
-                        polisa_br_pasosa:brojPasosa.val(),
+                        polisa_br_pasosa:passportNum.val(),
                         polisa_br_telefona:brojTelefona.val(),
                         polisa_datum_rodjenja:birthdate.val(),
                         polisa_od:pocetni_datum.val(),
