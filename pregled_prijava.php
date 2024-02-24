@@ -7,7 +7,7 @@
     <title id="pageTitle">Moje Polise</title>
 
     <link rel="stylesheet" href="public/styles.css">
-    <link rel="icon" href="public/resursi/paragraf_logo.png"/>
+    <link rel="icon" href="public/resursi/osiguranko_logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="models/polisa.js"></script>
     <script src="models/DodatniOsiguranik.js"></script>
@@ -79,6 +79,12 @@
    let d_o=$('#do');
    let doc=$('#d_o_c');
    let closeBtn = $('#closeBtn');
+   //language buttons
+   let engButton = $("#english_select");
+   let srbButton = $("#serbian_select");
+
+   let policyInFocus=null;
+
  
 //funkcija za prikaz dodatnih osiguranika
 function prikaziDo(){
@@ -208,11 +214,16 @@ function createDodatniOsiguranikArray(str) {
         if(lang==="eng"){
             $("#pageTitle").text('My Policies')
             $("#pageHeader").text('My Policies')
-
+            $("#do_naslov").text('Additional Insured People')
         }else if(lang==="srb"){
+            $("#do_naslov").text('Dodatni Osiguranici')
             $("#pageTitle").text('Moje Polise')
             $("#pageHeader").text('Moje Polise')
         }
+        if(policyInFocus!==null){
+                postaviPrijavu(policyInFocus)
+        }
+        sessionStorage.setItem('lang',lang);
     }
 
     /*****Kraj-Pomocne Funkcije*****/
@@ -287,11 +298,22 @@ function createDodatniOsiguranikArray(str) {
         closeBtn.on('click',function(e){
             d_o.toggle();
         })
+        //OnClickListener for language toggling
+        srbButton.off('click').on('click',function(e){
+            selectedLang="srb"
+            changeLang(selectedLang);
+        })
+        engButton.off('click').on('click',function(e){
+            selectedLang="eng"
+            changeLang(selectedLang);
+        })
+ 
 
         //postavljanje onClick listenera na svaku polisu koja se appendovala
         listaPrijava.on('click', '.polisa', function (e) {
             const index = $(this).data('index');
             const clickedPolisa = polisa_arr[index];
+            policyInFocus=clickedPolisa;
             console.log(clickedPolisa);
             prikaziPrijave()
             postaviPrijavu(clickedPolisa);

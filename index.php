@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="public/styles.css">
-    <link rel="icon" href="public/resursi/paragraf_logo.png"/>
+    <link rel="icon" href="public/resursi/osiguranko_logo.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" />
 
     <!-- Bootstrap CSS -->
@@ -28,9 +28,9 @@
         <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
         <input class="okidac"  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
-       <div>
-        <a href="#" id="toggleLink">Nemaš Nalog? Registruj se</a>
-       </div>
+        <div>
+            <a href="#" id="toggleLink">Nemaš Nalog? Registruj se</a>
+        </div>
     </div>
     <!--Forma za login i registraciju KRAJ-->
 
@@ -189,9 +189,65 @@
             /**Language Selection***/
             let serbianLang = $("#serbian_select");
             let englishLang = $("#english_select");
-            let languageSelected = "srb"
-
-            function changeLang(lang){
+             //Varijable kljucne za sesiju
+             let userId = -1;
+            let username = "";
+            //Pocetni datum se inicijalizuje, i kasnije postavlja na danasnji datum
+            //kako korisnik ne bi mogao da na date pickeru za od-do putovanja
+            //izabere datum koji je vec prosao
+            let kontrolni_pocetni_datum="";
+            let dodatni_osiguranici="";
+            let languageSelected = ""
+            if(sessionStorage.getItem('lang')===null || sessionStorage.getItem('lang')===undefined ||sessionStorage.getItem('lang')===""){
+                languageSelected = "srb"
+            }else{
+                languageSelected=sessionStorage.getItem('lang');
+            }
+            console.log(languageSelected);
+            let userOnRegister = false;
+            /*****OnClickListener za promenu izmedju forme registracije i login-a**** */
+            $('#toggleLink').click(function(e) {
+                e.preventDefault(); 
+                userOnRegister = !userOnRegister;
+                console.log(userOnRegister);
+                //ako je na registraciji, prilagoditi naslov i onclick listener za slanje
+                if (userOnRegister) {
+                    postaviTitleStranice('Registracija')
+                    $('#naslov').text('Registracija Korisnika');
+                    $('#submitButton').attr('value', 'Registruj se');
+                    $('#submitButton').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        console.log('obradi registraciju');
+                        //validacija unetog username i passworda
+                        if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                              alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
+                              return;
+                        }             
+                            registrujKorisnika(korisnickoIme.val(), lozinka.val());
+                    });
+                    //text za anchor ukoliko korisnik treba predje na login
+                  $('#toggleLink').text('Imaš Nalog? Prijavi se');
+                }else {
+                    //ako je na loginu, prilagoditi naslov i onclick listener za slanje
+                    postaviTitleStranice('Login')
+                    $('#naslov').text('Prijava Korisnika');
+                    $('#submitButton').attr('value', 'Prijavi se');
+                    $('#submitButton').off('click').on('click', function(e) {
+                          e.preventDefault();
+                          //validacija unetog username i passworda
+                          if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                              alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
+                              return;
+                          }
+                    logujKorisnika(korisnickoIme.val(), lozinka.val());
+                    console.log('hey')
+                     });
+                 //text za anchor ukoliko korisnik treba predje na registraciju
+                  $('#toggleLink').text('Nemaš Nalog? Registruj se');
+            }
+            changeLang(languageSelected);
+        });
+             function changeLang(lang){
                 languageSelected=lang;
                 sessionStorage.setItem('lang',lang);
                 if(lang==="srb"){
@@ -276,16 +332,10 @@
 
                 }
             }
+            changeLang(languageSelected);
 
 
-            //Varijable kljucne za sesiju
-            let userId = -1;
-            let username = "";
-            //Pocetni datum se inicijalizuje, i kasnije postavlja na danasnji datum
-            //kako korisnik ne bi mogao da na date pickeru za od-do putovanja
-            //izabere datum koji je vec prosao
-            let kontrolni_pocetni_datum="";
-            let dodatni_osiguranici="";
+           
 
             //Dolazi do danasnjeg datuma u formatu yyyy-mm-dd
             let todays_date = getTodaysDate();
@@ -641,51 +691,9 @@
                         }
                        // console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
                        // console.log('sifra za logovanje: ' + lozinka.val())
-                         })
+            })
 
-            let userOnRegister = false;
-            /*****OnClickListener za promenu izmedju forme registracije i login-a**** */
-            $('#toggleLink').click(function(e) {
-                e.preventDefault(); 
-                userOnRegister = !userOnRegister;
-                console.log(userOnRegister);
-                //ako je na registraciji, prilagoditi naslov i onclick listener za slanje
-                if (userOnRegister) {
-                    postaviTitleStranice('Registracija')
-                    $('#naslov').text('Registracija Korisnika');
-                    $('#submitButton').attr('value', 'Registruj se');
-                    $('#submitButton').off('click').on('click', function(e) {
-                        e.preventDefault();
-                        console.log('obradi registraciju');
-                        //validacija unetog username i passworda
-                        if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
-                              alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
-                              return;
-                        }             
-                            registrujKorisnika(korisnickoIme.val(), lozinka.val());
-                    });
-                    //text za anchor ukoliko korisnik treba predje na login
-                  $('#toggleLink').text('Imaš Nalog? Prijavi se');
-                }else {
-                    //ako je na loginu, prilagoditi naslov i onclick listener za slanje
-                    postaviTitleStranice('Login')
-                    $('#naslov').text('Prijava Korisnika');
-                    $('#submitButton').attr('value', 'Prijavi se');
-                    $('#submitButton').off('click').on('click', function(e) {
-                          e.preventDefault();
-                          //validacija unetog username i passworda
-                          if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
-                              alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
-                              return;
-                          }
-                    logujKorisnika(korisnickoIme.val(), lozinka.val());
-                    console.log('hey')
-                     });
-                 //text za anchor ukoliko korisnik treba predje na registraciju
-                  $('#toggleLink').text('Nemaš Nalog? Registruj se');
-            }
-            changeLang(languageSelected);
-        });
+            
 
         /*********Langugage feature onClickListeners**********/
         /***To change***/
