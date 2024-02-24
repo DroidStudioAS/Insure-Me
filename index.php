@@ -154,7 +154,7 @@
             let name = $('#ime');
             let surname = $('#prezime');
             let birthdayLabel = $('#birthdayLabel');
-            let datumRodjenja = $('#datum_rodjenja');
+            let birthdate = $('#datum_rodjenja');
             let brojPasosa = $('#brojPasosa');
             let contactLabel = $("#contactLabel");
             let email = $('#mail');
@@ -453,7 +453,7 @@
             function proveriJelPostojeParametri(){
                 let ime = $('#ime').val();
                 let surname = $('#prezime').val();
-                let datumRodjenja = $('#unos_datum_rodjenja').val();
+                let birthdate = $('#unos_datum_rodjenja').val();
                 let brojPasosa = $('#brojPasosa').val();
                 let email = $('#mail').val();
                 let brojTelefona = $('#br_telefona').val();
@@ -462,7 +462,7 @@
                 logVals();
         
             //nedostatak obaveznih polja
-            if(name==="" || surname==="" || datumRodjenja ==="" || brojPasosa==="" || 
+            if(name==="" || surname==="" || birthdate ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
@@ -492,7 +492,7 @@
                 $("#prozor_dodatni_osiguranici").toggle();                 
             }
             function logVals(){
-                console.log("Rodjen: " + datumRodjenja.val())
+                console.log("Rodjen: " + birthdate.val())
                 console.log("Br pasosa: " + brojPasosa.val())
                 console.log("Kontakt mail: " + email.val())
                 console.log("Kontakt telefon: " + brojTelefona.val())
@@ -562,7 +562,7 @@
                         id_korisnika:userId,
                         polisa_br_pasosa:brojPasosa.val(),
                         polisa_br_telefona:brojTelefona.val(),
-                        polisa_datum_rodjenja:datumRodjenja.val(),
+                        polisa_datum_rodjenja:birthdate.val(),
                         polisa_od:pocetni_datum.val(),
                         polisa_do:krajnji_datum.val(),
                         polisa_ime:name.val() + " " +surname.val(),
