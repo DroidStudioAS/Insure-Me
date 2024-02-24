@@ -152,7 +152,7 @@
             let policyHeader=$("#policy_header")
             let nameLabel = $("#nameLabel")
             let name = $('#ime');
-            let prezime = $('#prezime');
+            let surname = $('#prezime');
             let birthdayLabel = $('#birthdayLabel');
             let datumRodjenja = $('#datum_rodjenja');
             let brojPasosa = $('#brojPasosa');
@@ -268,7 +268,7 @@
                     policyHeader.text('Unos Polise')
                     nameLabel.text('Ime Nosioca')
                     name.attr('placeholder','Ime*')
-                    prezime.attr('placeholder',"Prezime*")
+                    surname.attr('placeholder',"Prezime*")
                     passportLabel.text('Broj Pasosa*');
                     birthdayLabel.text('Datum Rodjenja*')
                     contactLabel.text('Kontakt')
@@ -308,7 +308,7 @@
                     policyHeader.text('Enter Policy')
                     nameLabel.text('Policyholder Name')
                     name.attr('placeholder','Name*')
-                    prezime.attr('placeholder',"Surname*")
+                    surname.attr('placeholder',"Surname*")
                     passportLabel.text('Passport Number*');
                     birthdayLabel.text('Date Of Birth*')
                     contactLabel.text('Contact')
@@ -452,7 +452,7 @@
             //validaciona funkcija koja se poziva pri postavljanju forme
             function proveriJelPostojeParametri(){
                 let ime = $('#ime').val();
-                let prezime = $('#prezime').val();
+                let surname = $('#prezime').val();
                 let datumRodjenja = $('#unos_datum_rodjenja').val();
                 let brojPasosa = $('#brojPasosa').val();
                 let email = $('#mail').val();
@@ -462,7 +462,7 @@
                 logVals();
         
             //nedostatak obaveznih polja
-            if(name==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
+            if(name==="" || surname==="" || datumRodjenja ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
@@ -565,7 +565,7 @@
                         polisa_datum_rodjenja:datumRodjenja.val(),
                         polisa_od:pocetni_datum.val(),
                         polisa_do:krajnji_datum.val(),
-                        polisa_ime:name.val() + " " +prezime.val(),
+                        polisa_ime:name.val() + " " +surname.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
                         polisa_dodatni_osiguranici: dodatni_osiguranici,
