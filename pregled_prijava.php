@@ -49,6 +49,16 @@
     </div>
     </div>
   
+
+
+</body>
+<footer>
+    <div class="language_selection">
+         <img id="serbian_select" src="public/resursi/serbian_flag.png"/>
+         <img id="english_select" src="public/resursi/usa_flag.webp"/>
+    </div>
+</footer>
+
 <script>
    let userId =sessionStorage.getItem('id');
    console.log(userId);
@@ -158,6 +168,7 @@ function createDodatniOsiguranikArray(str) {
     let userId = sessionStorage.getItem('id');
     let polise = "";
     let polisa_arr = null;
+    console.log(sessionStorage.getItem('lang'));
 
     //reroute usera ukoliko otvori ovu stranicu preko url-a a nije ulogovan
     if(userId===-1 || userId===null || userId===undefined){
@@ -232,7 +243,5 @@ function createDodatniOsiguranikArray(str) {
 
 
 </script>
-
-</body>
 
 </html>

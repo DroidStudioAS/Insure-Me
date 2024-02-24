@@ -16,13 +16,10 @@
     <script src="models/DodatniOsiguranik.js"></script>
 </head>
 <body>
-    <!--Php Importi-model polise i navigacija-->
+    <!--Imports-->
     <?php include 'navigacija.php'?>
-    <?php include 'models/polisa.php'?>
-    <!--Slike na levoj i desnoj ivici ekrana za desktop-->
-   
-
-    <!--Forma za login i registraciju POCETAK-->
+    <?php include 'models/polisa.php'?>   
+    <!--Login And Registration form START-->
     <div id="loginContainer" class="login_container">
        <form class="forma_login" id="loginForm">
        <h1 id="naslov">Prijava Korisnika</h1>
@@ -196,6 +193,7 @@
 
             function changeLang(lang){
                 languageSelected=lang;
+                sessionStorage.setItem('lang',lang);
                 if(lang==="srb"){
                     //login form
                     if(userOnRegister){
