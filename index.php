@@ -331,6 +331,7 @@
                     dodaj_osiguranika.attr('value','Add Person')
 
                 }
+                sessionStorage.setItem('lang',lang);
             }
             changeLang(languageSelected);
 

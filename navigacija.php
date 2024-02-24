@@ -13,7 +13,7 @@
 <body>
     <div class="nav">
         <div class="nav_opcija_1">
-            <a style="color: black;" href="index.php">Prijava <br> Osiguranja </a>
+            <a id="homeLink" style="color: black;" href="index.php">Prijava <br> Osiguranja </a>
         </div>
         <div class="img_container">
         <img src="public/resursi/osiguranko_logo.png">
@@ -23,6 +23,10 @@
         </div>
     </div>
     <script>
+        let languageSelected =sessionStorage.getItem('lang');
+        if(languageSelected===undefined){
+            languageSelected="srb";
+        }
         //proverava ima li sacuvanih podataka u sesiji
         function daliJeKorisnikUlogovan(){
                 if(sessionStorage.getItem('authenticated')==="true"){
@@ -43,7 +47,18 @@
             $('#pregledLink').attr('href','pregled_prijava.php'); 
             clearInterval(interval);    
         }
-        },1000)
+        },1000);
+        let languageInterval = setInterval(function checkLanguage(){
+            if(sessionStorage.getItem('lang')==='srb'){
+                $("#homeLink").html('Prijava <br> Osiguranja')
+                $("#pregledLink").html('Pregled <br> Prijava')
+            }else if(sessionStorage.getItem('lang')==="eng"){
+                $("#homeLink").html('Policy <br> Registration')
+                $("#pregledLink").html('Browse <br> Policies')
+            }
+        },1000);
+           
+        
     </script>
 </body>
 
