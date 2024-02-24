@@ -158,7 +158,7 @@
             let passportNum = $('#passportNum');
             let contactLabel = $("#contactLabel");
             let email = $('#mail');
-            let brojTelefona = $('#br_telefona');
+            let phoneNumber = $('#br_telefona');
             let dateOfTripLabel = $("#dateOfTripLabel")
             let fromLabel = $("#fromLabel")
             let toLabel = $("#toLabel")
@@ -272,7 +272,7 @@
                     passportLabel.text('Broj Pasosa*');
                     birthdayLabel.text('Datum Rodjenja*')
                     contactLabel.text('Kontakt')
-                    brojTelefona.attr('placeholder','Broj Telefona')
+                    phoneNumber.attr('placeholder','Broj Telefona')
                     dateOfTripLabel.text('Kad Putujete? *')
                     fromLabel.text('Od:');
                     toLabel.text('Do:')
@@ -312,7 +312,7 @@
                     passportLabel.text('Passport Number*');
                     birthdayLabel.text('Date Of Birth*')
                     contactLabel.text('Contact')
-                    brojTelefona.attr('placeholder','Phone Number')
+                    phoneNumber.attr('placeholder','Phone Number')
                     dateOfTripLabel.text('When Are You Traveling? *')
                     fromLabel.text('From:');
                     toLabel.text('To:')
@@ -456,7 +456,7 @@
                 let birthdate = $('#unos_datum_rodjenja').val();
                 let passportNum = $('#passportNum').val();
                 let email = $('#mail').val();
-                let brojTelefona = $('#br_telefona').val();
+                let phoneNumber = $('#br_telefona').val();
                 let pocetni_datum = $('#pocetni_datum').val();
                 let krajnji_datum = $('#krajnji_datum').val();
                 logVals();
@@ -495,7 +495,7 @@
                 console.log("Rodjen: " + birthdate.val())
                 console.log("Br pasosa: " + passportNum.val())
                 console.log("Kontakt mail: " + email.val())
-                console.log("Kontakt telefon: " + brojTelefona.val())
+                console.log("Kontakt telefon: " + phoneNumber.val())
                 console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
                 console.log($("input[name='tip_polise']:checked").val());
 
@@ -561,7 +561,7 @@
                     data:{
                         id_korisnika:userId,
                         polisa_br_pasosa:passportNum.val(),
-                        polisa_br_telefona:brojTelefona.val(),
+                        polisa_br_telefona:phoneNumber.val(),
                         polisa_datum_rodjenja:birthdate.val(),
                         polisa_od:pocetni_datum.val(),
                         polisa_do:krajnji_datum.val(),
