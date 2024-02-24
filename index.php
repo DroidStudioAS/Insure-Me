@@ -25,7 +25,7 @@
        <h1 id="naslov">Prijava Korisnika</h1>
        <img src="public/resursi/osiguranko_logo.png"/>
         <input id="korisnicko_ime" placeholder="Korisničko Ime" class="login_unos" type="text"/>
-        <input id="sifra" placeholder="Lozinka" class="login_unos" type="password"/>
+        <input id="sifra" placeholder="password" class="login_unos" type="password"/>
         <input class="okidac"  type="submit" value="Prijavi se" id="submitButton"/>
        </form>
         <div>
@@ -145,13 +145,13 @@
             let loginTitle = $("#naslov");
             let loginSubmit = $("#submitButton")
             let toggleRegAndLogin = $('#toggleLink');
-            let korisnickoIme = $('#korisnicko_ime');
-            let lozinka = $('#sifra');
+            let enteredUsername = $('#korisnicko_ime');
+            let password = $('#sifra');
             //input form
             let welcomeMsg = $('dobrodoslica')
             let policyHeader=$("#policy_header")
             let nameLabel = $("#nameLabel")
-            let ime = $('#ime');
+            let name = $('#ime');
             let prezime = $('#prezime');
             let birthdayLabel = $('#birthdayLabel');
             let datumRodjenja = $('#datum_rodjenja');
@@ -219,11 +219,11 @@
                         e.preventDefault();
                         console.log('obradi registraciju');
                         //validacija unetog username i passworda
-                        if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                        if (enteredUsername.val().trim() === "" || password.val().trim() === "") {
                               alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
                               return;
                         }             
-                            registrujKorisnika(korisnickoIme.val(), lozinka.val());
+                            registrujKorisnika(enteredUsername.val(), password.val());
                     });
                     //text za anchor ukoliko korisnik treba predje na login
                   $('#toggleLink').text('Imaš Nalog? Prijavi se');
@@ -235,11 +235,11 @@
                     $('#submitButton').off('click').on('click', function(e) {
                           e.preventDefault();
                           //validacija unetog username i passworda
-                          if (korisnickoIme.val().trim() === "" || lozinka.val().trim() === "") {
+                          if (enteredUsername.val().trim() === "" || password.val().trim() === "") {
                               alert('Molimo Vas Popunite Korisnicko Ime I Lozinku');
                               return;
                           }
-                    logujKorisnika(korisnickoIme.val(), lozinka.val());
+                    logujKorisnika(enteredUsername.val(), password.val());
                     console.log('hey')
                      });
                  //text za anchor ukoliko korisnik treba predje na registraciju
@@ -261,13 +261,13 @@
                         loginSubmit.attr('value','Prijavi se')
                         toggleRegAndLogin.text('Nemas Nalog? Registruj se!');
                     }
-                    korisnickoIme.attr('placeholder','Korisnicko Ime')
-                    lozinka.attr('placeholder',"Lozinka")         
+                    enteredUsername.attr('placeholder','Korisnicko Ime')
+                    password.attr('placeholder',"password")         
                     //input form
                     $('#dobrodoslica').text("Dobrodosli, " + username);
                     policyHeader.text('Unos Polise')
                     nameLabel.text('Ime Nosioca')
-                    ime.attr('placeholder','Ime*')
+                    name.attr('placeholder','Ime*')
                     prezime.attr('placeholder',"Prezime*")
                     passportLabel.text('Broj Pasosa*');
                     birthdayLabel.text('Datum Rodjenja*')
@@ -300,14 +300,14 @@
                         toggleRegAndLogin.text('Dont Have An Acount? Register!');
 
                     }
-                    korisnickoIme.attr('placeholder','Username');
-                    lozinka.attr('placeholder',"Password")
+                    enteredUsername.attr('placeholder','Username');
+                    password.attr('placeholder',"Password")
 
                     //input form
                     $('#dobrodoslica').text("Welcome, " + username);
                     policyHeader.text('Enter Policy')
                     nameLabel.text('Policyholder Name')
-                    ime.attr('placeholder','Name*')
+                    name.attr('placeholder','Name*')
                     prezime.attr('placeholder',"Surname*")
                     passportLabel.text('Passport Number*');
                     birthdayLabel.text('Date Of Birth*')
@@ -462,7 +462,7 @@
                 logVals();
         
             //nedostatak obaveznih polja
-            if(ime==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
+            if(name==="" || prezime==="" || datumRodjenja ==="" || brojPasosa==="" || 
                 email===""  || pocetni_datum==="" || krajnji_datum==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
@@ -492,7 +492,6 @@
                 $("#prozor_dodatni_osiguranici").toggle();                 
             }
             function logVals(){
-                console.log("ime: " + ime.val() + " " + prezime.val())
                 console.log("Rodjen: " + datumRodjenja.val())
                 console.log("Br pasosa: " + brojPasosa.val())
                 console.log("Kontakt mail: " + email.val())
@@ -566,7 +565,7 @@
                         polisa_datum_rodjenja:datumRodjenja.val(),
                         polisa_od:pocetni_datum.val(),
                         polisa_do:krajnji_datum.val(),
-                        polisa_ime:ime.val() + " " +prezime.val(),
+                        polisa_ime:name.val() + " " +prezime.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
                         polisa_dodatni_osiguranici: dodatni_osiguranici,
@@ -615,7 +614,7 @@
                             setWelcomeMsg(ime)
                             postaviTitleStranice('Prijava Polise')
                         }else if (response==='false'){
-                            alert('Korisnicko ime/Lozinka su netacni')
+                            alert('Korisnicko ime/password su netacni')
                         }
                     }
                 
@@ -687,11 +686,10 @@
                         //AKO je logovanje uspesno:
                         e.preventDefault();
                         console.log('obradi logovanje')
-                        if(korisnickoIme.val()!=="" && lozinka.val()!==""){
-                            logujKorisnika(korisnickoIme.val(), lozinka.val());
+                        if(enteredUsername.val()!=="" && password.val()!==""){
+                            logujKorisnika(enteredUsername.val(), password.val());
                         }
-                       // console.log('Korisnicko ime za logovanje: ' + korisnickoIme.val())
-                       // console.log('sifra za logovanje: ' + lozinka.val())
+                      
             })
 
             
