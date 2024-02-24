@@ -162,8 +162,8 @@
             let dateOfTripLabel = $("#dateOfTripLabel")
             let fromLabel = $("#fromLabel")
             let toLabel = $("#toLabel")
-            let pocetni_datum = $('#pocetni_datum');
-            let krajnji_datum = $('#krajnji_datum');
+            let startDate = $('#startDate');
+            let endDate = $('#endDate');
             let policyTypeLabel = $("#policyTypeLabel");
             let individualLabel = $("#individualLabel")
             let individualnoRadio = $('#individualno');
@@ -195,7 +195,7 @@
             //Pocetni datum se inicijalizuje, i kasnije postavlja na danasnji datum
             //kako korisnik ne bi mogao da na date pickeru za od-do putovanja
             //izabere datum koji je vec prosao
-            let kontrolni_pocetni_datum="";
+            let kontrolni_startDate="";
             let dodatni_osiguranici="";
             let languageSelected = ""
             if(sessionStorage.getItem('lang')===null || sessionStorage.getItem('lang')===undefined ||sessionStorage.getItem('lang')===""){
@@ -379,7 +379,7 @@
                   endDate:todays_date //onemoguci biranje datuma posle danasnjeg
 
             });
-            $('#pocetni_datum').datepicker({
+            $('#startDate').datepicker({
               format: 'yyyy-mm-dd',
               autoclose: true, 
               todayHighlight: true,
@@ -391,10 +391,10 @@
                 const endDate = get7DaysLater(selectedDate);
     
                 //postavi vrednost date pickera #krajnji datum na 7 dana posle pocetnog
-                $('#krajnji_datum').datepicker('setStartDate', selectedDate);
-                $('#krajnji_datum').val(endDate); 
+                $('#endDate').datepicker('setStartDate', selectedDate);
+                $('#endDate').val(endDate); 
             });
-            $('#krajnji_datum').datepicker({
+            $('#endDate').datepicker({
               format: 'yyyy-mm-dd', 
               autoclose: true, 
               todayHighlight: true
@@ -457,13 +457,13 @@
                 let passportNum = $('#passportNum').val();
                 let email = $('#mail').val();
                 let phoneNumber = $('#br_telefona').val();
-                let pocetni_datum = $('#pocetni_datum').val();
-                let krajnji_datum = $('#krajnji_datum').val();
+                let startDate = $('#startDate').val();
+                let endDate = $('#endDate').val();
                 logVals();
         
             //nedostatak obaveznih polja
             if(name==="" || surname==="" || birthdate ==="" || passportNum==="" || 
-                email===""  || pocetni_datum==="" || krajnji_datum==="" 
+                email===""  || startDate==="" || endDate==="" 
                 || $("input[name='tip_polise']:checked").val()===undefined){
                 alert('Molimo Vas Popunite Sva Obavezna Polja, Obelezena Sa *');
                 return false;
@@ -496,7 +496,7 @@
                 console.log("Br pasosa: " + passportNum.val())
                 console.log("Kontakt mail: " + email.val())
                 console.log("Kontakt telefon: " + phoneNumber.val())
-                console.log("Od: " + pocetni_datum.val() + " Do: " + krajnji_datum.val())
+                console.log("Od: " + startDate.val() + " Do: " + endDate.val())
                 console.log($("input[name='tip_polise']:checked").val());
 
                 console.log(ime_d_o.val() + " " + prezime_d_o.val())
@@ -563,8 +563,8 @@
                         polisa_br_pasosa:passportNum.val(),
                         polisa_br_telefona:phoneNumber.val(),
                         polisa_datum_rodjenja:birthdate.val(),
-                        polisa_od:pocetni_datum.val(),
-                        polisa_do:krajnji_datum.val(),
+                        polisa_od:startDate.val(),
+                        polisa_do:endDate.val(),
                         polisa_ime:name.val() + " " +surname.val(),
                         polisa_tip: $("input[name='tip_polise']:checked").val(),
                         polisa_email :email.val(),
