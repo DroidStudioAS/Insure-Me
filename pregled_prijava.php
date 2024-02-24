@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Polise</title>
+    <title id="pageTitle">Moje Polise</title>
 
     <link rel="stylesheet" href="public/styles.css">
     <link rel="icon" href="public/resursi/paragraf_logo.png"/>
@@ -20,7 +20,7 @@
     <!--Container za listu prijava i tabelu za prikaz polisa-->
     <!--Lista prijava-->
     <div class="pregled_koren">
-        <h2>Moje Polise</h2>
+        <h2 id="pageHeader">Moje Polise</h2>
         <div id="listaPrijava" class="list_prijava">
     </div>
      <!--Tabelarni prikaz polise koji se dinamicki popunjava i prikazuje-->
@@ -92,6 +92,7 @@ function prikaziPrijave(){
 }
 //postavi podatke input polise na odgovarajuca polja
 function postaviPrijavu(polisa){
+    if(selectedLang==="srb"){
         imeContainerDiv.text("Ime Nosioca: " + polisa.getPolisaIme())
         rodjendanContainerDiv.text("Datum Rodjenja: " + polisa.getPolisaDatumRodjenja())
         brPasosaContainerDiv.text("Broj Pasosa: " + polisa.getPolisaBrPasosa())
@@ -134,6 +135,49 @@ function postaviPrijavu(polisa){
             //sakrij dugme za dodatne osiguranike ako je osiguranje individualno
             prikaziContainerDiv.css('display','none');
         }
+    }else if(selectedLang==="eng"){
+        imeContainerDiv.text("Policyholder Name: " + polisa.getPolisaIme())
+        rodjendanContainerDiv.text("Date Of Birth: " + polisa.getPolisaDatumRodjenja())
+        brPasosaContainerDiv.text("Passport Number: " + polisa.getPolisaBrPasosa())
+        emailContainerDiv.text("Email: " + polisa.getPolisaEmail());
+        if(polisa.getPolisaBrTelefona()===0 || polisa.getPolisaBrTelefona()===""){
+            telefonContainerDiv.text("Phone Number Not Listed")
+        }else{
+            telefonContainerDiv.text("Phone Number: " + polisa.getPolisaBrTelefona());
+        }
+        odContainerDiv.text("From: " + polisa.getPolisaOd())
+        doContainerDiv.text("To: " + polisa.getPolisaDo())
+        brDanaContainerDiv.text(calculateDateDifference(polisa.getPolisaOd(),polisa.getPolisaDo()) + " Days");
+        tipContainerDiv.text("Type Of Insurance: " + polisa.getPolisaTip())
+        //ako je grupno osiguranje, prikazi dugme i postavi onClick listener
+        if(polisa.getPolisaTip()==='grupno'){
+            prikaziContainerDiv.css('display','block');
+            prikaziContainerDiv.text("Show Additional Insured People");
+            //onclicklistener
+            prikaziContainerDiv.off('click').on('click',function(e){
+                console.log(polisa.getPolisaDodatniOsiguranici())
+                let osiguranici =createDodatniOsiguranikArray(polisa.getPolisaDodatniOsiguranici())
+                console.log(osiguranici)
+                //isprazni pre nego sto postavis nove osiguranike da se ne bi
+                //beskonacno appendovalo
+                doc.empty();
+                //konstuisi DOM element za svakog osiguranika ponaosob
+                osiguranici.forEach(osiguranik=>{
+                    const toAppend = `<div class="osiguranik">
+                                        <p>${osiguranik.getIme()}<p/>
+                                        <p>${osiguranik.getDatumRodjenja()}<p/>
+                                        <p>${osiguranik.getBrojPasosa()}<p/>
+                                        </div>`;
+                    doc.append(toAppend);
+
+                })
+            prikaziDo();
+            })
+        }else{
+            //sakrij dugme za dodatne osiguranike ako je osiguranje individualno
+            prikaziContainerDiv.css('display','none');
+        }
+    }
     }
 
 //funkcija od stringa formata podatak, podattak, podatak | podatak, podatak, podatak |... pravi dodatne osiguranike
@@ -159,6 +203,17 @@ function createDodatniOsiguranikArray(str) {
         const differenceDays = differenceMs / (1000 * 60 * 60 * 24);
         return differenceDays;
     }
+    function changeLang(lang){
+        selectedLang=lang;
+        if(lang==="eng"){
+            $("#pageTitle").text('My Policies')
+            $("#pageHeader").text('My Policies')
+
+        }else if(lang==="srb"){
+            $("#pageTitle").text('Moje Polise')
+            $("#pageHeader").text('Moje Polise')
+        }
+    }
 
     /*****Kraj-Pomocne Funkcije*****/
 
@@ -168,12 +223,18 @@ function createDodatniOsiguranikArray(str) {
     let userId = sessionStorage.getItem('id');
     let polise = "";
     let polisa_arr = null;
-    console.log(sessionStorage.getItem('lang'));
+    selectedLang = sessionStorage.getItem('lang');
+    //adjust language
+    if(selectedLang!=="" || selectedLang!==undefined || selectedLang!==null){
+        changeLang(selectedLang);
+    }
 
-    //reroute usera ukoliko otvori ovu stranicu preko url-a a nije ulogovan
+    //reroute user if he is not logged in
     if(userId===-1 || userId===null || userId===undefined){
         window.location.href ='index.php';
     }
+
+    
 
  
     /******Asinhrona funkcija*******/
