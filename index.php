@@ -700,9 +700,13 @@
         /***To change***/
         serbianLang.off('click').on('click',function(e){
            changeLang('srb')
+           serbianLang.addClass('active');
+           englishLang.removeClass('active');
         })
         englishLang.off('click').on('click',function(e){
             changeLang('eng')
+            englishLang.addClass('active');
+            serbianLang.removeClass('active');
         })
 
         

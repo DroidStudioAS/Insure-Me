@@ -435,9 +435,10 @@ footer {
 .language_selection img {
     width: 40px;
     margin: 2%;
+}
 
-    
-
+.language_selection img.active {
+    width: 80px;
 }
 
 /*********Media Upiti********/
