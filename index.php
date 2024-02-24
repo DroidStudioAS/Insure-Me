@@ -166,9 +166,9 @@
             let endDate = $('#endDate');
             let policyTypeLabel = $("#policyTypeLabel");
             let individualLabel = $("#individualLabel")
-            let individualnoRadio = $('#individualno');
+            let individualRadio = $('#individualno');
             let groupLabel = $("#groupLabel")
-            let grupnoRadio = $('#grupno');
+            let groupRadio = $('#grupno');
             let addPolicyTrigger = $("#okidac_slanje_forme")
             let okidac_d_o = $('#okidac_d_o');
             /****Polja za dodatne osiguranike***/
@@ -343,10 +343,10 @@
 
             /*******OnClickListener- prikazuje dugme za dodavanje osiguranika kad se klikne grupna,
              * a krije ga kad se klikne individualna polisa*******/
-            individualnoRadio.click(function(){
+            individualRadio.click(function(){
                     okidac_d_o.css('display','none');
                 })
-            grupnoRadio.click(function(){
+            groupRadio.click(function(){
                 okidac_d_o.css('display',"inline-block")
             })
 
